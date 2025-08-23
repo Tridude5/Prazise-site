@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Prazise</title>
+  <meta name="description" content="Contact Prazise about partnerships, security, or support." />
+  <meta name="theme-color" content="#0B0D10" />
+
+  <!-- Your base styles -->
+  <link rel="stylesheet" href="css/tokens.css?v=2">
+  <link rel="stylesheet" href="css/styles.css?v=2">
+
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="css/contact.css?v=1">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body class="contact-page">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-grid">
+      <a class="brand" href="./">
+        <img src="logo.svg" alt="" class="logo" aria-hidden="true"/>
+        <span class="brand-text">Prazise</span>
+      </a>
+      <nav class="nav" aria-label="primary">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#integrations">Integrations</a>
+        <a href="partners.html">For Partners</a>
+        <a href="security.html">Security</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a aria-current="page">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>Contact us</h1>
+          <p class="lead">No team inbox yet—this form routes straight to us. Pick a topic so we can triage quickly.</p>
+        </div>
+        <div class="card info">
+          <h3>Topics we handle</h3>
+          <ul class="micro">
+            <li>Partnerships & API access</li>
+            <li>Security disclosures</li>
+            <li>Product questions & support</li>
+            <li>Data privacy & deletion</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <!-- Tip: when you get a real endpoint, set action="https://your-form-endpoint"  -->
+        <form id="contact-form" class="contact-form card" action="#" method="POST" novalidate>
+          <div class="grid2">
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+          </div>
+
+          <label>
+            <span>Topic</span>
+            <select name="topic" id="topic">
+              <option value="general">General</option>
+              <option value="partnerships">Partnerships</option>
+              <option value="security">Security</option>
+              <option value="privacy">Privacy</option>
+              <option value="support">Support</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Message</span>
+            <textarea name="message" rows="6" placeholder="How can we help?" required></textarea>
+          </label>
+
+          <!-- Honeypot (anti-bot) -->
+          <input type="text" name="company" id="company" class="hp" tabindex="-1" autocomplete="off" />
+
+          <div class="actions">
+            <button class="cta" type="submit">Send</button>
+            <p class="micro">We’ll reply from a personal address until team inboxes are live.</p>
+          </div>
+
+          <div id="contact-result" class="form-result" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section disclaimer">
+      <div class="container">
+        <p class="micro center">Not affiliated with any device maker unless explicitly stated. All trademarks belong to their owners.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <div>
+        <div class="brand-inline">
+          <img src="logo.svg" alt="" class="logo small" aria-hidden="true"/>
+          <strong>Prazise</strong>
+        </div>
+        <p class="micro">© <span id="y"></span> Prazise. All rights reserved.</p>
+      </div>
+      <div class="links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="deletion.html">Data Deletion</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Page JS -->
+  <script src="js/contact.js" defer></script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
