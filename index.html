@@ -214,19 +214,15 @@
       </div>
     </section>
 
-    <!-- Reviews section removed per your request -->
-
     <section id="waitlist" class="waitlist">
       <div class="container">
         <h2>Get early access</h2>
 
-        <!-- REAL submission via FormSubmit (Gmail primary + CC EDU) -->
+        <!-- AJAX submission via FormSubmit (no redirect) -->
         <form id="waitlist-form"
               class="waitlist-form"
-              action="https://formsubmit.co/slavinskasjack@gmail.com"
+              action="https://formsubmit.co/ajax/slavinskasjack@gmail.com"
               method="POST">
-
-          <!-- Email -->
           <label>
             <span>Email</span>
             <input id="email" name="email" type="email" placeholder="you@email.com" required />
@@ -239,13 +235,10 @@
           <input type="hidden" name="_subject"  value="Prazise waitlist signup" />
           <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="_captcha"  value="false" />
+          <input type="hidden" name="_replyto"  id="_replyto" />
           <!-- CC your EDU inbox as backup -->
           <input type="hidden" name="_cc" value="johnslavinskas@my.uopeople.edu" />
-          <!-- Optional: set when deployed -->
-          <!-- <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html" /> -->
-
-          <!-- So you can Reply directly to the user -->
-          <input type="hidden" name="_replyto" id="_replyto" />
+          <!-- No _next for AJAX -->
 
           <!-- Honeypot (spam trap) -->
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
@@ -255,10 +248,6 @@
 
         <p class="micro">By joining, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
         <div id="form-result" class="form-result" role="status" aria-live="polite"></div>
-        <details class="micro">
-          <summary>Using a form service?</summary>
-          This form posts to FormSubmit, which emails your signup to the team.
-        </details>
       </div>
     </section>
   </main>
@@ -284,7 +273,7 @@
   </footer>
 
   <!-- JS -->
-  <script src="js/script.js?v=1" defer></script>
+  <script src="js/script.js?v=2" defer></script>
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
