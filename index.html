@@ -219,20 +219,43 @@
     <section id="waitlist" class="waitlist">
       <div class="container">
         <h2>Get early access</h2>
-        <form id="waitlist-form" class="waitlist-form" action="#" method="POST">
+
+        <!-- REAL submission via FormSubmit -->
+        <form id="waitlist-form"
+              class="waitlist-form"
+              action="https://formsubmit.co/johnslavinskas@my.uopeople.edu"
+              method="POST">
+
+          <!-- Email -->
           <label>
             <span>Email</span>
-            <input name="email" type="email" placeholder="you@email.com" required />
+            <input id="email" name="email" type="email" placeholder="you@email.com" required />
           </label>
-          <!-- Capture device interest from Integrations buttons -->
+
+          <!-- Captured automatically by Integrations buttons -->
           <input type="hidden" name="device_interest" id="device_interest" />
+
+          <!-- FormSubmit settings -->
+          <input type="hidden" name="_subject" value="Prazise waitlist signup" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <!-- Change to your live URL when deployed -->
+          <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html" />
+
+          <!-- So you can Reply directly to the user -->
+          <input type="hidden" name="_replyto" id="_replyto" />
+
+          <!-- Honeypot (spam trap) -->
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
           <button class="cta" type="submit">Request invite</button>
         </form>
+
         <p class="micro">By joining, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
         <div id="form-result" class="form-result" role="status" aria-live="polite"></div>
         <details class="micro">
           <summary>Using a form service?</summary>
-          Replace the form’s <code>action</code> with your endpoint (e.g., Formspree) and remove <code>js/script.js</code> handling.
+          This form posts to FormSubmit, which emails your signup to the team.
         </details>
       </div>
     </section>
