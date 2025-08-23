@@ -88,3 +88,50 @@
     }
   });
 })();
+
+
+// Carousel controls (no auto-advancing)
+(() => {
+  const shell = document.querySelector('.integrations-carousel .carousel-shell');
+  if (!shell) return;
+
+  const viewport = shell.querySelector('.carousel-viewport');
+  const prev = shell.querySelector('.carousel-btn.prev');
+  const next = shell.querySelector('.carousel-btn.next');
+
+  function step() {
+    // Scroll ~80% of visible width
+    return Math.max(160, Math.floor(viewport.clientWidth * 0.8));
+  }
+
+  function updateButtons() {
+    const max = viewport.scrollWidth - viewport.clientWidth - 1;
+    prev.disabled = viewport.scrollLeft <= 0;
+    next.disabled = viewport.scrollLeft >= max;
+  }
+
+  prev.addEventListener('click', () => { viewport.scrollBy({ left: -step(), behavior: 'smooth' }); });
+  next.addEventListener('click', () => { viewport.scrollBy({ left:  step(), behavior: 'smooth' }); });
+  viewport.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
+  updateButtons();
+})();
+
+// "Notify me" — store device choice (no auto-scroll)
+(() => {
+  const status = document.getElementById('device-pick');
+  const field = document.getElementById('device_interest');
+  document.querySelectorAll('.notify-device').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const device =
+        btn.dataset.device ||
+        btn.closest('.slide')?.querySelector('.name')?.textContent?.trim() ||
+        '';
+      if (field) field.value = device;
+      if (status) status.textContent = device
+        ? `${device} selected — it will be included when you join the waitlist.`
+        : '';
+    });
+  });
+})();
+
