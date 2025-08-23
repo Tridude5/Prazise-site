@@ -1,20 +1,23 @@
-// Prazise site JS — smooth scroll + robust waitlist handling
+// Prazise site JS — anchors, waitlist (live/demo/AJAX), carousel, notify-me
+
+// ---- Smooth-scroll for in-page anchors (incl. old #learn alias) ----
 (() => {
-  // ---- Smooth-scroll for in-page anchors (and fix old #learn alias) ----
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
 
     const href = a.getAttribute('href');
-    const id = href === '#learn' ? 'features' : href.slice(1); // alias #learn -> #features
+    const id = href === '#learn' ? 'features' : href.slice(1);
     const el = document.getElementById(id);
     if (!el) return;
 
     e.preventDefault();
     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+})();
 
-  // ---- Waitlist form ----
+// ---- Waitlist form (works with FormSubmit, AJAX, or demo) ----
+(() => {
   const form   = document.getElementById('waitlist-form');
   const result = document.getElementById('form-result');
   if (!form || !result) return;
@@ -22,62 +25,71 @@
   const btn = form.querySelector('button[type="submit"]');
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // Optional: if you want email notifications for waitlist too,
-  // set this to a real endpoint (e.g., FormSubmit/Formspree):
-  // Example (emails you): "https://formsubmit.co/ajax/johnslavinskas@my.uopeople.edu"
-  const WAITLIST_ENDPOINT = "";
+  // Optional custom endpoint if you ever want to force AJAX elsewhere
+  const WAITLIST_ENDPOINT = ""; // e.g., "https://formsubmit.co/ajax/you@example.com"
+
+  const action = (form.getAttribute('action') || '').trim();
+  const isFormSubmit = /formsubmit\.co/i.test(action);
+  const isAjaxAction = /\/ajax\//i.test(action);
+  const isDemo = !action || action === '#';
 
   function setStatus(text, cls) {
-    result.textContent = text;
-    result.className = `form-result ${cls}`; // expects .ok / .warn styles
-    // Announce to assistive tech:
+    result.textContent = text || '';
+    result.className = `form-result ${cls || ''}`; // expects .ok / .warn
     result.setAttribute('aria-live', 'polite');
   }
 
   form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    const email = form.elements['email']?.value?.trim() || '';
+    const reply = document.getElementById('_replyto');
+    if (reply) reply.value = email; // so you can Reply in your inbox
 
-    if (form.dataset.sending === '1') return; // prevent double submits
-    const email = form.elements['email']?.value.trim() || '';
-
+    // Basic validation first
     if (!EMAIL_RE.test(email)) {
+      e.preventDefault();
       setStatus('Please enter a valid email.', 'warn');
       return;
     }
 
-    // Prepare UI
+    // Mode 1: REAL FormSubmit (standard POST) -> let the browser submit/redirect
+    if (isFormSubmit && !isAjaxAction) {
+      // Optionally show a brief busy state; don't block submission.
+      setStatus('', '');
+      return; // no preventDefault
+    }
+
+    // From here on, we handle it ourselves (AJAX or demo)
+    e.preventDefault();
+
+    // UI: busy
     form.dataset.sending = '1';
     form.setAttribute('aria-busy', 'true');
     setStatus('', '');
     if (btn) { btn.disabled = true; btn.dataset.old = btn.textContent; btn.textContent = 'Submitting…'; }
 
     try {
-      // Prefer explicit form.action if you set one later
-      let endpoint = form.getAttribute('action');
-      if (!endpoint || endpoint === '#' || endpoint === window.location.href) {
-        endpoint = WAITLIST_ENDPOINT;
-      }
+      // Mode 2: AJAX endpoint (FormSubmit /ajax or custom)
+      let endpoint = isAjaxAction ? action : WAITLIST_ENDPOINT;
 
       if (endpoint) {
-        const method = (form.getAttribute('method') || 'POST').toUpperCase();
         const res = await fetch(endpoint, {
-          method,
+          method: (form.getAttribute('method') || 'POST').toUpperCase(),
           headers: { 'Accept': 'application/json' },
           body: new FormData(form)
         });
         if (!res.ok) throw new Error('Network error');
+        setStatus('Thanks! You’re on the list — we’ll be in touch.', 'ok');
+        form.reset();
       } else {
-        // No backend yet → keep a local backup so you don't lose signups
+        // Mode 3: Demo fallback (no endpoint)
         const key = 'prazise_waitlist';
         const list = JSON.parse(localStorage.getItem(key) || '[]');
-        // If you later add <input id="device_interest" ...>, we capture it:
         const device = document.getElementById('device_interest')?.value || null;
         list.push({ email, device, ts: new Date().toISOString() });
         localStorage.setItem(key, JSON.stringify(list));
+        setStatus('Thanks! You’re on the list — we’ll be in touch.', 'ok');
+        form.reset();
       }
-
-      setStatus('Thanks! You’re on the list — we’ll be in touch.', 'ok');
-      form.reset();
     } catch (err) {
       console.error(err);
       setStatus('Something went wrong. Please try again in a moment.', 'warn');
@@ -89,8 +101,7 @@
   });
 })();
 
-
-// Carousel controls (no auto-advancing)
+// ---- Carousel controls (no auto-advancing) ----
 (() => {
   const shell = document.querySelector('.integrations-carousel .carousel-shell');
   if (!shell) return;
@@ -117,7 +128,7 @@
   updateButtons();
 })();
 
-// "Notify me" — store device choice (no auto-scroll)
+// ---- "Notify me" — store device choice (no auto-scroll) ----
 (() => {
   const status = document.getElementById('device-pick');
   const field = document.getElementById('device_interest');
@@ -134,4 +145,3 @@
     });
   });
 })();
-
