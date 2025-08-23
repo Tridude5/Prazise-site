@@ -63,11 +63,18 @@
   background: var(--accent); color: #0b0d10; border: 1px solid transparent;
   text-decoration: none; font-weight: 600; box-shadow: var(--shadow);
 }
+.contact-page .cta:hover { filter: brightness(1.06); }
 
 /* Status */
 .contact-page .form-result { margin-top: .75rem; font-size: .95rem; }
-.contact-page .form-result.success { color: #34d399; }
-.contact-page .form-result.error { color: #f87171; }
+
+/* Support BOTH sets of classes:
+   - global JS uses .ok / .warn
+   - some older snippets used .success / .error */
+.contact-page .form-result.ok    { color: var(--ok,  #34d399); }
+.contact-page .form-result.warn  { color: var(--warn,#f87171); }
+.contact-page .form-result.success { color: var(--ok,  #34d399); }
+.contact-page .form-result.error   { color: var(--warn,#f87171); }
 
 /* Honeypot hidden field */
 .contact-page .hp {
