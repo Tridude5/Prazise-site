@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Data Deletion — Prazise</title>
+  <title>Request Data Deletion — Prazise</title>
 
-  <!-- Base styles + reuse legal page styles -->
+  <!-- Base + page styles -->
   <link rel="stylesheet" href="css/tokens.css?v=2">
   <link rel="stylesheet" href="css/styles.css?v=2">
-  <link rel="stylesheet" href="css/privacy.css?v=1"><!-- re-use for consistent legal look -->
+  <link rel="stylesheet" href="css/deletion.css?v=2">
 
   <meta name="theme-color" content="#0B0D10" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -16,7 +16,6 @@
 <body class="legal-page">
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Header -->
   <header class="site-header">
     <div class="container header-grid">
       <a class="brand" href="./">
@@ -35,50 +34,66 @@
   <main id="main">
     <article class="doc container">
       <header class="doc-head">
-        <h1>Data Deletion</h1>
-        <p class="muted"><em>Last updated: <span id="last-updated"></span></em></p>
-        <p>You can request deletion of your data at any time. Because Prazise is currently in pre-launch, the data we hold is typically limited to your <strong>waitlist email</strong> and any <strong>messages you sent us</strong>. Below are your options.</p>
+        <h1>Request Data Deletion</h1>
+        <p class="muted">Tell us what to remove and we’ll confirm deletion. Pre-launch, this is usually your waitlist email and any messages you sent us.</p>
       </header>
 
       <section>
-        <h2>Delete via email</h2>
-        <p>Send a deletion request from your account email to <a href="mailto:slavinskasjack@gmail.com?subject=Prazise%20Data%20Deletion%20Request">slavinskasjack@gmail.com</a> (optional cc: <a href="mailto:johnslavinskas@my.uopeople.edu">johnslavinskas@my.uopeople.edu</a>).</p>
-        <p class="muted">Tip: include the address you used for the waitlist and any devices you mentioned (e.g., Garmin, Apple Health) so we can find you quickly.</p>
-      </section>
+        <form id="delete-form" class="card" action="https://formsubmit.co/ajax/slavinskasjack@gmail.com" method="POST" novalidate>
+          <!-- FormSubmit settings (AJAX only) -->
+          <input type="hidden" name="_subject" value="Prazise Data Deletion Request">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="request_type" value="Data deletion">
 
-      <section>
-        <h2>Delete via contact form</h2>
-        <p>You can also use our form—choose “Privacy” as the topic:</p>
-        <p><a class="cta" href="contact.html?topic=privacy">Request deletion via contact form</a></p>
-      </section>
+          <div class="grid2">
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+          </div>
 
-      <section>
-        <h2>Local browser backup (your device)</h2>
-        <p>If you previously joined the waitlist while no backend was configured, your browser may have stored a local backup of your email (on <em>your</em> device only). You can clear that here:</p>
-        <p><button class="cta" id="clear-local">Clear local backup</button> <span id="clear-local-result" class="micro muted" role="status" aria-live="polite"></span></p>
-        <p class="micro muted">This clears only local storage keys used for the early demo (e.g., <code>prazise_waitlist</code>). It does not affect any emails already sent to us.</p>
-      </section>
+          <fieldset style="margin:.6rem 0 0;border:1px solid var(--border);border-radius:12px;padding:.7rem .8rem;">
+            <legend class="micro" style="color:var(--muted)">What should we delete?</legend>
+            <label style="display:block;margin:.2rem 0;">
+              <input type="checkbox" name="delete_waitlist" value="yes"> Waitlist email
+            </label>
+            <label style="display:block;margin:.2rem 0;">
+              <input type="checkbox" name="delete_messages" value="yes"> Messages/contact emails
+            </label>
+            <label style="display:block;margin:.2rem 0;">
+              <input type="checkbox" name="delete_other" value="yes"> Other (describe below)
+            </label>
+          </fieldset>
 
-      <section>
-        <h2>Revoking device connections</h2>
-        <p>If you have connected a third-party provider in the future app (e.g., Apple Health, Google Fit, Garmin, Polar, Suunto, COROS, WHOOP, Oura, Wahoo, Fitbit, Strava), you can revoke access from that provider’s settings at any time. Revoking stops new data from flowing to Prazise. We can then delete any previously stored copies upon request.</p>
-      </section>
+          <label>
+            <span>Details (optional)</span>
+            <textarea name="details" rows="5" placeholder="Anything that helps us locate your data (e.g., another email you used, device names)."></textarea>
+          </label>
 
-      <section>
-        <h2>When the app launches</h2>
-        <p>The app will include an in-app option to delete your account and associated data (e.g., <em>Settings → Account → Delete</em>). That will remove your profile, training data, and revoke third-party tokens we hold on your behalf.</p>
-      </section>
+          <label class="micro" style="display:flex;gap:.5rem;align-items:flex-start">
+            <input type="checkbox" name="confirm" value="yes" required>
+            <span>I confirm I’m the owner of this email and I want Prazise to delete the data indicated above.</span>
+          </label>
 
-      <section>
-        <h2>Identity & timing</h2>
-        <ul>
-          <li><strong>Identity verification:</strong> We may ask you to verify ownership of the email/account requesting deletion.</li>
-          <li><strong>Response time:</strong> We aim to confirm deletion within 30 days, sooner whenever possible.</li>
-        </ul>
+          <!-- Honeypot (anti-bot) -->
+          <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off" />
+
+          <div class="actions" style="margin-top:.6rem">
+            <button class="cta" type="submit">Send request</button>
+            <p class="micro">We aim to confirm within 30 days (usually faster).</p>
+          </div>
+
+          <div id="delete-result" class="form-result" role="status" aria-live="polite"></div>
+        </form>
       </section>
 
       <footer class="doc-foot micro">
-        <p>See also our <a href="privacy.html">Privacy Policy</a> for details about what we collect and why.</p>
+        <p>Prefer email? Write to <a href="mailto:slavinskasjack@gmail.com?subject=Prazise%20Data%20Deletion%20Request">slavinskasjack@gmail.com</a>. See our <a href="privacy.html">Privacy Policy</a> for more details.</p>
       </footer>
     </article>
   </main>
@@ -95,7 +110,7 @@
       <div class="links">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
-        <a aria-current="page">Data Deletion</a>
+        <a href="deletion.html">Data Deletion</a>
         <a href="security.html">Security</a>
         <a href="accessibility.html">Accessibility</a>
         <a href="contact.html">Contact</a>
@@ -104,18 +119,8 @@
   </footer>
 
   <script>
-    // Footer year + last-updated
     document.getElementById('y').textContent = new Date().getFullYear();
-    document.getElementById('last-updated').textContent = new Date().toISOString().slice(0,10);
-
-    // Clear any local demo backup
-    document.getElementById('clear-local')?.addEventListener('click', () => {
-      const keys = ['prazise_waitlist', 'prazise_contact'];
-      let cleared = 0;
-      keys.forEach(k => { if (localStorage.getItem(k) !== null) { localStorage.removeItem(k); cleared++; } });
-      const out = document.getElementById('clear-local-result');
-      out.textContent = cleared ? `Cleared ${cleared} item(s) of local backup.` : 'No local backup found.';
-    });
   </script>
+  <script src="js/deletion-request.js" defer></script>
 </body>
 </html>
