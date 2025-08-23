@@ -220,10 +220,10 @@
       <div class="container">
         <h2>Get early access</h2>
 
-        <!-- REAL submission via FormSubmit -->
+        <!-- REAL submission via FormSubmit (Gmail primary + CC EDU) -->
         <form id="waitlist-form"
               class="waitlist-form"
-              action="https://formsubmit.co/johnslavinskas@my.uopeople.edu"
+              action="https://formsubmit.co/slavinskasjack@gmail.com"
               method="POST">
 
           <!-- Email -->
@@ -236,11 +236,13 @@
           <input type="hidden" name="device_interest" id="device_interest" />
 
           <!-- FormSubmit settings -->
-          <input type="hidden" name="_subject" value="Prazise waitlist signup" />
+          <input type="hidden" name="_subject"  value="Prazise waitlist signup" />
           <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
-          <!-- Change to your live URL when deployed -->
-          <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html" />
+          <input type="hidden" name="_captcha"  value="false" />
+          <!-- CC your EDU inbox as backup -->
+          <input type="hidden" name="_cc" value="johnslavinskas@my.uopeople.edu" />
+          <!-- Optional: set when deployed -->
+          <!-- <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html" /> -->
 
           <!-- So you can Reply directly to the user -->
           <input type="hidden" name="_replyto" id="_replyto" />
