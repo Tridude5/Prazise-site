@@ -1,14 +1,121 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Data Deletion — Prazise</title>
-<link rel="stylesheet" href="/styles.css"/>
-<style>.doc{max-width:840px;margin:40px auto;padding:0 20px}.doc h1{font-size:36px}</style>
-</head><body><div class="doc">
-<h1>Data Deletion</h1>
-<p>You can delete your account and connected data at any time. Choose either method:</p>
-<ol>
-  <li><strong>In-app:</strong> Settings → Data &amp; Privacy → Delete Account (removes profile and training data; revokes third-party tokens).</li>
-  <li><strong>Email:</strong> Send a request from your account email to <a href="mailto:privacy@yourdomain.com">privacy@yourdomain.com</a>. We will confirm and complete deletion within 30 days.</li>
-</ol>
-<p>Revoking a device connection (Garmin/Polar/Suunto/Fitbit/Apple Health) stops new data flow immediately.</p>
-</div></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Data Deletion — Prazise</title>
+
+  <!-- Base styles + reuse legal page styles -->
+  <link rel="stylesheet" href="css/tokens.css?v=2">
+  <link rel="stylesheet" href="css/styles.css?v=2">
+  <link rel="stylesheet" href="css/privacy.css?v=1"><!-- re-use for consistent legal look -->
+
+  <meta name="theme-color" content="#0B0D10" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body class="legal-page">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-grid">
+      <a class="brand" href="./">
+        <img src="logo.svg" alt="" class="logo" aria-hidden="true"/>
+        <span class="brand-text">Prazise</span>
+      </a>
+      <nav class="nav" aria-label="primary">
+        <a href="partners.html">For Partners</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="doc container">
+      <header class="doc-head">
+        <h1>Data Deletion</h1>
+        <p class="muted"><em>Last updated: <span id="last-updated"></span></em></p>
+        <p>You can request deletion of your data at any time. Because Prazise is currently in pre-launch, the data we hold is typically limited to your <strong>waitlist email</strong> and any <strong>messages you sent us</strong>. Below are your options.</p>
+      </header>
+
+      <section>
+        <h2>Delete via email</h2>
+        <p>Send a deletion request from your account email to <a href="mailto:slavinskasjack@gmail.com?subject=Prazise%20Data%20Deletion%20Request">slavinskasjack@gmail.com</a> (optional cc: <a href="mailto:johnslavinskas@my.uopeople.edu">johnslavinskas@my.uopeople.edu</a>).</p>
+        <p class="muted">Tip: include the address you used for the waitlist and any devices you mentioned (e.g., Garmin, Apple Health) so we can find you quickly.</p>
+      </section>
+
+      <section>
+        <h2>Delete via contact form</h2>
+        <p>You can also use our form—choose “Privacy” as the topic:</p>
+        <p><a class="cta" href="contact.html?topic=privacy">Request deletion via contact form</a></p>
+      </section>
+
+      <section>
+        <h2>Local browser backup (your device)</h2>
+        <p>If you previously joined the waitlist while no backend was configured, your browser may have stored a local backup of your email (on <em>your</em> device only). You can clear that here:</p>
+        <p><button class="cta" id="clear-local">Clear local backup</button> <span id="clear-local-result" class="micro muted" role="status" aria-live="polite"></span></p>
+        <p class="micro muted">This clears only local storage keys used for the early demo (e.g., <code>prazise_waitlist</code>). It does not affect any emails already sent to us.</p>
+      </section>
+
+      <section>
+        <h2>Revoking device connections</h2>
+        <p>If you have connected a third-party provider in the future app (e.g., Apple Health, Google Fit, Garmin, Polar, Suunto, COROS, WHOOP, Oura, Wahoo, Fitbit, Strava), you can revoke access from that provider’s settings at any time. Revoking stops new data from flowing to Prazise. We can then delete any previously stored copies upon request.</p>
+      </section>
+
+      <section>
+        <h2>When the app launches</h2>
+        <p>The app will include an in-app option to delete your account and associated data (e.g., <em>Settings → Account → Delete</em>). That will remove your profile, training data, and revoke third-party tokens we hold on your behalf.</p>
+      </section>
+
+      <section>
+        <h2>Identity & timing</h2>
+        <ul>
+          <li><strong>Identity verification:</strong> We may ask you to verify ownership of the email/account requesting deletion.</li>
+          <li><strong>Response time:</strong> We aim to confirm deletion within 30 days, sooner whenever possible.</li>
+        </ul>
+      </section>
+
+      <footer class="doc-foot micro">
+        <p>See also our <a href="privacy.html">Privacy Policy</a> for details about what we collect and why.</p>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <div>
+        <div class="brand-inline">
+          <img src="logo.svg" alt="" class="logo small" aria-hidden="true"/>
+          <strong>Prazise</strong>
+        </div>
+        <p class="micro">© <span id="y"></span> Prazise. All rights reserved.</p>
+      </div>
+      <div class="links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a aria-current="page">Data Deletion</a>
+        <a href="security.html">Security</a>
+        <a href="accessibility.html">Accessibility</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Footer year + last-updated
+    document.getElementById('y').textContent = new Date().getFullYear();
+    document.getElementById('last-updated').textContent = new Date().toISOString().slice(0,10);
+
+    // Clear any local demo backup
+    document.getElementById('clear-local')?.addEventListener('click', () => {
+      const keys = ['prazise_waitlist', 'prazise_contact'];
+      let cleared = 0;
+      keys.forEach(k => { if (localStorage.getItem(k) !== null) { localStorage.removeItem(k); cleared++; } });
+      const out = document.getElementById('clear-local-result');
+      out.textContent = cleared ? `Cleared ${cleared} item(s) of local backup.` : 'No local backup found.';
+    });
+  </script>
+</body>
+</html>
