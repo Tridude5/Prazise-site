@@ -52,7 +52,8 @@
           </ul>
           <div class="cta-row">
             <a class="cta" href="#waitlist">Get early access</a>
-            <a class="cta ghost" href="#learn">Learn more</a>
+            <!-- Fixed: was #learn -->
+            <a class="cta ghost" href="#features">Learn more</a>
           </div>
           <p class="micro">No spam. Opt out anytime.</p>
         </div>
@@ -151,7 +152,7 @@
         <div id="form-result" class="form-result" role="status" aria-live="polite"></div>
         <details class="micro">
           <summary>Using a form service?</summary>
-          Replace the form’s <code>action</code> with your endpoint (e.g., Formspree) and remove <code>script.js</code> handling.
+          Replace the form’s <code>action</code> with your endpoint (e.g., Formspree) and remove <code>js/script.js</code> handling.
         </details>
       </div>
     </section>
@@ -170,12 +171,13 @@
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="deletion.html">Data Deletion</a>
-        <a href="mailto:hello@yourdomain.com">Contact</a>
+        <a href="contact.html">Contact</a>
       </div>
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <!-- Moved into /js per your setup -->
+  <script src="js/script.js?v=1" defer></script>
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
