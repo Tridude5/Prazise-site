@@ -1,0 +1,51 @@
+/* accessibility.css — page layout + preview toggles */
+
+/* Container and headings (reuse your legal/doc look) */
+.access-page { background: var(--bg); color: var(--text); }
+.doc { max-width: 900px; margin: 56px auto; padding: 0 20px; }
+.doc h1 { font-size: 36px; line-height: 1.2; margin: 0 0 8px; }
+.doc h2 { margin: 28px 0 10px; font-size: 22px; }
+.doc p, .doc li { color: var(--text); }
+.doc .muted { color: var(--muted); }
+.doc a { color: var(--accent); text-decoration: none; }
+.doc a:hover { text-decoration: underline; }
+.doc ul { margin: 8px 0 0 1.2rem; }
+
+/* Preview controls */
+.a11y-preview { margin-top: 10px; }
+.a11y-controls { display: flex; gap: 10px; flex-wrap: wrap; }
+.toggle {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  padding: .6rem .9rem;
+  border-radius: 12px;
+  font-weight: 700;
+}
+.toggle:hover { filter: brightness(1.06); }
+.toggle[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--ink-on-accent);
+  border-color: var(--accent);
+}
+
+/* Page-local high contrast (demo) */
+.access-page.a11y-hc {
+  --text: #ffffff;
+  --muted: #e7e7e7;
+  --border: #ffffff55;
+  outline-color: #fff;
+}
+.access-page.a11y-hc .toggle { border-color: #ffffff77; }
+
+/* Page-local reduced motion (demo) */
+.access-page.a11y-rm * {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+/* Footer links wrap nicely */
+.site-footer .links {
+  display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-end;
+}
