@@ -1,24 +1,24 @@
-/* css/tokens.css */
-
-/* Default theme — Premium Dark */
+/* Theme tokens — Premium Dark with Huia Wattle Orange */
 :root{
+  /* Surfaces */
   --bg:#0B0D10;
   --panel:#12161C;
   --card:#0F1318;
   --border:rgba(255,255,255,.08);
+
+  /* Text */
   --text:#E9EEF5;
   --muted:#A8B0BB;
-  --accent:#2EE6D6;   /* change to #5B8CFF or #FF6B6B if you like */
-  --ok:#25D27F; --warn:#FFB020; --danger:#FF5A5A;
+
+  /* Brand */
+  --accent:#FF8A3D;           /* Huia wattle orange */
+  --accent-rgb:255,138,61;     /* for rgba(...) fallback */
+  --ink-on-accent:#0B0D10;     /* dark ink on orange */
+
+  /* States */
+  --ok:#25D27F;
+  --warn:#FFB020;
+  --danger:#FF5A5A;
 }
 
-/* Optional: theme variants (switch with <html data-theme="...">) */
-:root[data-theme="pro-light"]{
-  --bg:#FFFFFF; --panel:#F6F8FB; --card:#FFFFFF; --border:rgba(14,26,36,.12);
-  --text:#0E1A24; --muted:#5A6B7A; --accent:#246BFD;
-}
-:root[data-theme="neon"]{
-  --bg:#0A0A0C; --panel:#12121A; --card:#0E0E15; --border:rgba(255,255,255,.10);
-  --text:#F1F5F9; --muted:#A3ADC2; --accent:#36F2A6;
-}
-/* add more variants later if needed */
+/* (optional) keep your light theme variant here later */
