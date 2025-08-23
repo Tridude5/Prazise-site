@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For Partners — Prazise</title>
+  <meta name="description" content="Integration overview for device makers and data providers." />
+  <meta name="theme-color" content="#0B0D10" />
+
+  <!-- Base site styles (already in your project) -->
+  <link rel="stylesheet" href="css/tokens.css?v=2">
+  <link rel="stylesheet" href="css/styles.css?v=2">
+
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="css/partners.css?v=1">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body class="partners-page">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-grid">
+      <a class="brand" href="./">
+        <img src="logo.svg" alt="" class="logo" aria-hidden="true"/>
+        <span class="brand-text">Prazise</span>
+      </a>
+      <nav class="nav" aria-label="primary">
+        <!-- Links point back to your home sections so nothing 404s -->
+        <a href="index.html#features">Features</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#integrations">Integrations</a>
+        <a aria-current="page">For Partners</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a class="cta ghost" href="index.html#waitlist">Join waitlist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="section hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>Built for precise training. <span class="accent">Built for privacy.</span></h1>
+          <p class="lead">
+            Prazise integrates with wearables and data providers using <strong>explicit user consent</strong>,
+            <strong>minimal scopes</strong>, and <strong>strong security</strong>.
+          </p>
+          <div class="cta-row">
+            <a class="cta" href="mailto:partnerships@prazise.app">Contact partnerships</a>
+            <a class="cta ghost" href="privacy.html">Privacy</a>
+          </div>
+        </div>
+
+        <div class="value-cards">
+          <article class="card">
+            <h3>User-consented</h3>
+            <p>OAuth flows with clear, revocable scopes. Users can disconnect anytime.</p>
+          </article>
+          <article class="card">
+            <h3>Data-minimized</h3>
+            <p>HR/HRV, sleep summaries, workout summaries. No continuous GPS unless required.</p>
+          </article>
+          <article class="card">
+            <h3>Secure by design</h3>
+            <p>Encryption in transit and at rest, RBAC, audit logs, and key rotation.</p>
+          </article>
+          <article class="card">
+            <h3>Compliance-minded</h3>
+            <p>GDPR/CCPA-ready processes. DPA available on request.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data we request -->
+    <section class="section">
+      <div class="container">
+        <h2>Data we request &amp; why</h2>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr><th>Signal</th><th>Reason</th><th>Scope</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Heart rate / HRV</strong></td>
+                <td>Recovery &amp; load calibration</td>
+                <td>Daily / summary metrics</td>
+              </tr>
+              <tr>
+                <td><strong>Sleep summary</strong></td>
+                <td>Readiness &amp; session intensity</td>
+                <td>Duration &amp; stages</td>
+              </tr>
+              <tr>
+                <td><strong>Workout summaries</strong></td>
+                <td>Progression &amp; safety</td>
+                <td>Type, duration, avg HR, load</td>
+              </tr>
+              <tr>
+                <td><strong>(Optional) Device meta</strong></td>
+                <td>Sync hygiene &amp; support</td>
+                <td>Battery %, firmware</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="micro note">
+          We do <strong>not</strong> request continuous GPS tracks or raw PII unless strictly necessary for a feature.
+        </p>
+      </div>
+    </section>
+
+    <!-- Integration flow -->
+    <section class="section">
+      <div class="container">
+        <h2>Integration flow</h2>
+        <ol class="steps">
+          <li>
+            <div class="num">1</div>
+            <div>
+              <h3>Register app</h3>
+              <p>Vendor portal registration with approved redirect URIs and brand review.</p>
+            </div>
+          </li>
+          <li>
+            <div class="num">2</div>
+            <div>
+              <h3>OAuth &amp; scopes</h3>
+              <p>Explicit consent, least-privilege scopes, and revocable tokens.</p>
+            </div>
+          </li>
+          <li>
+            <div class="num">3</div>
+            <div>
+              <h3>Sync &amp; safeguards</h3>
+              <p>Backoff + retry policies, rate-limit respect, audit logging, and alerts.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Compliance & contact -->
+    <section class="section">
+      <div class="container two-col">
+        <div class="card">
+          <h2>Compliance &amp; user control</h2>
+          <ul class="bullets">
+            <li>User controls: disconnect integrations, export data, request deletion.</li>
+            <li>Default retention: 24 months; earlier deletion on request.</li>
+            <li>Sub-processors vetted under DPAs; list available on request.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Security contact</h2>
+          <p>Report issues to <a href="mailto:security@prazise.app">security@prazise.app</a>.</p>
+          <p>General partnerships: <a href="mailto:partnerships@prazise.app">partnerships@prazise.app</a>.</p>
+          <div class="cta-row">
+            <a class="cta" href="mailto:partnerships@prazise.app">Start a review</a>
+            <a class="cta ghost" href="terms.html">Terms</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section disclaimer">
+      <div class="container">
+        <p class="micro center">Not affiliated with any device maker unless explicitly stated. All trademarks belong to their owners.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <div>
+        <div class="brand-inline">
+          <img src="logo.svg" alt="" class="logo small" aria-hidden="true"/>
+          <strong>Prazise</strong>
+        </div>
+        <p class="micro">© <span id="y"></span> Prazise. All rights reserved.</p>
+      </div>
+      <div class="links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="deletion.html">Data Deletion</a>
+        <a href="mailto:hello@prazise.app">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year stamp
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
