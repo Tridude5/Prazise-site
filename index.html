@@ -13,6 +13,8 @@
   <!-- Load theme tokens first, then the main styles (both from /css) -->
   <link rel="stylesheet" href="css/tokens.css?v=2">
   <link rel="stylesheet" href="css/styles.css?v=2">
+  <!-- New: integrations-specific styles -->
+  <link rel="stylesheet" href="css/integrations.css?v=1">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
@@ -52,7 +54,6 @@
           </ul>
           <div class="cta-row">
             <a class="cta" href="#waitlist">Get early access</a>
-            <!-- Keep "Learn more" pointing to Features section -->
             <a class="cta ghost" href="#features">Learn more</a>
           </div>
           <p class="micro">No spam. Opt out anytime.</p>
@@ -110,18 +111,158 @@
       </div>
     </section>
 
+    <!-- New Integrations grid with logos + status + notify buttons -->
     <section id="integrations" class="integrations">
       <div class="container">
         <h2>Integrations</h2>
-        <div class="logos">
-          <span class="logo-badge">GARMIN</span>
-          <span class="logo-badge">POLAR</span>
-          <span class="logo-badge">SUUNTO</span>
-          <span class="logo-badge">FITBIT</span>
-          <span class="logo-badge">APPLE&nbsp;HEALTH</span>
-          <span class="logo-badge">STRAVA</span>
-        </div>
-        <p class="micro center">Logos are placeholders; final brand assets will respect partner guidelines.</p>
+        <p class="micro">We connect via official, user-consented APIs. Status below shows where we’re headed.</p>
+
+        <ul class="integration-grid" role="list">
+          <!-- Apple Health -->
+          <li class="integration">
+            <figure class="logo" data-fallback="Apple Health">
+              <img src="img/integrations/apple-health.svg" alt="Apple Health"
+                   onerror="this.closest('.integration').classList.add('no-logo')">
+            </figure>
+            <div class="meta">
+              <span class="name">Apple Health</span>
+              <span class="status planned">Planned</span>
+            </div>
+            <button type="button" class="cta ghost notify-device" data-device="Apple Health">Notify me</button>
+          </li>
+
+          <!-- Google Fit -->
+          <li class="integration">
+            <figure class="logo" data-fallback="Google Fit">
+              <img src="img/integrations/google-fit.svg" alt="Google Fit"
+                   onerror="this.closest('.integration').classList.add('no-logo')">
+            </figure>
+            <div class="meta">
+              <span class="name">Google Fit</span>
+              <span class="status planned">Planned</span>
+            </div>
+            <button type="button" class="cta ghost notify-device" data-device="Google Fit">Notify me</button>
+          </li>
+
+          <!-- Garmin -->
+          <li class="integration">
+            <figure class="logo" data-fallback="Garmin">
+              <img src="img/integrations/garmin.svg" alt="Garmin"
+                   onerror="this.closest('.integration').classList.add('no-logo')">
+            </figure>
+            <div class="meta">
+              <span class="name">Garmin</span>
+              <span class="status planned">Planned</span>
+            </div>
+            <button type="button" class="cta ghost notify-device" data-device="Garmin">Notify me</button>
+          </li>
+
+          <!-- Polar -->
+          <li class="integration">
+            <figure class="logo" data-fallback="Polar">
+              <img src="img/integrations/polar.svg" alt="Polar"
+                   onerror="this.closest('.integration').classList.add('no-logo')">
+            </figure>
+            <div class="meta">
+              <span class="name">Polar</span>
+              <span class="status planned">Planned</span>
+            </div>
+            <button type="button" class="cta ghost notify-device" data-device="Polar">Notify me</button>
+          </li>
+
+          <!-- Suunto -->
+          <li class="integration">
+            <figure class="logo" data-fallback="Suunto">
+              <img src="img/integrations/suunto.svg" alt="Suunto"
+                   onerror="this.closest('.integration').classList.add('no-logo')">
+            </figure>
+            <div class="meta">
+              <span class="name">Suunto</span>
+              <span class="status planned">Planned</span>
+            </div>
+            <button type="button" class="cta ghost notify-device" data-device="Suunto">Notify me</button>
+          </li>
+
+          <!-- COROS -->
+          <li class="integration">
+            <figure class="logo" data-fallback="COROS">
+              <img src="img/integrations/coros.svg" alt="COROS"
+                   onerror="this.closest('.integration').classList.add('no-logo')">
+            </figure>
+            <div class="meta">
+              <span class="name">COROS</span>
+              <span class="status planned">Planned</span>
+            </div>
+            <button type="button" class="cta ghost notify-device" data-device="COROS">Notify me</button>
+          </li>
+
+          <!-- Wahoo -->
+          <li class="integration">
+            <figure class="logo" data-fallback="Wahoo">
+              <img src="img/integrations/wahoo.svg" alt="Wahoo"
+                   onerror="this.closest('.integration').classList.add('no-logo')">
+            </figure>
+            <div class="meta">
+              <span class="name">Wahoo</span>
+              <span class="status planned">Planned</span>
+            </div>
+            <button type="button" class="cta ghost notify-device" data-device="Wahoo">Notify me</button>
+          </li>
+
+          <!-- WHOOP -->
+          <li class="integration">
+            <figure class="logo" data-fallback="WHOOP">
+              <img src="img/integrations/whoop.svg" alt="WHOOP"
+                   onerror="this.closest('.integration').classList.add('no-logo')">
+            </figure>
+            <div class="meta">
+              <span class="name">WHOOP</span>
+              <span class="status planned">Planned</span>
+            </div>
+            <button type="button" class="cta ghost notify-device" data-device="WHOOP">Notify me</button>
+          </li>
+
+          <!-- Oura -->
+          <li class="integration">
+            <figure class="logo" data-fallback="Oura">
+              <img src="img/integrations/oura.svg" alt="Oura"
+                   onerror="this.closest('.integration').classList.add('no-logo')">
+            </figure>
+            <div class="meta">
+              <span class="name">Oura</span>
+              <span class="status planned">Planned</span>
+            </div>
+            <button type="button" class="cta ghost notify-device" data-device="Oura">Notify me</button>
+          </li>
+
+          <!-- Fitbit (maybe) -->
+          <li class="integration">
+            <figure class="logo" data-fallback="Fitbit">
+              <img src="img/integrations/fitbit.svg" alt="Fitbit"
+                   onerror="this.closest('.integration').classList.add('no-logo')">
+            </figure>
+            <div class="meta">
+              <span class="name">Fitbit</span>
+              <span class="status planned">Planned</span>
+            </div>
+            <button type="button" class="cta ghost notify-device" data-device="Fitbit">Notify me</button>
+          </li>
+
+          <!-- Strava (maybe) -->
+          <li class="integration">
+            <figure class="logo" data-fallback="Strava">
+              <img src="img/integrations/strava.svg" alt="Strava"
+                   onerror="this.closest('.integration').classList.add('no-logo')">
+            </figure>
+            <div class="meta">
+              <span class="name">Strava</span>
+              <span class="status planned">Planned</span>
+            </div>
+            <button type="button" class="cta ghost notify-device" data-device="Strava">Notify me</button>
+          </li>
+        </ul>
+
+        <p class="micro center">Logos are placeholders; all trademarks belong to their owners. Not affiliated unless stated.</p>
       </div>
     </section>
 
@@ -146,6 +287,8 @@
             <span>Email</span>
             <input name="email" type="email" placeholder="you@email.com" required />
           </label>
+          <!-- New: capture device interest from Integrations buttons -->
+          <input type="hidden" name="device_interest" id="device_interest" />
           <button class="cta" type="submit">Request invite</button>
         </form>
         <p class="micro">By joining, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
@@ -168,7 +311,6 @@
         <p class="micro">© <span id="y"></span> Prazise. All rights reserved.</p>
       </div>
       <div class="links">
-        <!-- Moved legal/utility items here -->
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="security.html">Security</a>
