@@ -245,32 +245,30 @@ a:hover{text-decoration:underline}
 }
 .compare .side-title{ margin:0 0 10px; font-weight:800 }
 
-/* Lists */
+/* List container */
 .compare .list{
   list-style:none;
   margin:0;
   padding:0;
   display:grid;
-  gap:10px;
+  gap:14px;
 }
-.compare .list li{
-  display:flex;                /* fix: natural inline wrapping */
-  align-items:flex-start;
-  gap:12px;
-  padding:6px 0;
-  line-height:1.55;
-  transition:transform .12s ease;
-}
-.compare .list li:hover{ transform:translateX(1px) }
 
-/* Icons (SVG data URIs, no external assets) */
-.compare .icon{
-  flex:0 0 20px;               /* fix: stable icon width */
+/* Bullet items — use normal text flow; place the icon absolutely */
+.compare .list li{
+  position:relative;
+  padding-left:34px;          /* space for the icon */
+  line-height:1.6;
+}
+.compare .list li .icon{
+  position:absolute;
+  left:0; top:.35em;          /* align with first text line */
   width:20px; height:20px;
   border-radius:50%;
-  display:inline-block;
-  margin-top:2px;
   box-shadow:0 0 0 1px rgba(0,0,0,.15) inset;
+}
+.compare strong{
+  font-weight:800;
 }
 
 /* Positive (check) */
@@ -297,25 +295,18 @@ a:hover{text-decoration:underline}
   box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent);
 }
 
-/* Badges (local to this section) */
+/* Badges */
 .compare .badge-row{
-  display:flex; flex-wrap:wrap; gap:8px;
-  margin-top:12px;
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;
 }
 .compare .badge{
-  font-size:12px;
-  color:var(--ink-on-accent);
-  background:var(--accent);
-  padding:6px 10px;
-  border-radius:999px;
-  font-weight:700;
+  font-size:12px;color:var(--ink-on-accent);background:var(--accent);
+  padding:6px 10px;border-radius:999px;font-weight:700;
 }
 
 /* Footer note */
 .compare .compare-note{
-  margin-top:10px;
-  text-align:center;
-  color:var(--muted);
+  margin-top:10px;text-align:center;color:var(--muted);
 }
 
 /* Responsive */
