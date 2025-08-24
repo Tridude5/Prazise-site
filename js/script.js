@@ -1,4 +1,4 @@
-// Prazise site JS — anchors, waitlist (AJAX), carousel, notify-me, race timeline, footer year
+// Prazise site JS — anchors, waitlist (AJAX), carousel, notify-me, footer year
 
 // ---- Smooth-scroll for in-page anchors (incl. old #learn alias) ----
 (() => {
@@ -116,73 +116,6 @@
         : '';
     });
   });
-})();
-
-// ---- Race peaking mini-timeline (base/build/taper) ----
-(() => {
-  const dateInput = document.getElementById('race_date');
-  const btn       = document.getElementById('calc_peak');
-  const baseEl    = document.getElementById('phase_base');
-  const buildEl   = document.getElementById('phase_build');
-  const taperEl   = document.getElementById('phase_taper');
-  const labels    = document.getElementById('race_labels');
-  const feedback  = document.getElementById('race_feedback');
-  if (!dateInput || !btn || !baseEl || !buildEl || !taperEl || !labels) return;
-
-  function weeksUntil(dateStr){
-    const race = new Date(dateStr);
-    const today = new Date();
-    race.setHours(0,0,0,0); today.setHours(0,0,0,0);
-    const days = Math.round((race - today) / 86400000);
-    return Math.max(0, Math.ceil(days / 7));
-  }
-
-  function planPhases(totalWeeks){
-    let base=0, build=0, taper=0;
-    if (totalWeeks >= 16){ base = totalWeeks - 8; build = 6; taper = 2; }
-    else if (totalWeeks >= 12){ base = totalWeeks - 7; build = 6; taper = 1; }
-    else if (totalWeeks >= 8){ base = totalWeeks - 5; build = 4; taper = 1; }
-    else if (totalWeeks >= 6){ base = totalWeeks - 3; build = 2; taper = 1; }
-    else if (totalWeeks >= 4){ base = totalWeeks - 2; build = 1; taper = 1; }
-    else if (totalWeeks >= 2){ base = totalWeeks - 1; build = 1; taper = 0; }
-    else { base = totalWeeks; build = 0; taper = 0; }
-    base = Math.max(0, base); build = Math.max(0, build); taper = Math.max(0, taper);
-    const sum = base + build + taper || 1;
-    return { base, build, taper, total: sum };
-  }
-
-  function setWidths(base, build, taper, total){
-    const pct = (w) => `${(w/total)*100}%`;
-    baseEl.style.width  = pct(base);
-    buildEl.style.width = pct(build);
-    taperEl.style.width = pct(taper);
-  }
-
-  function setLabels(base, build, taper, total, toGo){
-    labels.innerHTML = `
-      <span class="chip">Base — ${base}w</span>
-      <span class="chip">Build — ${build}w</span>
-      <span class="chip">Taper — ${taper}w</span>
-    `;
-    if (feedback){
-      feedback.textContent = toGo
-        ? `${toGo} weeks until race. Timeline previews how Prazise will align microcycles to peak on race week.`
-        : 'Pick a race date to preview phases. Typical taper is 1–2 weeks.';
-    }
-  }
-
-  function render(){
-    const val = dateInput.value;
-    if (!val){ setWidths(0,0,0,1); setLabels(0,0,0,1,0); return; }
-    const toGo = weeksUntil(val);
-    const { base, build, taper, total } = planPhases(toGo);
-    setWidths(base, build, taper, total);
-    setLabels(base, build, taper, total, toGo);
-  }
-
-  btn.addEventListener('click', render);
-  dateInput.addEventListener('change', render);
-  render();
 })();
 
 // ---- Footer year ----
