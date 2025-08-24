@@ -103,41 +103,6 @@ a:hover{text-decoration:underline}
   padding:6px 10px;border-radius:999px;font-weight:700;
 }
 
-/* Race peaking mini-timeline */
-.race{padding:36px 0;border-top:1px solid var(--border)}
-.race-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
-.race-form{display:flex;gap:10px;align-items:flex-end}
-.race-form label{display:flex;flex-direction:column;gap:6px}
-.race-form input[type="date"]{
-  padding:10px 12px;border-radius:10px;border:1px solid var(--border);
-  background:#0b0f13;color:var(--text);
-}
-.race-form .pill{
-  border:1px solid var(--border);background:transparent;color:var(--text);
-  border-radius:999px;padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer;
-}
-.race-form .pill:hover{border-color:var(--accent)}
-.race-bar{
-  position:relative;display:flex;gap:2px;height:16px;border-radius:999px;
-  background:var(--card);border:1px solid var(--border);overflow:hidden;
-}
-.race-bar .phase{height:100%}
-.race-bar .base { background: rgba(var(--accent-rgb), .18); }
-.race-bar .build{ background: var(--accent); }
-.race-bar .taper{ background: color-mix(in srgb, var(--accent) 65%, white); }
-@supports not (background: color-mix(in srgb, red, white)){
-  .race-bar .taper{ background: #f6b68b; }
-}
-.race-labels{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.race-labels .chip{
-  font-size:12px;color:var(--muted);border:1px solid var(--border);
-  border-radius:999px;padding:6px 10px;background:var(--card);
-}
-@media (max-width:720px){
-  .race-head{align-items:stretch}
-  .race-form{width:100%}
-}
-
 /* Integrations */
 .integrations{padding:36px 0;border-top:1px solid var(--border)}
 .integrations h2{margin:0 0 16px}
