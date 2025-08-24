@@ -222,3 +222,101 @@ a:hover{text-decoration:underline}
   .foot-grid{grid-template-columns:1fr}
   .site-footer .links{justify-content:flex-start}
 }
+
+/* --- Compare (Why precision beats templates) --- */
+.compare{
+  padding:36px 0;
+  border-top:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(var(--accent-rgb), .10), transparent);
+  background:linear-gradient(180deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent);
+}
+.compare h2{ margin:0 0 16px }
+.compare-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+.compare .side{
+  position:relative;
+  padding:22px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--card);
+}
+.compare .side-title{ margin:0 0 10px; font-weight:800 }
+
+/* Lists */
+.compare .list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:12px;
+}
+.compare .list li{
+  display:grid;
+  grid-template-columns:20px 1fr;
+  align-items:start;
+  gap:10px;
+  transition:transform .12s ease;
+}
+.compare .list li:hover{ transform:translateX(2px) }
+
+/* Icons (SVG data URIs, no external assets) */
+.compare .icon{
+  width:18px; height:18px;
+  border-radius:50%;
+  display:inline-block;
+  margin-top:2px;
+  box-shadow:0 0 0 1px rgba(0,0,0,.15) inset;
+}
+
+/* Positive (check) */
+.compare .icon.ok{
+  background:
+    url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") no-repeat center/12px 12px,
+    var(--accent);
+  box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+/* Negative (cross) */
+.compare .icon.no{
+  background:
+    url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'><line x1='6' y1='6' x2='18' y2='18'/><line x1='18' y1='6' x2='6' y2='18'/></svg>") no-repeat center/12px 12px,
+    #7a1e1e;
+  box-shadow:0 0 0 1px rgba(248,113,113,.35);
+  opacity:.95;
+}
+
+/* Right card subtle accent emphasis */
+.compare .prazise{
+  box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+/* Badges (local to this section) */
+.compare .badge-row{
+  display:flex; flex-wrap:wrap; gap:8px;
+  margin-top:12px;
+}
+.compare .badge{
+  font-size:12px;
+  color:var(--ink-on-accent);
+  background:var(--accent);
+  padding:6px 10px;
+  border-radius:999px;
+  font-weight:700;
+}
+
+/* Footer note */
+.compare .compare-note{
+  margin-top:10px;
+  text-align:center;
+  color:var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 960px){
+  .compare-grid{ grid-template-columns:1fr }
+}
