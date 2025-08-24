@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>For Athletes — Prazise</title>
-  <meta name="description" content="Precision training for runners: HR/HRV, sleep, and workouts turned into smart, privacy-first plans." />
+  <meta name="description" content="Personalized, recovery-aware training for runners. Your HR/HRV, sleep, and workouts become a plan that adapts to you." />
   <meta name="theme-color" content="#0B0D10" />
   <link rel="stylesheet" href="css/tokens.css?v=2">
   <link rel="stylesheet" href="css/styles.css?v=4">
-  <!-- Optional page-specific styles -->
+  <!-- Page-specific polish -->
   <link rel="stylesheet" href="css/athletes.css?v=1">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
@@ -22,115 +22,199 @@
         <span class="brand-text">Prazise</span>
       </a>
       <nav class="nav" aria-label="primary">
-  <a href="athletes.html" aria-current="page">Athletes</a>
-  <a href="coaches.html">Coaches</a>
-  <a href="partners.html">For Partners</a>
-  <a href="about.html">About</a>
-  <a href="faq.html">FAQ</a>
-  <a href="contact.html">Contact</a>
-  <a class="cta ghost" href="index.html#waitlist">Join waitlist</a>
-</nav>
-
+        <a href="athletes.html" aria-current="page">Athletes</a>
+        <a href="coaches.html">Coaches</a>
+        <a href="partners.html">For Partners</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a class="cta ghost" href="index.html#waitlist">Join waitlist</a>
+      </nav>
     </div>
   </header>
 
   <main id="main">
+    <!-- Hero (athlete-focused, distinct from home) -->
     <section class="hero">
       <div class="container grid hero-grid">
         <div class="hero-copy">
-          <h1>Train with intent.</h1>
-          <p class="lead">Your HR, HRV, sleep, and workouts become a plan that adapts—easy when recovery is low, sharper when you’re ready.</p>
+          <h1>Your plan, tuned to today.</h1>
+          <p class="lead">
+            Recovery low? We ease off. Feeling great? We sharpen. Prazise adapts
+            your training using HR, HRV, sleep, and recent sessions—so you get
+            the right work on the right day.
+          </p>
           <ul class="pills">
-            <li>From 5k to ultras</li>
+            <li>5k · 10k · Half · Marathon · Ultra</li>
             <li>Device-friendly</li>
             <li>Privacy-first</li>
-            <li>No gimmicks</li>
           </ul>
           <div class="cta-row">
             <a class="cta" href="index.html#waitlist">Join the waitlist</a>
-            <a class="cta ghost" href="faq.html">FAQ</a>
+            <a class="cta ghost" href="#how">How it works</a>
           </div>
           <p class="micro">No spam. Opt out anytime.</p>
         </div>
 
+        <!-- What a day looks like -->
         <div class="hero-art">
           <div class="card hero-card" aria-describedby="sample">
             <img src="logo.svg" alt="" class="hero-logo" aria-hidden="true"/>
             <div class="split">
               <div>
                 <p class="metric" id="sample">Today</p>
-                <p class="big">Precision session: <strong>8 × 400m</strong> @ 5k pace</p>
+                <p class="big">Session: <strong>Tempo 20–25 min</strong></p>
               </div>
-              <div class="chip">auto-calibrated</div>
+              <div class="chip">recovery-aware</div>
             </div>
             <hr/>
             <div class="row">
-              <div class="kpi"><span>HRV</span><strong>74 ms</strong></div>
-              <div class="kpi"><span>Sleep</span><strong>7h 42m</strong></div>
-              <div class="kpi"><span>Load</span><strong>+36</strong></div>
+              <div class="kpi"><span>Target HR</span><strong>~85–88%</strong></div>
+              <div class="kpi"><span>Load</span><strong>+28</strong></div>
+              <div class="kpi"><span>Notes</span><strong>Even effort</strong></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Why Prazise for athletes -->
+    <!-- What you’ll see each day (distinct content) -->
+    <section class="features">
+      <div class="container">
+        <h2>What you’ll see each day</h2>
+        <div class="grid2">
+          <article class="card">
+            <h3>Clear, adjustable targets</h3>
+            <p>We pair pace/effort with HR guidance and cues. If sleep or HRV dips, we adjust volume and intensity.</p>
+            <ul class="pills">
+              <li>Warm-up</li><li>Main set</li><li>Cool-down</li><li>Post-run notes</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Context from yesterday</h3>
+            <p>Breakthrough or rough day? Tomorrow’s work adapts to keep you progressing without overreaching.</p>
+            <ul class="pills">
+              <li>Load trend</li><li>Readiness</li><li>Suggested tweaks</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pick your goal (distinct section) -->
+    <section class="compare" id="goals">
+      <div class="container">
+        <h2>Pick your goal</h2>
+        <div class="grid3">
+          <article class="card side">
+            <h3 class="side-title">5k / 10k</h3>
+            <p>Speed you can repeat. Smart intervals and economy work without frying you.</p>
+            <p><a class="cta ghost" href="index.html#waitlist">I’m in</a></p>
+          </article>
+          <article class="card side prazise">
+            <h3 class="side-title">Half / Marathon</h3>
+            <p>Durable aerobic engine, sustainable tempos, and sensible long-run progressions.</p>
+            <p><a class="cta ghost" href="index.html#waitlist">I’m in</a></p>
+          </article>
+          <article class="card side">
+            <h3 class="side-title">Ultra</h3>
+            <p>Time-on-feet and fueling practice; terrain-aware stimulus with recovery protection.</p>
+            <p><a class="cta ghost" href="index.html#waitlist">I’m in</a></p>
+          </article>
+        </div>
+        <p class="micro compare-note">Tell us your goal when you join—we prioritize early invites by goal type and device.</p>
+      </div>
+    </section>
+
+    <!-- Why athletes choose Prazise (kept, but tightened) -->
     <section class="features">
       <div class="container">
         <h2>Why athletes choose Prazise</h2>
         <div class="grid3">
           <article class="card">
             <h3>Adapts daily</h3>
-            <p>Targets and volume adjust to your recovery and recent load.</p>
+            <p>Targets and volume respond to recovery and recent load—more green days, fewer forced grinds.</p>
           </article>
           <article class="card">
             <h3>Clarity, not guesswork</h3>
-            <p>Each workout includes cues, pacing, and post-run insights.</p>
+            <p>Each workout has cues, pacing bands, and post-run insights you can actually use.</p>
           </article>
           <article class="card">
             <h3>Private by default</h3>
-            <p>Your data stays yours. Disconnect anytime.</p>
+            <p>Your data stays yours. Connect with consent; disconnect anytime.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- How it works -->
-    <section class="how">
+    <!-- How it works (athlete copy) -->
+    <section class="how" id="how">
       <div class="container">
         <h2>How it works</h2>
         <ol class="steps">
           <li><span class="num">1</span><strong>Connect your device</strong><br/>Garmin, Polar, Suunto, Fitbit, Apple Health & more.</li>
-          <li><span class="num">2</span><strong>We calibrate</strong><br/>We model recovery, load, and recent sessions.</li>
-          <li><span class="num">3</span><strong>Train precisely</strong><br/>Daily recommendations that adapt as you go.</li>
+          <li><span class="num">2</span><strong>We calibrate</strong><br/>We model recovery (sleep/HRV), recent load, and session context.</li>
+          <li><span class="num">3</span><strong>Train precisely</strong><br/>Daily recommendations adjust as you go—easy when needed, sharper when you’re ready.</li>
         </ol>
       </div>
     </section>
 
-    <!-- Light compare pull (reuse existing styles) -->
-    <section class="compare">
+    <!-- Privacy & control (distinct assurance) -->
+    <section class="adaptive">
       <div class="container">
-        <h2>Why precision beats templates</h2>
-        <div class="compare-grid">
-          <article class="card side generic">
-            <h3 class="side-title">Generic plan</h3>
-            <ul class="list">
-              <li><span class="icon no" aria-hidden="true"></span> Fixed calendar, regardless of how you feel.</li>
-              <li><span class="icon no" aria-hidden="true"></span> Same session after a poor night of sleep.</li>
+        <h2>Privacy & control</h2>
+        <div class="grid3">
+          <article class="card adapt-card">
+            <h3>Minimal data</h3>
+            <p>HR/HRV, sleep summaries, and workout summaries. No continuous GPS unless you choose it.</p>
+            <ul class="badge-row">
+              <li class="badge">Data minimization</li>
+              <li class="badge">Consent-based</li>
             </ul>
           </article>
-          <article class="card side prazise">
-            <h3 class="side-title">Prazise precision</h3>
-            <ul class="list">
-              <li><span class="icon ok" aria-hidden="true"></span> Adapts to <strong>recovery</strong> and <strong>recent load</strong>.</li>
-              <li><span class="icon ok" aria-hidden="true"></span> Manages fatigue—fewer junk miles.</li>
+          <article class="card adapt-card">
+            <h3>Full control</h3>
+            <p>Connect and disconnect integrations anytime. Export or delete your data on request.</p>
+            <ul class="badge-row">
+              <li class="badge">Export</li>
+              <li class="badge">Deletion</li>
+            </ul>
+          </article>
+          <article class="card adapt-card">
+            <h3>Security</h3>
+            <p>Encryption in transit and at rest, RBAC, and audit logging.</p>
+            <ul class="badge-row">
+              <li class="badge">Secure by design</li>
+              <li class="badge">GDPR-ready</li>
             </ul>
           </article>
         </div>
-        <p class="micro compare-note">Works with your existing devices. Your data stays yours.</p>
+        <p class="micro" style="margin-top:8px;color:var(--muted)">
+          Details: <a href="privacy.html">Privacy</a> · <a href="security.html">Security</a>
+        </p>
       </div>
     </section>
 
+    <!-- Quick FAQ (links through) -->
+    <section class="features">
+      <div class="container">
+        <h2>Quick answers</h2>
+        <div class="grid2">
+          <article class="card">
+            <h3>Can I use this without a watch?</h3>
+            <p>You can start with phone-collected basics, but HR/HRV + workout data from a wearable gives the best precision.</p>
+            <p class="micro"><a href="faq.html">See all FAQs</a></p>
+          </article>
+          <article class="card">
+            <h3>Which devices work?</h3>
+            <p>We’re building against official, user-consented APIs (Garmin, Polar, Suunto, Fitbit, Apple Health & more).</p>
+            <p class="micro"><a href="index.html#integrations">Integration status</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
     <section class="waitlist">
       <div class="container">
         <h2>Get early access</h2>
