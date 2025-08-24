@@ -1,20 +1,18 @@
-<!doctype html> 
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Prazise — Precision training for runners</title>
-  <meta name="description" content="Prazise turns your heart rate, sleep, and workouts into precise training plans for runners. Device-friendly. Privacy-first." />
+  <meta name="description" content="Prazise turns your heart rate, HRV, sleep, and workouts into precise training plans. Built for runners from 5k to ultras. Device-friendly. Privacy-first." />
   <meta name="theme-color" content="#0B0D10" />
   <meta property="og:title" content="Prazise — Precision training for runners"/>
   <meta property="og:description" content="Train with intent. Smarter recommendations from your existing devices."/>
   <meta name="twitter:card" content="summary_large_image"/>
 
-  <!-- Load theme tokens first, then the main styles (both from /css) -->
+  <!-- Styles -->
   <link rel="stylesheet" href="css/tokens.css?v=2">
   <link rel="stylesheet" href="css/styles.css?v=2">
-  <!-- Carousel styles for Integrations -->
-  <link rel="stylesheet" href="css/integrations-carousel.css?v=1">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
@@ -48,6 +46,7 @@
             personalized to you, not a template.
           </p>
           <ul class="pills">
+            <li>From 5k to ultras</li>
             <li>Device-friendly</li>
             <li>Privacy-first</li>
             <li>No gimmicks</li>
@@ -100,42 +99,6 @@
       </div>
     </section>
 
-    <!-- Built for every runner (running-only) -->
-    <section id="who" class="how">
-      <div class="container">
-        <h2>Built for every runner</h2>
-        <div class="grid3">
-          <article class="card">
-            <h3>5k / 10k</h3>
-            <p>Sharpen speed with right-sized quality; keep easy days truly easy.</p>
-          </article>
-          <article class="card">
-            <h3>Half / Marathon</h3>
-            <p>Dial long-run progressions and threshold work to today’s recovery state.</p>
-          </article>
-          <article class="card">
-            <h3>Trail / Ultra</h3>
-            <p>Balance vert, terrain, and fatigue—adjusts around big weekends and back-to-backs.</p>
-          </article>
-          <article class="card">
-            <h3>High-mileage weeks</h3>
-            <p>Optimize stimulus across doubles and quality while managing cumulative load.</p>
-          </article>
-          <article class="card">
-            <h3>New to structured training</h3>
-            <p>Simple cues and pacing targets without jargon. Grow safely and consistently.</p>
-          </article>
-          <article class="card">
-            <h3>Returning from time off</h3>
-            <p>Conservative ramp built from your recent activity and readiness—not guesswork.</p>
-          </article>
-        </div>
-        <p class="micro" style="margin-top:8px;color:var(--muted)">
-          Roadmap: multi-sport (swim, bike, tri) after running launch; long-term: cross-country skiing.
-        </p>
-      </div>
-    </section>
-
     <section id="how" class="how">
       <div class="container">
         <h2>How it works</h2>
@@ -147,37 +110,78 @@
       </div>
     </section>
 
-    <!-- Comparison -->
-    <section id="compare" class="features">
+    <!-- Adaptive engine: life + training + sleep -->
+    <section id="adaptive" class="adaptive">
       <div class="container">
-        <h2>Why precision beats templates</h2>
-        <div class="grid2">
-          <article class="card">
-            <h3>Generic plan</h3>
-            <ul>
-              <li>Fixed calendar, regardless of how you feel.</li>
-              <li>Same workout after a poor night of sleep.</li>
-              <li>No context from yesterday’s session.</li>
-              <li>Hard to balance volume, intensity, and recovery.</li>
+        <h2>Adaptation that fits your life</h2>
+
+        <div class="grid3">
+          <article class="card adapt-card">
+            <h3>Sleep & HRV</h3>
+            <p>Daily readiness tunes targets and volume—hard when you can absorb, easy when you can’t.</p>
+            <ul class="badge-row">
+              <li class="badge">HRV trend</li>
+              <li class="badge">Sleep duration</li>
+              <li class="badge">Sleep quality</li>
             </ul>
           </article>
-          <article class="card">
-            <h3>Prazise precision</h3>
-            <ul>
-              <li>Adapts to <strong>recovery</strong> (HRV, sleep) and <strong>recent load</strong>.</li>
-              <li>Adjusts targets and volume after tough or breakthrough days.</li>
-              <li>Understands <strong>workout context</strong> (terrain, intent, upcoming races).</li>
-              <li>Optimizes stimulus while managing fatigue—fewer junk miles.</li>
+
+          <article class="card adapt-card">
+            <h3>Training load</h3>
+            <p>Understands recent sessions, terrain, and intent to manage stimulus and reduce junk miles.</p>
+            <ul class="badge-row">
+              <li class="badge">Acute load</li>
+              <li class="badge">Chronic load</li>
+              <li class="badge">Session context</li>
             </ul>
-            <ul class="pills" style="margin-top:10px">
-              <li>Recovery-aware</li>
-              <li>Load-based</li>
-              <li>Context-smart</li>
+          </article>
+
+          <article class="card adapt-card">
+            <h3>Real-life factors</h3>
+            <p>Adjusts around stress, travel, and time constraints—so consistency wins.</p>
+            <ul class="badge-row">
+              <li class="badge">Life stress</li>
+              <li class="badge">Schedule</li>
+              <li class="badge">Travel/illness</li>
             </ul>
           </article>
         </div>
-        <p class="micro center" style="margin-top:8px;color:var(--muted)">
-          Uses your existing devices. Your data stays yours.
+
+        <p class="micro" style="margin-top:8px;color:var(--muted)">
+          You’re always in control—auto-adjustments are suggestions you can accept or override.
+        </p>
+      </div>
+    </section>
+
+    <!-- Race peaking mini-timeline -->
+    <section id="race" class="race">
+      <div class="container">
+        <div class="race-head">
+          <h2>Built to peak for your goal race</h2>
+          <form class="race-form" onsubmit="return false" aria-label="Plan your peak">
+            <label>
+              <span>Goal race date</span>
+              <input type="date" id="race_date" />
+            </label>
+            <button type="button" class="pill" id="calc_peak">Plan</button>
+          </form>
+        </div>
+
+        <div class="race-bar" id="race_timeline" role="img"
+             aria-label="Training phases timeline showing base, build, and taper">
+          <div class="phase base"  id="phase_base"  title="Base"></div>
+          <div class="phase build" id="phase_build" title="Build"></div>
+          <div class="phase taper" id="phase_taper" title="Taper"></div>
+        </div>
+
+        <div class="race-labels" id="race_labels">
+          <span class="chip">Base — 0w</span>
+          <span class="chip">Build — 0w</span>
+          <span class="chip">Taper — 0w</span>
+        </div>
+
+        <p class="micro center" id="race_feedback" style="margin-top:8px;color:var(--muted)">
+          Enter a race date to preview your phases. Typical taper is 1–2 weeks.
         </p>
       </div>
     </section>
@@ -197,77 +201,56 @@
 
           <div class="carousel-viewport" id="integrations-viewport" tabindex="0">
             <ul class="carousel-track" id="integrations-track" role="list">
-              <!-- Apple Health -->
               <li class="slide">
                 <img src="img/integrations/apple-health.svg" alt="Apple Health" onerror="this.style.display='none'">
                 <span class="name">Apple Health</span>
                 <button type="button" class="pill notify-device" data-device="Apple Health">Notify me</button>
               </li>
-
-              <!-- Google Fit -->
               <li class="slide">
                 <img src="img/integrations/google-fit.svg" alt="Google Fit" onerror="this.style.display='none'">
                 <span class="name">Google Fit</span>
                 <button type="button" class="pill notify-device" data-device="Google Fit">Notify me</button>
               </li>
-
-              <!-- Garmin -->
               <li class="slide">
                 <img src="img/integrations/garmin.svg" alt="Garmin" onerror="this.style.display='none'">
                 <span class="name">Garmin</span>
                 <button type="button" class="pill notify-device" data-device="Garmin">Notify me</button>
               </li>
-
-              <!-- Polar -->
               <li class="slide">
                 <img src="img/integrations/polar.svg" alt="Polar" onerror="this.style.display='none'">
                 <span class="name">Polar</span>
                 <button type="button" class="pill notify-device" data-device="Polar">Notify me</button>
               </li>
-
-              <!-- Suunto -->
               <li class="slide">
                 <img src="img/integrations/suunto.svg" alt="Suunto" onerror="this.style.display='none'">
                 <span class="name">Suunto</span>
                 <button type="button" class="pill notify-device" data-device="Suunto">Notify me</button>
               </li>
-
-              <!-- COROS -->
               <li class="slide">
                 <img src="img/integrations/coros.svg" alt="COROS" onerror="this.style.display='none'">
                 <span class="name">COROS</span>
                 <button type="button" class="pill notify-device" data-device="COROS">Notify me</button>
               </li>
-
-              <!-- Wahoo -->
               <li class="slide">
                 <img src="img/integrations/wahoo.svg" alt="Wahoo" onerror="this.style.display='none'">
                 <span class="name">Wahoo</span>
                 <button type="button" class="pill notify-device" data-device="Wahoo">Notify me</button>
               </li>
-
-              <!-- WHOOP -->
               <li class="slide">
                 <img src="img/integrations/whoop.svg" alt="WHOOP" onerror="this.style.display='none'">
                 <span class="name">WHOOP</span>
                 <button type="button" class="pill notify-device" data-device="WHOOP">Notify me</button>
               </li>
-
-              <!-- Oura -->
               <li class="slide">
                 <img src="img/integrations/oura.svg" alt="Oura" onerror="this.style.display='none'">
                 <span class="name">Oura</span>
                 <button type="button" class="pill notify-device" data-device="Oura">Notify me</button>
               </li>
-
-              <!-- Fitbit -->
               <li class="slide">
                 <img src="img/integrations/fitbit.svg" alt="Fitbit" onerror="this.style.display='none'">
                 <span class="name">Fitbit</span>
                 <button type="button" class="pill notify-device" data-device="Fitbit">Notify me</button>
               </li>
-
-              <!-- Strava -->
               <li class="slide">
                 <img src="img/integrations/strava.svg" alt="Strava" onerror="this.style.display='none'">
                 <span class="name">Strava</span>
@@ -344,4 +327,6 @@
   </footer>
 
   <!-- JS -->
-<script src="js/script.js?v=2" defer></script>
+  <script src="js/script.js?v=2" defer></script>
+</body>
+</html>
