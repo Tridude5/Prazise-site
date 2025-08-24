@@ -81,9 +81,11 @@ a:hover{text-decoration:underline}
 .features h2{margin:0 0 16px}
 
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .card{background:var(--card);padding:20px;border:1px solid var(--border);border-radius:16px}
 .card h3{margin:6px 0 8px}
 
+/* Sections */
 .how{padding:36px 0}
 .how h2{margin:0 0 16px}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;list-style:none;padding:0;margin:0}
@@ -95,25 +97,47 @@ a:hover{text-decoration:underline}
   font-weight:800;margin-right:8px;
 }
 
+/* NEW: Comparison icons (✖ vs ✔) */
+#compare .card ul{list-style:none;margin:0;padding:0}
+#compare .card ul li{
+  position:relative;
+  padding-left:1.6rem;
+  margin:6px 0;
+}
+#compare .card:first-child ul li::before{
+  content:"✖";
+  position:absolute;left:0;top:.1rem;
+  font-weight:800;
+  color:var(--warn, #f87171);
+}
+#compare .card:last-child ul li::before{
+  content:"✔";
+  position:absolute;left:0;top:.1rem;
+  font-weight:800;
+  color:var(--ok, #34d399);
+}
+
+/* Integrations */
 .integrations{padding:36px 0;border-top:1px solid var(--border)}
 .integrations h2{margin:0 0 16px}
 .logos{display:flex;gap:10px;flex-wrap:wrap}
 .logo-badge{font-size:12px;color:var(--muted);border:1px dashed var(--border);padding:8px 10px;border-radius:10px;letter-spacing:.5px}
 .center{text-align:center}
 
+/* Social proof (if used) */
 .social-proof{padding:36px 0}
-.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .quote{font-size:18px}
 .attribution{color:var(--muted);margin-top:8px}
 
+/* Waitlist */
 .waitlist{padding:44px 0;border-top:1px solid var(--border)}
 .waitlist h2{margin-top:0}
 .waitlist-form{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
 .waitlist-form label{display:flex;flex-direction:column;gap:6px;min-width:260px}
 .waitlist-form input{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:#0b0f13;color:var(--text)}
 .form-result{margin-top:10px}
-.form-result.ok{color:var(--ok)}
-.form-result.warn{color:var(--warn)}
+.form-result.ok{color:var(--ok, #34d399)}
+.form-result.warn{color:var(--warn, #f87171)}
 
 /* --- Footer (improved layout & wrapping) --- */
 .site-footer {
@@ -150,16 +174,15 @@ a:hover{text-decoration:underline}
   color: var(--muted);
 }
 
-/* Stack nicely on small screens (footer) */
-@media (max-width: 720px) {
-  .foot-grid { grid-template-columns: 1fr; }
-  .site-footer .links { justify-content: flex-start; }
-}
-
-/* Responsive layout for other sections */
+/* Responsive */
 @media (max-width:960px){
   .hero-grid{grid-template-columns:1fr}
   .grid3{grid-template-columns:1fr}
   .grid2{grid-template-columns:1fr}
   .nav{display:none}
+}
+
+@media (max-width: 720px) {
+  .foot-grid { grid-template-columns: 1fr; }
+  .site-footer .links { justify-content: flex-start; }
 }
