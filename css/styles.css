@@ -251,20 +251,22 @@ a:hover{text-decoration:underline}
   margin:0;
   padding:0;
   display:grid;
-  gap:12px;
+  gap:10px;
 }
 .compare .list li{
-  display:grid;
-  grid-template-columns:20px 1fr;
-  align-items:start;
-  gap:10px;
+  display:flex;                /* fix: natural inline wrapping */
+  align-items:flex-start;
+  gap:12px;
+  padding:6px 0;
+  line-height:1.55;
   transition:transform .12s ease;
 }
-.compare .list li:hover{ transform:translateX(2px) }
+.compare .list li:hover{ transform:translateX(1px) }
 
 /* Icons (SVG data URIs, no external assets) */
 .compare .icon{
-  width:18px; height:18px;
+  flex:0 0 20px;               /* fix: stable icon width */
+  width:20px; height:20px;
   border-radius:50%;
   display:inline-block;
   margin-top:2px;
