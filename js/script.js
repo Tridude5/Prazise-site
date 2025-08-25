@@ -1,4 +1,4 @@
-// Prazise site JS — anchors, waitlist (AJAX), carousel, notify-me, footer year
+// Prazise site JS — anchors, mobile menu (auto-inject), waitlist (AJAX), carousel, notify-me, footer year
 
 // ---- Smooth-scroll for in-page anchors (incl. old #learn alias) ----
 (() => {
@@ -14,6 +14,52 @@
     e.preventDefault();
     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+})();
+
+// ---- Mobile menu: auto-inject + accessible toggle (works on all pages) ----
+(() => {
+  const header = document.querySelector('.site-header .header-grid');
+  const nav    = document.querySelector('.site-header .nav');
+  if (!header || !nav) return;
+
+  // Ensure the nav has an id so the button can reference it
+  if (!nav.id) nav.id = 'site-nav';
+
+  // If no button exists, create it and insert before the nav
+  let btn = document.getElementById('menu-toggle');
+  if (!btn) {
+    btn = document.createElement('button');
+    btn.className = 'menu-toggle';
+    btn.id = 'menu-toggle';
+    btn.setAttribute('aria-controls', nav.id);
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Open menu');
+    btn.innerHTML = "<span class='bar'></span><span class='bar'></span><span class='bar'></span>";
+    header.insertBefore(btn, nav);
+  }
+
+  function setOpen(isOpen){
+    nav.classList.toggle('open', isOpen);
+    document.body.classList.toggle('nav-open', isOpen);
+    btn.setAttribute('aria-expanded', String(isOpen));
+    btn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  }
+
+  btn.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+
+  // Close when a link inside the nav is clicked
+  nav.addEventListener('click', (e) => {
+    if (e.target.closest('a')) setOpen(false);
+  });
+
+  // If user resizes to desktop while menu is open, reset state
+  const mq = window.matchMedia('(min-width: 961px)');
+  mq.addEventListener?.('change', (ev) => { if (ev.matches) setOpen(false); });
 })();
 
 // ---- Waitlist form (FormSubmit AJAX, no redirect) ----
@@ -89,12 +135,12 @@
 
   function updateButtons() {
     const max = viewport.scrollWidth - viewport.clientWidth - 1;
-    prev.disabled = viewport.scrollLeft <= 0;
-    next.disabled = viewport.scrollLeft >= max;
+    if (prev) prev.disabled = viewport.scrollLeft <= 0;
+    if (next) next.disabled = viewport.scrollLeft >= max;
   }
 
-  prev.addEventListener('click', () => { viewport.scrollBy({ left: -step(), behavior: 'smooth' }); });
-  next.addEventListener('click', () => { viewport.scrollBy({ left:  step(), behavior: 'smooth' }); });
+  prev?.addEventListener('click', () => { viewport.scrollBy({ left: -step(), behavior: 'smooth' }); });
+  next?.addEventListener('click', () => { viewport.scrollBy({ left:  step(), behavior: 'smooth' }); });
   viewport.addEventListener('scroll', updateButtons);
   window.addEventListener('resize', updateButtons);
   updateButtons();
