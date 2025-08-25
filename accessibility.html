@@ -7,7 +7,8 @@
 
   <!-- Base + page styles -->
   <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/styles.css?v=2">
+  <!-- Updated global CSS with hamburger + hairline fixes -->
+  <link rel="stylesheet" href="css/styles.css?v=7">
   <link rel="stylesheet" href="css/accessibility.css?v=1">
 
   <meta name="theme-color" content="#0B0D10" />
@@ -23,10 +24,13 @@
         <span class="brand-text">Prazise</span>
       </a>
       <nav class="nav" aria-label="primary">
+        <a href="athletes.html">Athletes</a>
+        <a href="coaches.html">Coaches</a>
         <a href="partners.html">For Partners</a>
         <a href="about.html">About</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
+        <a class="cta ghost" href="index.html#waitlist">Join waitlist</a>
       </nav>
     </div>
   </header>
@@ -125,8 +129,11 @@
     </div>
   </footer>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();
-          document.getElementById('updated').textContent = new Date().toISOString().slice(0,10);</script>
-  <script src="js/accessibility.js" defer></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('updated').textContent = new Date().toISOString().slice(0,10);
+  </script>
+  <!-- JS that injects and toggles the hamburger on small screens -->
+  <script src="js/script.js?v=3" defer></script>
 </body>
 </html>
