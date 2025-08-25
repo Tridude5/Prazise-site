@@ -277,19 +277,34 @@ a:hover{text-decoration:underline}
    Mobile header menu (hamburger)
    ========================= */
 .menu-toggle{
-  display:none; /* hidden on desktop */
-  align-items:center; justify-content:center;
+  display:none;                /* shown at <=960px via media query */
+  align-items:center;
+  justify-content:center;
   width:40px; height:40px;
   border:1px solid var(--border);
   background:var(--card);
   color:var(--text);
   border-radius:10px;
   cursor:pointer;
+
+  /* Stack bars vertically */
+  flex-direction:column;
+  gap:4px;
 }
+
 .menu-toggle .bar{
-  display:block; width:18px; height:2px; background:var(--text);
-  margin:2.5px 0; border-radius:1px;
+  display:block;
+  width:20px; height:2px;
+  background:currentColor;
+  border-radius:1px;
+  margin:0;
+  transition:transform .2s ease, opacity .2s ease;
 }
+
+/* Animate to X when open */
+.menu-toggle[aria-expanded="true"] .bar:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] .bar:nth-child(2){ opacity:0; }
+.menu-toggle[aria-expanded="true"] .bar:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
 
 @media (max-width:960px){
   .menu-toggle{ display:inline-flex }
@@ -306,7 +321,57 @@ a:hover{text-decoration:underline}
   }
   .nav.open{ display:flex }
   .header-grid{ height:64px }
-  body.nav-open{ overflow:hidden } /* prevent background scroll when menu open */
-  /* Larger tap targets in mobile menu */
-  .nav a{ padding:6px 0 }
+  body.nav-open{ overflow:hidden }
+  .nav a{ padding:6px 0 } /* bigger tap targets */
+}
+
+/* =========================
+   Crisp hairlines & dividers (global)
+   ========================= */
+:root{
+  --hairline: color-mix(in srgb, var(--border) 86%, transparent);
+  --hairline-strong: color-mix(in srgb, var(--border) 94%, transparent);
+}
+
+/* Normalize <hr> */
+hr{
+  height:1px;
+  border:0;
+  background:var(--hairline);
+  margin:12px 0;
+  opacity:1;
+}
+
+/* Stronger inside cards */
+.card hr{
+  background:var(--hairline-strong);
+  margin:12px 0;
+}
+
+/* Tiny overscan prevents subpixel gaps in hero card */
+.hero-card hr{
+  margin-left:-2px;
+  margin-right:-2px;
+}
+
+/* Unify borders with hairlines */
+.card{ border-color:var(--hairline-strong) }
+.features,
+.adaptive,
+.integrations,
+.waitlist,
+.compare{ border-top-color:var(--hairline) }
+.site-footer{ border-top-color:var(--hairline-strong) }
+
+/* Fallback if color-mix unsupported */
+@supports not (color: color-mix(in srgb, red, white)){
+  hr{ background: var(--border); }
+  .card hr{ background: var(--border); }
+  .card{ border-color: var(--border); }
+  .features,
+  .adaptive,
+  .integrations,
+  .waitlist,
+  .compare,
+  .site-footer{ border-top-color: var(--border); }
 }
