@@ -9,7 +9,8 @@
 
   <!-- Base site styles (already in your project) -->
   <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/styles.css?v=4">
+  <!-- UPDATED: global CSS with mobile nav + header hairline -->
+  <link rel="stylesheet" href="css/styles.css?v=7">
 
   <!-- Page-specific styles -->
   <link rel="stylesheet" href="css/partners.css?v=1">
@@ -26,15 +27,14 @@
         <span class="brand-text">Prazise</span>
       </a>
       <nav class="nav" aria-label="primary">
-  <a href="athletes.html">Athletes</a>
-  <a href="coaches.html">Coaches</a>
-  <a href="partners.html" aria-current="page">For Partners</a>
-  <a href="about.html">About</a>
-  <a href="faq.html">FAQ</a>
-  <a href="contact.html">Contact</a>
-  <a class="cta ghost" href="index.html#waitlist">Join waitlist</a>
-</nav>
-
+        <a href="athletes.html">Athletes</a>
+        <a href="coaches.html">Coaches</a>
+        <a href="partners.html" aria-current="page">For Partners</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a class="cta ghost" href="index.html#waitlist">Join waitlist</a>
+      </nav>
     </div>
   </header>
 
@@ -186,14 +186,18 @@
       <div class="links">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
+        <a href="security.html">Security</a>
+        <a href="accessibility.html">Accessibility</a>
         <a href="deletion.html">Data Deletion</a>
-        <a href="mailto:hello@prazise.app">Contact</a>
+        <a href="contact.html">Contact</a>
       </div>
     </div>
   </footer>
 
+  <!-- Global JS (injects/toggles hamburger on mobile and stamps year) -->
+  <script src="js/script.js?v=3" defer></script>
   <script>
-    // Year stamp
+    // Year stamp (kept as a lightweight fallback)
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
