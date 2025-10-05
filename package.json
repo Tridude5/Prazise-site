@@ -1,12 +1,11 @@
 {
-  "name": "johnslavinskas-portfolio",
+  "name": "prazise-site",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "fetch:contrib": "node scripts/fetch-contrib.mjs",
-    "prebuild": "npm run fetch:contrib",
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
+    "start": "next start",
     "preview": "npx http-server ./out -p 3000"
   },
   "dependencies": {
