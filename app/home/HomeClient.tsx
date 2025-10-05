@@ -165,4 +165,226 @@ export default function HomeClient() {
       {/* WHY PRAZISE */}
       <section id="features" className="mb-16">
         <h2 className="text-2xl font-semibold">Why Prazise</h2>
-        <div className="mt-6 grid gap-6 md:gr
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          {[
+            { t: "Precision fit", p: "Plans adapt to your recovery, not just the calendar. Smarter sessions, fewer junk miles." },
+            { t: "Clear guidance", p: "Every workout has targets, cues, and post-run insights. No guesswork." },
+            { t: "Private by design", p: "Your data stays yours. Encrypted at rest, deletable on request, never sold." },
+          ].map(({ t, p }) => (
+            <article key={t} className="rounded-xl border border-foreground/10 p-5">
+              <h3 className="font-semibold">{t}</h3>
+              <p className="mt-2">{p}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* COMPARE */}
+      <section id="compare" className="mb-16">
+        <h2 className="text-2xl font-semibold">Why precision beats templates</h2>
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
+          <article className="rounded-xl border border-foreground/10 p-5">
+            <h3 className="text-lg font-semibold">Generic plan</h3>
+            <ul className="mt-3 list-disc pl-5">
+              <li>Fixed calendar, regardless of how you feel.</li>
+              <li>Same workout after a poor night of sleep.</li>
+              <li>No context from yesterday’s session.</li>
+              <li>Hard to balance volume, intensity, and recovery.</li>
+            </ul>
+          </article>
+          <article className="rounded-xl border border-emerald-500/30 p-5 ring-1 ring-emerald-500/20">
+            <h3 className="text-lg font-semibold">Prazise precision</h3>
+            <ul className="mt-3 list-disc pl-5">
+              <li>Adapts to <strong>recovery</strong> (HRV, sleep) and <strong>recent load</strong>.</li>
+              <li>Adjusts targets and volume after tough or breakthrough days.</li>
+              <li>Understands <strong>workout context</strong> (terrain, intent, upcoming races).</li>
+              <li>Optimizes stimulus while managing fatigue—fewer junk miles.</li>
+            </ul>
+            <div className="mt-3 flex flex-wrap gap-2 text-xs" aria-hidden="true">
+              {["Recovery-aware", "Load-based", "Context-smart"].map((b) => (
+                <span key={b} className="rounded-full border border-foreground/20 px-2.5 py-1">{b}</span>
+              ))}
+            </div>
+          </article>
+        </div>
+        <p className="micro mt-3 text-foreground/70">Uses your existing devices. Your data stays yours.</p>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section id="how" className="mb-16">
+        <h2 className="text-2xl font-semibold">How it works</h2>
+        <ol className="mt-6 space-y-4">
+          <li>
+            <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full ring-1 ring-foreground/20">1</span>
+            <strong>Connect your device</strong><br/>Garmin, Polar, Suunto, Fitbit, Apple Health &amp; more.
+          </li>
+          <li>
+            <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full ring-1 ring-foreground/20">2</span>
+            <strong>We calibrate</strong><br/>We model your load, recovery, and recent sessions.
+          </li>
+          <li>
+            <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full ring-1 ring-foreground/20">3</span>
+            <strong>Train precisely</strong><br/>Get the right session for today—auto-adjusted as you go.
+          </li>
+        </ol>
+      </section>
+
+      {/* ADAPTIVE ENGINE */}
+      <section id="adaptive" className="mb-16">
+        <h2 className="text-2xl font-semibold">Adaptation that fits your life</h2>
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          <article className="rounded-xl border border-foreground/10 p-5">
+            <h3 className="font-semibold">Sleep &amp; HRV</h3>
+            <p className="mt-2">Daily readiness tunes targets and volume—hard when you can absorb, easy when you can’t.</p>
+            <ul className="mt-3 flex flex-wrap gap-2 text-sm">
+              {["HRV trend", "Sleep duration", "Sleep quality"].map((b) => (
+                <li key={b} className="rounded-full border border-foreground/20 px-3 py-1">{b}</li>
+              ))}
+            </ul>
+          </article>
+          <article className="rounded-xl border border-foreground/10 p-5">
+            <h3 className="font-semibold">Training load</h3>
+            <p className="mt-2">Understands recent sessions, terrain, and intent to manage stimulus and reduce junk miles.</p>
+            <ul className="mt-3 flex flex-wrap gap-2 text-sm">
+              {["Acute load", "Chronic load", "Session context"].map((b) => (
+                <li key={b} className="rounded-full border border-foreground/20 px-3 py-1">{b}</li>
+              ))}
+            </ul>
+          </article>
+          <article className="rounded-xl border border-foreground/10 p-5">
+            <h3 className="font-semibold">Real-life factors</h3>
+            <p className="mt-2">Adjusts around stress, travel, and time constraints—so consistency wins.</p>
+            <ul className="mt-3 flex flex-wrap gap-2 text-sm">
+              {["Life stress", "Schedule", "Travel/illness"].map((b) => (
+                <li key={b} className="rounded-full border border-foreground/20 px-3 py-1">{b}</li>
+              ))}
+            </ul>
+          </article>
+        </div>
+        <p className="micro mt-2 text-foreground/70">
+          You’re always in control—auto-adjustments are suggestions you can accept or override.
+        </p>
+      </section>
+
+      {/* INTEGRATIONS CAROUSEL */}
+      <section id="integrations" className="mb-16">
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="text-2xl font-semibold">Integrations</h2>
+          <p
+            className="micro text-foreground/70"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            {deviceInterest ? `We’ll notify you about ${deviceInterest}.` : ""}
+          </p>
+        </div>
+
+        <div className="mt-4 flex items-center gap-2">
+          <button
+            className="rounded-lg px-3 py-2 ring-1 ring-foreground/20 disabled:opacity-50"
+            aria-label="Scroll left"
+            onClick={() => scrollByDir("prev")}
+            disabled={!canPrev}
+          >
+            ‹
+          </button>
+
+          <div
+            ref={vpRef}
+            className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 px-1 py-2"
+            tabIndex={0}
+          >
+            <ul className="flex gap-3" role="list">
+              {INTEGRATIONS.map((it) => (
+                <li
+                  key={it.name}
+                  className="snap-start rounded-xl border border-foreground/10 p-4 min-w-[180px] flex flex-col items-center"
+                >
+                  {/* Hide image if it fails to load (preserves original behavior) */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={it.src}
+                    alt={it.name}
+                    className="mb-2 h-10"
+                    onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
+                  />
+                  <span className="name text-sm">{it.name}</span>
+                  <button
+                    type="button"
+                    className="mt-3 rounded-full border border-foreground/20 px-3 py-1 text-sm hover:bg-foreground/5"
+                    onClick={() => setDeviceInterest(it.name)}
+                    aria-label={`Notify me about ${it.name}`}
+                  >
+                    Notify me
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <button
+            className="rounded-lg px-3 py-2 ring-1 ring-foreground/20 disabled:opacity-50"
+            aria-label="Scroll right"
+            onClick={() => scrollByDir("next")}
+            disabled={!canNext}
+          >
+            ›
+          </button>
+        </div>
+
+        <p className="micro mt-3 text-center text-foreground/70">
+          Logos are placeholders; all trademarks belong to their owners. Not affiliated unless stated.
+        </p>
+      </section>
+
+      {/* WAITLIST */}
+      <section id="waitlist" className="rounded-2xl border border-foreground/10 p-6">
+        <h2 className="text-2xl font-semibold">Get early access</h2>
+
+        <form className="mt-4 flex flex-col gap-3 sm:flex-row" onSubmit={onSubmit}>
+          <label className="sr-only" htmlFor="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="you@email.com"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full rounded-md border border-foreground/20 bg-background px-3 py-2"
+          />
+
+          {/* hidden field captured by "Notify me" buttons */}
+          <input type="hidden" name="device_interest" value={deviceInterest} id="device_interest" />
+
+          {/* FormSubmit config (AJAX) */}
+          <input type="hidden" name="_subject" value="Prazise waitlist signup" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_replyto" value={email} id="_replyto" />
+          <input type="hidden" name="_cc" value="johnslavinskas@my.uopeople.edu" />
+
+          {/* Honeypot */}
+          <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
+
+          <button
+            className="inline-flex items-center rounded-lg px-4 py-2 font-semibold ring-1 ring-foreground/20 hover:bg-foreground/5 disabled:opacity-60"
+            type="submit"
+            disabled={sending}
+          >
+            {sending ? "Sending..." : "Request invite"}
+          </button>
+        </form>
+
+        <p className="micro mt-2 text-foreground/70">
+          By joining, you agree to our <a className="underline underline-offset-2" href="/legal/privacy">Privacy Policy</a>.
+        </p>
+
+        <div id="form-result" className="mt-2 text-sm" role="status" aria-live="polite">
+          {resultMsg}
+        </div>
+      </section>
+    </main>
+  );
+}
