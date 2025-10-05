@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prazise — Precision training for runners</title>
+  <meta name="description" content="Prazise turns your heart rate, HRV, sleep, and workouts into precise training plans. Built for runners from 5k to ultras. Device-friendly. Privacy-first." />
+  <meta name="theme-color" content="#0B0D10" />
+  <meta property="og:title" content="Prazise — Precision training for runners"/>
+  <meta property="og:description" content="Train with intent. Smarter recommendations from your existing devices."/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/tokens.css?v=2">
+  <link rel="stylesheet" href="css/styles.css?v=2">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/src/input.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-grid">
+      <a class="brand" href="./">
+        <img src="logo.svg" alt="" class="logo" aria-hidden="true"/>
+        <span class="brand-text">Prazise</span>
+      </a>
+      <nav class="nav" aria-label="primary">
+        <!-- Expanded header nav -->
+        <a href="athletes.html">Athletes</a>
+        <a href="coaches.html">Coaches</a>
+        <a href="partners.html">For Partners</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a class="cta ghost" href="#waitlist">Join waitlist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container grid hero-grid">
+        <div class="hero-copy">
+          <h1>Train with intent.</h1>
+          <p class="lead">
+            Prazise reads your heart rate, HRV, sleep, and workouts to deliver <strong>precise</strong> training—
+            personalized to you, not a template.
+          </p>
+          <ul class="pills">
+            <li>From 5k to ultras</li>
+            <li>Device-friendly</li>
+            <li>Privacy-first</li>
+            <li>No gimmicks</li>
+          </ul>
+          <div class="cta-row">
+            <a class="cta" href="#waitlist">Get early access</a>
+            <a class="cta ghost" href="#features">Learn more</a>
+          </div>
+          <p class="micro">No spam. Opt out anytime.</p>
+        </div>
+
+        <div class="hero-art">
+          <div class="card hero-card" aria-describedby="sample">
+            <img src="logo.svg" alt="" class="hero-logo" aria-hidden="true"/>
+            <div class="split">
+              <div>
+                <p class="metric" id="sample">Today</p>
+                <p class="big">Precision session: <strong>8 × 400m</strong> @ 5k pace</p>
+              </div>
+              <div class="chip">auto-calibrated</div>
+            </div>
+            <hr/>
+            <div class="row">
+              <div class="kpi"><span>HRV</span><strong>74 ms</strong></div>
+              <div class="kpi"><span>Sleep</span><strong>7h 42m</strong></div>
+              <div class="kpi"><span>Load</span><strong>+36</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <div class="container">
+        <h2>Why Prazise</h2>
+        <div class="grid3">
+          <article class="card">
+            <h3>Precision fit</h3>
+            <p>Plans adapt to your recovery, not just the calendar. Smarter sessions, fewer junk miles.</p>
+          </article>
+          <article class="card">
+            <h3>Clear guidance</h3>
+            <p>Every workout has targets, cues, and post-run insights. No guesswork.</p>
+          </article>
+          <article class="card">
+            <h3>Private by design</h3>
+            <p>Your data stays yours. Encrypted at rest, deletable on request, never sold.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: Why precision beats templates (compare) -->
+    <section id="compare" class="compare">
+      <div class="container">
+        <h2>Why precision beats templates</h2>
+
+        <div class="compare-grid">
+          <!-- Left: Generic -->
+          <article class="card side generic" aria-labelledby="generic-title">
+            <h3 id="generic-title" class="side-title">Generic plan</h3>
+            <ul class="list bad-list" role="list">
+              <li><span class="icon no" aria-hidden="true"></span> Fixed calendar, regardless of how you feel.</li>
+              <li><span class="icon no" aria-hidden="true"></span> Same workout after a poor night of sleep.</li>
+              <li><span class="icon no" aria-hidden="true"></span> No context from yesterday’s session.</li>
+              <li><span class="icon no" aria-hidden="true"></span> Hard to balance volume, intensity, and recovery.</li>
+            </ul>
+          </article>
+
+          <!-- Right: Prazise -->
+          <article class="card side prazise" aria-labelledby="prazise-title">
+            <h3 id="prazise-title" class="side-title">Prazise precision</h3>
+            <ul class="list good-list" role="list">
+              <li><span class="icon ok" aria-hidden="true"></span> Adapts to <strong>recovery</strong> (HRV, sleep) and <strong>recent load</strong>.</li>
+              <li><span class="icon ok" aria-hidden="true"></span> Adjusts targets and volume after tough or breakthrough days.</li>
+              <li><span class="icon ok" aria-hidden="true"></span> Understands <strong>workout context</strong> (terrain, intent, upcoming races).</li>
+              <li><span class="icon ok" aria-hidden="true"></span> Optimizes stimulus while managing fatigue—fewer junk miles.</li>
+            </ul>
+
+            <div class="badge-row compact" aria-hidden="true">
+              <span class="badge">Recovery-aware</span>
+              <span class="badge">Load-based</span>
+              <span class="badge">Context-smart</span>
+            </div>
+          </article>
+        </div>
+
+        <p class="micro compare-note">Uses your existing devices. Your data stays yours.</p>
+      </div>
+    </section>
+    <!-- /NEW -->
+
+    <section id="how" class="how">
+      <div class="container">
+        <h2>How it works</h2>
+        <ol class="steps">
+          <li><span class="num">1</span><strong>Connect your device</strong><br/>Garmin, Polar, Suunto, Fitbit, Apple Health & more.</li>
+          <li><span class="num">2</span><strong>We calibrate</strong><br/>We model your load, recovery, and recent sessions.</li>
+          <li><span class="num">3</span><strong>Train precisely</strong><br/>Get the right session for today—auto-adjusted as you go.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Adaptive engine -->
+    <section id="adaptive" class="adaptive">
+      <div class="container">
+        <h2>Adaptation that fits your life</h2>
+
+        <div class="grid3">
+          <article class="card adapt-card">
+            <h3>Sleep & HRV</h3>
+            <p>Daily readiness tunes targets and volume—hard when you can absorb, easy when you can’t.</p>
+            <ul class="badge-row">
+              <li class="badge">HRV trend</li>
+              <li class="badge">Sleep duration</li>
+              <li class="badge">Sleep quality</li>
+            </ul>
+          </article>
+
+          <article class="card adapt-card">
+            <h3>Training load</h3>
+            <p>Understands recent sessions, terrain, and intent to manage stimulus and reduce junk miles.</p>
+            <ul class="badge-row">
+              <li class="badge">Acute load</li>
+              <li class="badge">Chronic load</li>
+              <li class="badge">Session context</li>
+            </ul>
+          </article>
+
+          <article class="card adapt-card">
+            <h3>Real-life factors</h3>
+            <p>Adjusts around stress, travel, and time constraints—so consistency wins.</p>
+            <ul class="badge-row">
+              <li class="badge">Life stress</li>
+              <li class="badge">Schedule</li>
+              <li class="badge">Travel/illness</li>
+            </ul>
+          </article>
+        </div>
+
+        <p class="micro" style="margin-top:8px;color:var(--muted)">
+          You’re always in control—auto-adjustments are suggestions you can accept or override.
+        </p>
+      </div>
+    </section>
+
+    <!-- Integrations -->
+    <section id="integrations" class="integrations integrations-carousel">
+      <div class="container">
+        <div class="carousel-head">
+          <h2>Integrations</h2>
+          <p id="device-pick" class="pick-hint micro" role="status" aria-live="polite" aria-atomic="true"></p>
+        </div>
+
+        <div class="carousel-shell">
+          <button class="carousel-btn prev" aria-label="Scroll left" disabled>
+            <span aria-hidden="true">‹</span>
+          </button>
+
+          <div class="carousel-viewport" id="integrations-viewport" tabindex="0">
+            <ul class="carousel-track" id="integrations-track" role="list">
+              <li class="slide">
+                <img src="img/integrations/apple-health.svg" alt="Apple Health" onerror="this.style.display='none'">
+                <span class="name">Apple Health</span>
+                <button type="button" class="pill notify-device" data-device="Apple Health">Notify me</button>
+              </li>
+              <li class="slide">
+                <img src="img/integrations/google-fit.svg" alt="Google Fit" onerror="this.style.display='none'">
+                <span class="name">Google Fit</span>
+                <button type="button" class="pill notify-device" data-device="Google Fit">Notify me</button>
+              </li>
+              <li class="slide">
+                <img src="img/integrations/garmin.svg" alt="Garmin" onerror="this.style.display='none'">
+                <span class="name">Garmin</span>
+                <button type="button" class="pill notify-device" data-device="Garmin">Notify me</button>
+              </li>
+              <li class="slide">
+                <img src="img/integrations/polar.svg" alt="Polar" onerror="this.style.display='none'">
+                <span class="name">Polar</span>
+                <button type="button" class="pill notify-device" data-device="Polar">Notify me</button>
+              </li>
+              <li class="slide">
+                <img src="img/integrations/suunto.svg" alt="Suunto" onerror="this.style.display='none'">
+                <span class="name">Suunto</span>
+                <button type="button" class="pill notify-device" data-device="Suunto">Notify me</button>
+              </li>
+              <li class="slide">
+                <img src="img/integrations/coros.svg" alt="COROS" onerror="this.style.display='none'">
+                <span class="name">COROS</span>
+                <button type="button" class="pill notify-device" data-device="COROS">Notify me</button>
+              </li>
+              <li class="slide">
+                <img src="img/integrations/wahoo.svg" alt="Wahoo" onerror="this.style.display='none'">
+                <span class="name">Wahoo</span>
+                <button type="button" class="pill notify-device" data-device="Wahoo">Notify me</button>
+              </li>
+              <li class="slide">
+                <img src="img/integrations/whoop.svg" alt="WHOOP" onerror="this.style.display='none'">
+                <span class="name">WHOOP</span>
+                <button type="button" class="pill notify-device" data-device="WHOOP">Notify me</button>
+              </li>
+              <li class="slide">
+                <img src="img/integrations/oura.svg" alt="Oura" onerror="this.style.display='none'">
+                <span class="name">Oura</span>
+                <button type="button" class="pill notify-device" data-device="Oura">Notify me</button>
+              </li>
+              <li class="slide">
+                <img src="img/integrations/fitbit.svg" alt="Fitbit" onerror="this.style.display='none'">
+                <span class="name">Fitbit</span>
+                <button type="button" class="pill notify-device" data-device="Fitbit">Notify me</button>
+              </li>
+              <li class="slide">
+                <img src="img/integrations/strava.svg" alt="Strava" onerror="this.style.display='none'">
+                <span class="name">Strava</span>
+                <button type="button" class="pill notify-device" data-device="Strava">Notify me</button>
+              </li>
+            </ul>
+          </div>
+
+          <button class="carousel-btn next" aria-label="Scroll right">
+            <span aria-hidden="true">›</span>
+          </button>
+        </div>
+
+        <p class="micro center">Logos are placeholders; all trademarks belong to their owners. Not affiliated unless stated.</p>
+      </div>
+    </section>
+
+    <section id="waitlist" class="waitlist">
+      <div class="container">
+        <h2>Get early access</h2>
+
+        <!-- AJAX submission via FormSubmit (no redirect) -->
+        <form id="waitlist-form"
+              class="waitlist-form"
+              action="https://formsubmit.co/ajax/slavinskasjack@gmail.com"
+              method="POST">
+          <label>
+            <span>Email</span>
+            <input id="email" name="email" type="email" placeholder="you@email.com" required />
+          </label>
+
+          <!-- Captured automatically by Integrations buttons -->
+          <input type="hidden" name="device_interest" id="device_interest" />
+
+          <!-- FormSubmit settings -->
+          <input type="hidden" name="_subject"  value="Prazise waitlist signup" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha"  value="false" />
+          <input type="hidden" name="_replyto"  id="_replyto" />
+          <!-- CC your EDU inbox as backup -->
+          <input type="hidden" name="_cc" value="johnslavinskas@my.uopeople.edu" />
+          <!-- No _next for AJAX -->
+
+          <!-- Honeypot (spam trap) -->
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+          <button class="cta" type="submit">Request invite</button>
+        </form>
+
+        <p class="micro">By joining, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
+        <div id="form-result" class="form-result" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <div>
+        <div class="brand-inline">
+          <img src="logo.svg" alt="" class="logo small" aria-hidden="true"/>
+          <strong>Prazise</strong>
+        </div>
+        <p class="micro">© <span id="y"></span> Prazise. All rights reserved.</p>
+      </div>
+      <div class="links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="security.html">Security</a>
+        <a href="accessibility.html">Accessibility</a>
+        <a href="deletion.html">Data Deletion</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="js/script.js?v=2" defer></script>
+</body>
+</html>

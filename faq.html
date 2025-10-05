@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ — Prazise</title>
+  <meta name="description" content="Frequently asked questions about Prazise." />
+  <meta name="theme-color" content="#0B0D10" />
+
+  <link rel="stylesheet" href="css/tokens.css?v=2">
+  <!-- UPDATED: global CSS with mobile nav + header hairline -->
+  <link rel="stylesheet" href="css/styles.css?v=7">
+  <link rel="stylesheet" href="css/faq.css?v=1">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/src/input.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body class="faq-page">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-grid">
+      <a class="brand" href="./">
+        <img src="logo.svg" alt="" class="logo" aria-hidden="true"/>
+        <span class="brand-text">Prazise</span>
+      </a>
+      <nav class="nav" aria-label="primary">
+        <a href="athletes.html">Athletes</a>
+        <a href="coaches.html">Coaches</a>
+        <a href="partners.html">For Partners</a>
+        <a href="about.html">About</a>
+        <a href="faq.html" aria-current="page">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a class="cta ghost" href="index.html#waitlist">Join waitlist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section hero">
+      <div class="container">
+        <h1>Frequently asked questions</h1>
+        <p class="lead">Quick answers. If you don’t see yours, <a href="contact.html">contact us</a>.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="faq-list" role="list">
+          <article class="qa card">
+            <h3>Do you have live integrations yet?</h3>
+            <p>We’re building against official, user-consented APIs. Check the status in <a href="index.html#integrations">Integrations</a>. You can also ask for updates via the Contact page.</p>
+          </article>
+
+          <article class="qa card">
+            <h3>What data does Prazise access?</h3>
+            <p>Minimal scopes: heart rate / HRV, sleep summaries, and workout summaries; optional device metadata (battery/firmware). We don’t request continuous GPS or raw PII unless strictly necessary. See <a href="partners.html">For Partners</a> and <a href="security.html">Security</a>.</p>
+          </article>
+
+          <article class="qa card">
+            <h3>Can I use Prazise without a watch?</h3>
+            <p>You can start with phone-collected basics and supported health platforms, but the best coaching comes from HR/HRV + workout data from a wearable.</p>
+          </article>
+
+          <article class="qa card">
+            <h3>How do I delete my data?</h3>
+            <p>Anytime—follow the steps on our <a href="deletion.html">Data Deletion</a> page. We honor deletion requests within 30 days.</p>
+          </article>
+
+          <article class="qa card">
+            <h3>Can I export my data?</h3>
+            <p>Yes. Request an export via the <a href="contact.html?topic=privacy">Contact</a> page and we’ll send you a copy.</p>
+          </article>
+
+          <article class="qa card">
+            <h3>When is pricing available?</h3>
+            <p>We’re finalizing plans for early access. Join the <a href="index.html#waitlist">waitlist</a> and we’ll notify you before anything is paid.</p>
+          </article>
+
+          <article class="qa card">
+            <h3>I want to beta test. How do I join?</h3>
+            <p>Join the <a href="index.html#waitlist">waitlist</a> and mention your device; we’ll prioritize invites based on integration status.</p>
+          </article>
+
+          <article class="qa card">
+            <h3>How do I report a security issue?</h3>
+            <p>Please use the <a href="contact.html?topic=security">Security contact</a>. We triage within 24 hours. See <a href="security.html">Security</a> for our process.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <div>
+        <div class="brand-inline">
+          <img src="logo.svg" alt="" class="logo small" aria-hidden="true"/>
+          <strong>Prazise</strong>
+        </div>
+        <p class="micro">© <span id="y"></span> Prazise. All rights reserved.</p>
+      </div>
+      <div class="links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="security.html">Security</a>
+        <a href="accessibility.html">Accessibility</a>
+        <a href="deletion.html">Data Deletion</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Global JS (injects/toggles hamburger on mobile and stamps year) -->
+  <script src="js/script.js?v=3" defer></script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
