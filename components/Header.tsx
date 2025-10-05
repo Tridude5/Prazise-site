@@ -25,7 +25,7 @@ export default function Header() {
 
   React.useEffect(() => setOpen(false), [pathname]);
 
-  // keep --header-h in sync for smooth in-page anchor offsets (you already use this in globals.css)
+  // keep --header-h in sync for anchor offsets (used in globals.css)
   React.useLayoutEffect(() => {
     const el = navRef.current;
     if (!el) return;
@@ -47,7 +47,8 @@ export default function Header() {
       className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur dark:bg-zinc-900/80 supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-zinc-900/60"
       style={{ borderColor: "var(--hairline)" }}
     >
-      <div className="mx-auto max-w-6xl px-4">
+      {/* Use your global `.container` to match page width */}
+      <div className="container">
         <div className="flex items-center justify-between gap-3 py-3">
           {/* Brand */}
           <Link
@@ -68,7 +69,7 @@ export default function Header() {
 
           {/* Desktop nav */}
           <div className="hidden items-center gap-6 md:flex">
-            {NAV.map(n => (
+            {NAV.map((n) => (
               <Link
                 key={n.href}
                 href={n.href}
@@ -77,10 +78,7 @@ export default function Header() {
                 {n.label}
               </Link>
             ))}
-            <Link
-              href="/#waitlist"
-              className="btn btn--sm no-underline"
-            >
+            <Link href="/#waitlist" className="btn btn--sm no-underline">
               Join waitlist
             </Link>
           </div>
@@ -88,7 +86,7 @@ export default function Header() {
           {/* Mobile menu button */}
           <button
             type="button"
-            onClick={() => setOpen(v => !v)}
+            onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label="Toggle menu"
@@ -119,7 +117,7 @@ export default function Header() {
         >
           <div className="pb-3">
             <div className="flex flex-col gap-2">
-              {NAV.map(n => (
+              {NAV.map((n) => (
                 <Link
                   key={n.href}
                   href={n.href}
