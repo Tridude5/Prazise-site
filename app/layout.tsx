@@ -1,43 +1,60 @@
-// /app/layout.tsx
+// app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { baseMetadata } from "@/app/seo.config";
-import JsonLdPerson from "@/components/JsonLd";
 import { I18nProvider } from "@/components/i18n/I18nProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AppEffects from "@/components/AppEffects";
+import Script from "next/script";
 
 export const metadata: Metadata = {
-  ...baseMetadata,
   title: {
-    default: "John Slavinskas — Paper Engineer × Quant Technologist",
-    template: "%s — John Slavinskas",
+    default: "Prazise — Precision training for runners",
+    template: "%s — Prazise",
   },
   description:
-    "Portfolio of John Slavinskas — Paper Engineer blending sustainable materials research, software/ML, and quantitative finance.",
-
-  // Files live in /public, so link with *relative* URLs (work under /JohnSlavinskas/)
+    "Prazise turns your heart rate, HRV, sleep, and workouts into precise training plans. Device-friendly. Privacy-first.",
+  openGraph: {
+    title: "Prazise — Precision training for runners",
+    description:
+      "Train with intent. Smarter recommendations from your existing devices.",
+    type: "website",
+  },
+  twitter: { card: "summary_large_image" },
+  // Use relative paths so assets work under GitHub Pages subpaths
   icons: {
     icon: [
-      { url: "favicon-48.png", sizes: "48x48", type: "image/png" }, // Google Search prefers 48x48
-      { url: "favicon.ico", sizes: "any" },                         // classic fallback
-      // Optional extras:
+      { url: "favicon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "favicon.ico", sizes: "any" },
       { url: "favicon-32.png", sizes: "32x32", type: "image/png" },
       { url: "favicon-16.png", sizes: "16x16", type: "image/png" },
     ],
-    apple: [{ url: "apple-touch-icon.png", sizes: "180x180" }],     // optional
+    apple: [{ url: "apple-touch-icon.png", sizes: "180x180" }],
   },
-
-  // Keep only if you placed a manifest at /public/manifest.json
+  // Keep if you have /app/manifest.json (present in your repo)
   manifest: "manifest.json",
-  themeColor: "#000000",
+  themeColor: "#0B0D10",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      {/* Optional: Organization JSON-LD for Prazise */}
+      <head>
+        <Script id="ld-org" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Prazise",
+            url: "https://tridude5.github.io/Prazise-site/",
+            logo: "favicon-48.png",
+            sameAs: [
+              // add socials if you have them
+            ],
+          })}
+        </Script>
+      </head>
       <body className="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 antialiased">
         <AppEffects />
         <I18nProvider>
@@ -45,7 +62,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="flex-1">{children}</main>
           <Footer />
         </I18nProvider>
-        <JsonLdPerson />
       </body>
     </html>
   );
