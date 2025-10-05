@@ -11,7 +11,7 @@ import Logo from "@/public/downloads/PraziseLogo_onlypicture.png";
 
 const NAV = [
   { href: "/athletes", label: "Athletes" },
-  { href: "/coaches", label: "Coaches" },
+  { href: "/coaches",  label: "Coaches" },
   { href: "/partners", label: "For Partners" },
   { href: "/about",    label: "About" },
   { href: "/faq",      label: "FAQ" },
@@ -44,12 +44,13 @@ export default function Header() {
     <nav
       ref={navRef}
       aria-label="Primary"
-      className="sticky top-0 z-50 border-b border-foreground/10 bg-white/80 backdrop-blur dark:border-white/10 dark:bg-zinc-900/80 supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-zinc-900/60"
+      className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur dark:bg-zinc-900/80 supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-zinc-900/60"
     >
-      <div className="mx-auto max-w-6xl px-4">
+      {/* border color via CSS var so it adapts to light/dark */}
+      <div className="mx-auto max-w-6xl px-4" style={{ borderColor: "var(--hairline)" }}>
         <div className="flex items-center justify-between gap-3 py-3">
           {/* Brand */}
-          <Link href="/" className="flex min-w-0 items-center gap-2 font-semibold tracking-tight">
+          <Link href="/" className="flex min-w-0 items-center gap-2 font-semibold tracking-tight text-[rgb(var(--fg))] no-underline">
             <Image
               src={Logo}
               alt="Präzise"
@@ -68,14 +69,14 @@ export default function Header() {
               <Link
                 key={n.href}
                 href={n.href}
-                className="text-sm text-foreground/90 hover:underline underline-offset-4"
+                className="text-sm text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))] hover:underline underline-offset-4 no-underline"
               >
                 {n.label}
               </Link>
             ))}
             <Link
               href="/#waitlist"
-              className="rounded-lg px-3 py-1.5 text-sm font-semibold ring-1 ring-foreground/20 hover:bg-foreground/5"
+              className="btn btn--sm no-underline"
             >
               Join waitlist
             </Link>
@@ -88,7 +89,7 @@ export default function Header() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label="Toggle menu"
-            className="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm ring-1 ring-foreground/15 hover:bg-foreground/5 md:hidden"
+            className="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-[rgb(var(--fg))] border border-[var(--hairline)] hover:bg-black/5 dark:hover:bg-white/5 md:hidden"
           >
             Menu
             <svg
@@ -119,7 +120,7 @@ export default function Header() {
                 <Link
                   key={n.href}
                   href={n.href}
-                  className="rounded-lg px-3 py-2 text-sm hover:bg-foreground/5"
+                  className="rounded-lg px-3 py-2 text-sm text-[rgb(var(--fg))] no-underline hover:bg-black/5 dark:hover:bg-white/5"
                   onClick={() => setOpen(false)}
                 >
                   {n.label}
@@ -127,7 +128,7 @@ export default function Header() {
               ))}
               <Link
                 href="/#waitlist"
-                className="rounded-lg px-3 py-2 text-sm font-semibold ring-1 ring-foreground/20 hover:bg-foreground/5"
+                className="btn btn--sm no-underline"
                 onClick={() => setOpen(false)}
               >
                 Join waitlist
