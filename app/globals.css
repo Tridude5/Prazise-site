@@ -1,152 +1,120 @@
-/* app/globals.css
-   Tailwind + lightweight theme tokens (amber/orange accent)
-*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ---------- Theme tokens ---------- */
+/* ---- Brand tokens (global) ---- */
 :root{
-  /* Light */
   --bg: 255 255 255;
   --fg: 17 24 39;
   --muted: 107 114 128;
   --card: 249 250 251;
 
-  /* Brand accent (amber-500) */
-  --accent: #f59e0b;
-  --accent-rgb: 245 158 11;
+  /* ORANGE accent */
+  --accent: #F59E0B;           /* amber-500 */
+  --accent-ink: #0B0D10;       /* text on accent */
 
-  /* Base border & hairlines */
-  --border: 37 47 63; /* slate-ish */
-  --hairline: color-mix(in srgb, rgb(var(--border)) 86%, transparent);
-  --hairline-strong: color-mix(in srgb, rgb(var(--border)) 94%, transparent);
+  /* hairlines / borders */
+  --hairline: color-mix(in srgb, #111827 12%, transparent);
+  --hairline-strong: color-mix(in srgb, #111827 18%, transparent);
 
-  /* Sticky header sizing for smooth anchor offsets */
+  /* header sizing tokens */
   --header-h: 56px;
   --header-gap: 4px;
 }
 
-/* Dark */
+/* Dark palette */
 @media (prefers-color-scheme: dark){
   :root{
-    --bg: 11 13 16;        /* the old deep charcoal */
+    --bg: 17 24 39;
     --fg: 243 244 246;
     --muted: 156 163 175;
-    --card: 22 26 33;
+    --card: 31 41 55;
+
+    --hairline: color-mix(in srgb, #ffffff 12%, transparent);
+    --hairline-strong: color-mix(in srgb, #ffffff 18%, transparent);
   }
 }
 
-/* Slightly taller header on sm+ */
-@media (min-width: 640px){ :root{ --header-h: 64px; } }
+/* header height bump on sm+ */
+@media (min-width: 640px) { :root { --header-h: 64px; } }
 
-/* ---------- Base canvas ---------- */
+/* Base */
 html, body { @apply h-full; }
-
 body{
   color: rgb(var(--fg));
   background:
-    radial-gradient(1200px 1200px at 100% -10%, rgba(var(--accent-rgb),0.10), transparent 40%),
-    radial-gradient(1000px 800px  at -20%  10%, rgba(var(--accent-rgb),0.08), transparent 35%),
+    radial-gradient(1200px 1200px at 100% -10%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 40%),
+    radial-gradient(1000px 800px at -20% 10%, color-mix(in srgb, var(--accent) 15%, transparent), transparent 35%),
     rgb(var(--bg));
   font-feature-settings: "cv02","cv03","ss01","ss03";
 }
 
-/* Keep in-page anchors below sticky header */
-html{
+/* Keep anchors below sticky header */
+html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-h) + env(safe-area-inset-top) + var(--header-gap));
+  scroll-padding-top: calc(var(--header-h, 64px) + env(safe-area-inset-top) + var(--header-gap, 8px));
 }
-[id]{ scroll-margin-top: calc(var(--header-h) + env(safe-area-inset-top) + var(--header-gap)); }
+[id] { scroll-margin-top: calc(var(--header-h, 64px) + env(safe-area-inset-top) + var(--header-gap, 8px)); }
 
-/* ---------- Utilities & small components ---------- */
-
-/* Fancy underline for nav/links */
-.fancy-underline{
+/* Fancy underline */
+.fancy-underline {
   background-image:
     linear-gradient(transparent,transparent),
-    linear-gradient(to right,
-      rgba(var(--accent-rgb),.35),
-      rgba(var(--accent-rgb),1),
-      rgba(var(--accent-rgb),.35));
+    linear-gradient(to right, color-mix(in srgb, var(--accent) 35%, transparent), var(--accent), color-mix(in srgb, var(--accent) 35%, transparent));
   background-size: 100% 2px, 0 2px;
   background-position: 100% 100%, 0 100%;
   background-repeat: no-repeat;
   transition: background-size 400ms ease;
 }
-.fancy-underline:hover{ background-size: 0 2px, 100% 2px; }
+.fancy-underline:hover { background-size: 0 2px, 100% 2px; }
 
-/* Reusable “card” look when you need it */
-.card{
+/* Cards */
+.card {
   @apply rounded-2xl shadow-sm backdrop-blur p-6;
   background: rgb(var(--card) / 0.7);
   border: 1px solid var(--hairline-strong);
 }
 
-/* Brand buttons */
-.btn{ @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition;
-  @apply text-white;
+/* Buttons — use brand accent (NO emerald utilities) */
+.btn {
+  @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition;
   background: var(--accent);
+  color: var(--accent-ink);
+  border: 2px solid var(--accent);
 }
-.btn:hover{ filter: brightness(1.06); }
+.btn:hover { filter: brightness(1.06); }
 
-.btn-outline{ @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition;
-  border: 1px solid color-mix(in srgb, var(--accent) 70%, transparent);
-  color: color-mix(in srgb, var(--accent) 90%, white 10%);
+.btn-outline {
+  @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition;
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
 }
-.btn-outline:hover{ background: color-mix(in srgb, var(--accent) 10%, transparent); }
 
-/* Badges / pills that carry the brand color */
-.badge, .pill{
-  @apply rounded-full px-2.5 py-1 text-xs font-bold;
-  color: #0b0d10;                /* ink on accent */
+/* Pills / badges with brand accent */
+.pill,
+.badge {
+  @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold;
   background: var(--accent);
+  color: var(--accent-ink);
 }
 
-/* Section tints that follow the accent */
-.section-tint{
+/* Section tint helper using accent */
+.section-tint {
   border-top: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent);
 }
 
-/* Normalize <hr> and unify borders as crisp hairlines */
+/* Hairlines */
 hr{ height:1px; border:0; background:var(--hairline); margin:12px 0; opacity:1; }
-.card hr{ background: var(--hairline-strong); margin:12px 0; }
+.card hr{ background:var(--hairline-strong); margin:12px 0; }
 
-/* Fallback when color-mix isn’t supported */
-@supports not (color: color-mix(in srgb, red, white)){
-  hr{ background: rgb(var(--border)); }
-  .card{ border-color: rgb(var(--border)); }
+/* Print */
+@media print {
+  @page { size: A4; margin: 12mm; }
+  body { background: white; }
+  nav, footer, .no-print { display: none !important; }
+  a { text-decoration: none; color: inherit; }
+  .card { box-shadow: none; border: 1px solid #ddd; }
 }
-
-/* ---------- Compare list icons (checks / crosses) ---------- */
-.compare .list{ list-style:none; margin:0; padding:0; display:grid; gap:14px; }
-.compare .list li{ position:relative; padding-left:34px; line-height:1.6; }
-.compare .list li .icon{
-  position:absolute; left:0; top:.35em; width:20px; height:20px;
-  border-radius:50%; box-shadow:0 0 0 1px rgba(0,0,0,.15) inset;
-}
-.compare .icon.ok{
-  background:
-    url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") no-repeat center/12px 12px,
-    var(--accent);
-  box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent);
-}
-.compare .icon.no{
-  background:
-    url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'><line x1='6' y1='6' x2='18' y2='18'/><line x1='18' y1='6' x2='6' y2='18'/></svg>") no-repeat center/12px 12px,
-    #7a1e1e;
-  box-shadow:0 0 0 1px rgba(248,113,113,.35);
-  opacity:.95;
-}
-
-/* ---------- Small helpers ---------- */
-.container{ max-width:1120px; margin:0 auto; padding:0 20px; }
-.micro{ font-size:12px; color: rgb(var(--muted)); }
-
-/* Safe iOS bottom inset for any footer using padding-bottom */
-.safe-bottom{ padding-bottom: max(24px, env(safe-area-inset-bottom)); }
