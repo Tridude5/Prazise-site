@@ -1,5 +1,5 @@
 // app/layout.tsx
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 import { I18nProvider } from "@/components/i18n/I18nProvider";
@@ -32,16 +32,23 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "apple-touch-icon.png", sizes: "180x180" }],
   },
-  // Keep if you have /app/manifest.json (present in your repo)
+  // Keep if you have /public/manifest.json
   manifest: "manifest.json",
-  themeColor: "#0B0D10",
+};
+
+// Next.js wants themeColor in `viewport`, not `metadata`
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0B0D10" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      {/* Optional: Organization JSON-LD for Prazise */}
-      <head>
+      <body className="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 antialiased">
+        {/* Organization JSON-LD for Prazise */}
         <Script id="ld-org" type="application/ld+json" strategy="beforeInteractive">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -49,13 +56,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             name: "Prazise",
             url: "https://tridude5.github.io/Prazise-site/",
             logo: "favicon-48.png",
-            sameAs: [
-              // add socials if you have them
-            ],
+            sameAs: [],
           })}
         </Script>
-      </head>
-      <body className="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 antialiased">
+
         <AppEffects />
         <I18nProvider>
           <Header />
