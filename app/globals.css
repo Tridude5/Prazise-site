@@ -1,117 +1,121 @@
-/* app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ---- Design tokens (brand) ---- */
+/* ===== Brand tokens ===== */
 :root{
-  /* Brand colors */
-  --accent: #ff6b00;
+  --accent: #ff6b00;                  /* brand orange */
   --accent-rgb: 255 107 0;
   --ink-on-accent: #0b0d10;
 
-  /* Surfaces / text */
   --bg: 255 255 255;
   --fg: 17 24 39;
   --muted: 107 114 128;
   --card: 249 250 251;
   --border: rgba(17,24,39,.15);
 
-  /* Header sizing */
   --header-h: 56px;
-  --header-gap: 4px;
 }
-
 @media (prefers-color-scheme: dark){
   :root{
     --bg: 17 24 39;
     --fg: 243 244 246;
     --muted: 156 163 175;
     --card: 31 41 55;
-    --border: rgba(255,255,255,.15);
+    --border: rgba(255,255,255,.16);
   }
 }
+@media (min-width:640px){ :root{ --header-h:64px } }
 
-@media (min-width: 640px) {
-  :root { --header-h: 64px; }
-}
-
-html, body { height: 100%; }
+html,body{ height:100% }
 body{
   color: rgb(var(--fg));
   background:
-    radial-gradient(1200px 1200px at 100% -10%, rgba(var(--accent-rgb),0.08), transparent 40%),
-    radial-gradient(1000px 800px at -20% 10%, rgba(var(--accent-rgb),0.06), transparent 35%),
+    radial-gradient(1200px 1200px at 100% -10%, rgba(var(--accent-rgb),.08), transparent 40%),
+    radial-gradient(1000px 800px at -20% 10%, rgba(var(--accent-rgb),.06), transparent 35%),
     rgb(var(--bg));
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: "cv02","cv03","ss01","ss03";
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:"cv02","cv03","ss01","ss03";
 }
+a{ color:var(--accent); text-decoration:none }
+a:hover{ text-decoration:underline }
 
-/* Keep in-page targets below sticky header */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-h) + env(safe-area-inset-top) + var(--header-gap));
+/* In-page anchors clear the sticky header */
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top: calc(var(--header-h) + 6px);
 }
-[id] {
-  scroll-margin-top: calc(var(--header-h) + env(safe-area-inset-top) + var(--header-gap));
-}
+[id]{ scroll-margin-top: calc(var(--header-h) + 6px); }
 
-/* --- Helpers you can reuse across pages --- */
-
-/* Hairlines */
-:root{
-  --hairline: color-mix(in srgb, var(--border) 86%, transparent);
-  --hairline-strong: color-mix(in srgb, var(--border) 94%, transparent);
-}
-hr{ height:1px; border:0; background:var(--hairline); margin:12px 0; }
-.card hr{ background:var(--hairline-strong); }
-
-/* Accent underline */
-.fancy-underline {
-  background-image:
-    linear-gradient(transparent,transparent),
-    linear-gradient(to right, rgba(var(--accent-rgb), .35), rgba(var(--accent-rgb),1), rgba(var(--accent-rgb),.35));
-  background-size: 100% 2px, 0 2px;
-  background-position: 100% 100%, 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size 400ms ease;
-}
-.fancy-underline:hover { background-size: 0 2px, 100% 2px; }
-
-/* Accent pills / badges / buttons for non-Tailwind bits */
-.cta{
-  display:inline-block; background:var(--accent); color:var(--ink-on-accent);
-  padding:10px 16px; border-radius:12px; font-weight:800; border:2px solid var(--accent);
-}
-.cta.ghost{ background:transparent; color: rgb(var(--fg)); border-color: var(--hairline-strong); }
-.badge{
-  font-size:12px; color:var(--ink-on-accent); background:var(--accent);
-  padding:6px 10px; border-radius:999px; font-weight:700;
-}
-
-/* Utilities to tint Tailwind rings with the accent without editing tailwind.config */
-.accent-ring  { --tw-ring-color: rgba(var(--accent-rgb), .35); }
-.accent-ring-strong { --tw-ring-color: rgba(var(--accent-rgb), .55); }
-
-/* Generic card */
-.card {
-  border: 1px solid var(--hairline-strong);
-  border-radius: 16px;
+/* ===== Layout helpers ===== */
+.container{ max-width:1120px; margin:0 auto; padding:0 20px }
+.card{
   background: color-mix(in srgb, rgb(var(--bg)) 85%, var(--card));
-  box-shadow: 0 1px 2px rgba(0,0,0,.03);
-  padding: 20px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:0 1px 2px rgba(0,0,0,.03);
+  padding:20px;
+}
+hr{ height:1px; border:0; background:var(--border); margin:12px 0 }
+
+/* ===== Header (old look) ===== */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(11,13,16,.72);
+  -webkit-backdrop-filter:saturate(140%) blur(10px);
+  backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.header-grid{ display:flex; align-items:center; justify-content:space-between; height:var(--header-h) }
+.brand{ display:flex; gap:10px; align-items:center; font-weight:800; color:inherit; text-decoration:none }
+.logo{ width:28px; height:28px }
+.nav{ display:flex; gap:18px; align-items:center }
+.nav a{ color:inherit }
+
+/* ===== Buttons / Pills ===== */
+.cta{
+  display:inline-block; border:2px solid var(--accent);
+  background:var(--accent); color:var(--ink-on-accent);
+  padding:10px 16px; border-radius:12px; font-weight:800;
+}
+.cta.ghost{
+  background:transparent; color:inherit; border-color:var(--border);
+}
+.pills{ display:flex; gap:8px; flex-wrap:wrap; margin:14px 0; padding:0; list-style:none }
+.pills li{
+  font-size:12px; font-weight:700; color:var(--ink-on-accent);
+  background:var(--accent); padding:6px 10px; border-radius:999px;
 }
 
-/* Section tints that follow --accent */
-.section-tint {
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent);
+.micro{ font-size:12px; color: rgb(var(--muted)) }
+
+/* ===== Hero & sections ===== */
+.hero{ padding:72px 0 44px }
+.grid{ display:grid; gap:40px; align-items:center }
+.hero-grid{ grid-template-columns:1.1fr .9fr }
+.hero h1{ font-size: clamp(32px, 5vw, 48px); line-height:1.1; margin:0 0 10px }
+.lead{ font-size:18px; color: rgb(var(--muted)); max-width:56ch }
+
+.features, #features,
+.compare,  #compare,
+.adaptive, #adaptive,
+.integrations, #integrations,
+.waitlist, #waitlist{
+  border-top:1px solid var(--border);
+  background:linear-gradient(180deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent);
 }
 
-/* Small type */
-.micro{ font-size:12px; color: rgb(var(--muted)); }
+/* Compare list (simple) */
+.compare .list, #compare .list{ list-style:none; margin:0; padding:0; display:grid; gap:14px }
+.compare .list li, #compare .list li{ line-height:1.6 }
 
-/* Make containers consistent if you’re not using Tailwind container */
-.container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+/* Footer */
+.site-footer{ border-top:1px solid var(--border); padding:24px 0 }
+.foot-grid{ display:grid; grid-template-columns:1fr auto; gap:12px 24px; align-items:center }
+.brand-inline{ display:flex; align-items:center; gap:10px }
+.site-footer .links{ display:flex; flex-wrap:wrap; gap:.75rem 1.25rem; justify-content:flex-end }
+@media (max-width:960px){
+  .hero-grid{ grid-template-columns:1fr }
+  .foot-grid{ grid-template-columns:1fr }
+  .site-footer .links{ justify-content:flex-start }
+}
