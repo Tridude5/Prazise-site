@@ -1,4 +1,3 @@
-# .github/workflows/pages.yml
 name: Deploy static Next.js to GitHub Pages
 
 on:
@@ -17,14 +16,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    # Make env available to ALL steps (script reads GH_TOKEN || GITHUB_TOKEN)
     env:
-      GH_LOGIN: Tridude5
-      GH_USER: Tridude5
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      GITHUB_TOKEN: ${{ github.token }}
-      NEXT_PUBLIC_BASE_PATH: /JohnSlavinskas  # important for GitHub Pages base path
+      # IMPORTANT: project pages live at /<repo-name>
+      NEXT_PUBLIC_BASE_PATH: /Prazise-site
 
     steps:
       - uses: actions/checkout@v4
@@ -36,66 +30,9 @@ jobs:
 
       - run: npm ci
 
-      # Guard: show repo root & confirm script exists
-      - name: Verify script path
-        run: |
-          echo "repo root:" && ls -la
-          echo "scripts/:" && ls -la scripts || true
-
-      # Who is this token?
-      - name: Who am I? (viewer login)
-        run: |
-          curl -s -H "Authorization: bearer $GH_TOKEN" -H "Content-Type: application/json" \
-            -d '{"query":"query{viewer{login}}"}' https://api.github.com/graphql
-
-      # Direct GraphQL sanity check (public commits, 12 mo)
-      - name: Direct GraphQL check (commit total, 12 mo)
-        run: |
-          node - <<'NODE'
-          const to = new Date();
-          const from = new Date(to); from.setFullYear(to.getFullYear() - 1);
-          const body = {
-            query: `
-              query($login:String!,$from:DateTime!,$to:DateTime!){
-                user(login:$login){
-                  contributionsCollection(from:$from,to:$to){
-                    totalCommitContributions
-                  }
-                }
-              }`,
-            variables: { login: process.env.GH_LOGIN, from: from.toISOString(), to: to.toISOString() }
-          };
-          fetch("https://api.github.com/graphql", {
-            method:"POST",
-            headers:{ "Content-Type":"application/json", Authorization:`bearer ${process.env.GH_TOKEN || process.env.GITHUB_TOKEN}` },
-            body: JSON.stringify(body)
-          })
-          .then(r=>r.json())
-          .then(j=>console.log(JSON.stringify(j,null,2)))
-          .catch(console.error);
-          NODE
-
-      # Generate the JSON (scripts/fetch-contrib.mjs uses GH_TOKEN||GITHUB_TOKEN)
-      - name: Fetch GitHub contributions
-        run: node scripts/fetch-contrib.mjs
-
-      # Show the generated file before build
-      - name: Show contrib json (pre-build)
-        run: |
-          echo "public/github-contrib.json:" && cat public/github-contrib.json || true
-          echo "----" && ls -la public || true
-
-      - name: Build (static export)
+      # Build (Next.js will export to ./out when output:'export' is set)
+      - name: Build static site
         run: npm run build
-
-      # Safety copy to ensure it lands in out/
-      - name: Ensure contrib in export (safety copy)
-        run: |
-          mkdir -p out
-          cp -f public/github-contrib.json out/github-contrib.json || true
-          echo "---- out listing ----"
-          ls -la out || true
-          echo "out/github-contrib.json:" && cat out/github-contrib.json || true
 
       - uses: actions/upload-pages-artifact@v3
         with:
