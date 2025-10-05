@@ -124,16 +124,8 @@ export default function HomeClient() {
             <p className="micro mt-2">No spam. Opt out anytime.</p>
           </div>
 
-          {/* Sample day card */}
+          {/* Sample day card — image removed */}
           <div className="section-card">
-            <Image
-              src="/downloads/PraziseLogo_onlypicture.png"
-              alt=""
-              width={48}
-              height={48}
-              className="mb-3 opacity-90"
-              priority
-            />
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="micro">Today</p>
