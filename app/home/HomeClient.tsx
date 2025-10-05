@@ -5,17 +5,17 @@ import * as React from "react";
 type Integration = { name: string; src: string };
 
 const INTEGRATIONS: Integration[] = [
-  { name: "Apple Health", src: "/img/integrations/apple-health.svg" },
-  { name: "Google Fit",  src: "/img/integrations/google-fit.svg" },
-  { name: "Garmin",      src: "/img/integrations/garmin.svg" },
-  { name: "Polar",       src: "/img/integrations/polar.svg" },
-  { name: "Suunto",      src: "/img/integrations/suunto.svg" },
-  { name: "COROS",       src: "/img/integrations/coros.svg" },
-  { name: "Wahoo",       src: "/img/integrations/wahoo.svg" },
-  { name: "WHOOP",       src: "/img/integrations/whoop.svg" },
-  { name: "Oura",        src: "/img/integrations/oura.svg" },
-  { name: "Fitbit",      src: "/img/integrations/fitbit.svg" },
-  { name: "Strava",      src: "/img/integrations/strava.svg" },
+  { name: "Apple Health", src: "img/integrations/apple-health.svg" },
+  { name: "Google Fit",  src: "img/integrations/google-fit.svg" },
+  { name: "Garmin",      src: "img/integrations/garmin.svg" },
+  { name: "Polar",       src: "img/integrations/polar.svg" },
+  { name: "Suunto",      src: "img/integrations/suunto.svg" },
+  { name: "COROS",       src: "img/integrations/coros.svg" },
+  { name: "Wahoo",       src: "img/integrations/wahoo.svg" },
+  { name: "WHOOP",       src: "img/integrations/whoop.svg" },
+  { name: "Oura",        src: "img/integrations/oura.svg" },
+  { name: "Fitbit",      src: "img/integrations/fitbit.svg" },
+  { name: "Strava",      src: "img/integrations/strava.svg" },
 ];
 
 export default function HomeClient() {
@@ -141,7 +141,7 @@ export default function HomeClient() {
           {/* Sample day card */}
           <div className="hero-art">
             <div className="rounded-2xl border border-foreground/10 p-5 shadow-sm" aria-describedby="sample">
-              <img src="/logo.svg" alt="" className="mb-3 h-6 w-6 opacity-70" aria-hidden="true" />
+              <img src="logo.svg" alt="" className="mb-3 h-6 w-6 opacity-70" aria-hidden="true" />
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p id="sample" className="text-sm text-foreground/70">Today</p>
@@ -301,7 +301,6 @@ export default function HomeClient() {
                   key={it.name}
                   className="snap-start rounded-xl border border-foreground/10 p-4 min-w-[180px] flex flex-col items-center"
                 >
-                  {/* Hide image if it fails to load (preserves original behavior) */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={it.src}
