@@ -118,22 +118,21 @@ export default function HomeClient() {
             </ul>
 
             <div className="mt-6 flex flex-wrap gap-3">
-              <a className="btn" href="#waitlist">Get early access</a>
+              {/* smaller 'Get early access' bubble */}
+              <a
+                className="pill text-sm px-3 py-1"
+                href="#waitlist"
+              >
+                Get early access
+              </a>
               <a className="btn-outline" href="#features">Learn more</a>
             </div>
             <p className="micro mt-2">No spam. Opt out anytime.</p>
           </div>
 
-          {/* Sample day card */}
+          {/* Sample day card — image removed */}
           <div className="section-card">
-            <Image
-              src="/downloads/PraziseLogo_onlypicture.png"
-              alt=""
-              width={48}
-              height={48}
-              className="mb-3 opacity-90"
-              priority
-            />
+            {/* (removed the top Image to hide any picture inside the 'today's workout' bubble/card) */}
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="micro">Today</p>
@@ -210,7 +209,7 @@ export default function HomeClient() {
       <section id="how" className="section">
         <div className="container">
           <h2 className="text-2xl font-semibold">How it works</h2>
-          <ol className="mt-6 grid gap-4 md:grid-cols-3">
+        <ol className="mt-6 grid gap-4 md:grid-cols-3">
             <li className="section-card">
               <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full border border-[var(--hairline)]">1</span>
               <strong> Connect your device</strong><br/>Garmin, Polar, Suunto, Fitbit, Apple Health &amp; more.
