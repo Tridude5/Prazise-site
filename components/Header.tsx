@@ -6,6 +6,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
+// ✅ static import from /public — reliable on GitHub Pages
+import Logo from "@/public/downloads/PraziseLogo_onlypicture.png";
+
 const NAV = [
   { href: "/athletes", label: "Athletes" },
   { href: "/coaches", label: "Coaches" },
@@ -48,13 +51,13 @@ export default function Header() {
           {/* Brand */}
           <Link href="/" className="flex min-w-0 items-center gap-2 font-semibold tracking-tight">
             <Image
-              src="/downloads/PraziseLogo_onlypicture.png"
-              alt="Präzise logo"
-              width={24}
-              height={24}
-              className="h-6 w-6 object-contain opacity-80"
+              src={Logo}
+              alt="Präzise"
+              width={28}
+              height={28}
               priority
               unoptimized
+              className="h-7 w-7 object-contain opacity-80"
             />
             <span>Präzise</span>
           </Link>
@@ -62,7 +65,11 @@ export default function Header() {
           {/* Desktop nav */}
           <div className="hidden items-center gap-6 md:flex">
             {NAV.map(n => (
-              <Link key={n.href} href={n.href} className="text-sm text-foreground/90 hover:underline underline-offset-4">
+              <Link
+                key={n.href}
+                href={n.href}
+                className="text-sm text-foreground/90 hover:underline underline-offset-4"
+              >
                 {n.label}
               </Link>
             ))}
@@ -84,8 +91,17 @@ export default function Header() {
             className="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm ring-1 ring-foreground/15 hover:bg-foreground/5 md:hidden"
           >
             Menu
-            <svg className={`h-4 w-4 transition-transform ${open ? "rotate-90" : ""}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fillRule="evenodd" d="M6.292 4.293a1 1 0 011.416 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 11-1.416-1.414L10.586 10 6.292 5.707a1 1 0 010-1.414z" clipRule="evenodd"/>
+            <svg
+              className={`h-4 w-4 transition-transform ${open ? "rotate-90" : ""}`}
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fillRule="evenodd"
+                d="M6.292 4.293a1 1 0 011.416 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 11-1.416-1.414L10.586 10 6.292 5.707a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
             </svg>
           </button>
         </div>
@@ -93,16 +109,27 @@ export default function Header() {
         {/* Mobile panel */}
         <div
           id="mobile-nav"
-          className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ${open ? "max-h-64 opacity-100" : "max-h-0 opacity-0"}`}
+          className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ${
+            open ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+          }`}
         >
           <div className="pb-3">
             <div className="flex flex-col gap-2">
               {NAV.map(n => (
-                <Link key={n.href} href={n.href} className="rounded-lg px-3 py-2 text-sm hover:bg-foreground/5" onClick={() => setOpen(false)}>
+                <Link
+                  key={n.href}
+                  href={n.href}
+                  className="rounded-lg px-3 py-2 text-sm hover:bg-foreground/5"
+                  onClick={() => setOpen(false)}
+                >
                   {n.label}
                 </Link>
               ))}
-              <Link href="/#waitlist" className="rounded-lg px-3 py-2 text-sm font-semibold ring-1 ring-foreground/20 hover:bg-foreground/5" onClick={() => setOpen(false)}>
+              <Link
+                href="/#waitlist"
+                className="rounded-lg px-3 py-2 text-sm font-semibold ring-1 ring-foreground/20 hover:bg-foreground/5"
+                onClick={() => setOpen(false)}
+              >
                 Join waitlist
               </Link>
             </div>
