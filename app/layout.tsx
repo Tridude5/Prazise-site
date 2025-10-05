@@ -6,7 +6,6 @@ import { I18nProvider } from "@/components/i18n/I18nProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AppEffects from "@/components/AppEffects";
-import Script from "next/script";
 
 export const metadata: Metadata = {
   title: {
@@ -17,12 +16,11 @@ export const metadata: Metadata = {
     "Prazise turns your heart rate, HRV, sleep, and workouts into precise training plans. Device-friendly. Privacy-first.",
   openGraph: {
     title: "Prazise — Precision training for runners",
-    description:
-      "Train with intent. Smarter recommendations from your existing devices.",
+    description: "Train with intent. Smarter recommendations from your existing devices.",
     type: "website",
   },
   twitter: { card: "summary_large_image" },
-  // Use relative paths so assets work under GitHub Pages subpaths
+  // Use RELATIVE paths so assets work under a basePath/subfolder
   icons: {
     icon: [
       { url: "favicon-48.png", sizes: "48x48", type: "image/png" },
@@ -32,11 +30,10 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "apple-touch-icon.png", sizes: "180x180" }],
   },
-  // Keep if you have /public/manifest.json
   manifest: "manifest.json",
 };
 
-// Next.js wants themeColor in `viewport`, not `metadata`
+// Next.js wants themeColor in `viewport`, not in `metadata`
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: dark)", color: "#0B0D10" },
@@ -47,19 +44,27 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 antialiased">
-        {/* Organization JSON-LD for Prazise */}
-        <Script id="ld-org" type="application/ld+json" strategy="beforeInteractive">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "Prazise",
-            url: "https://tridude5.github.io/Prazise-site/",
-            logo: "favicon-48.png",
-            sameAs: [],
-          })}
-        </Script>
+      <head>
+        {/* Load legacy site styles (must exist in /public/css) */}
+        <link rel="stylesheet" href="css/tokens.css" />
+        <link rel="stylesheet" href="css/styles.css" />
 
+        {/* Organization JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Prazise",
+              url: "https://tridude5.github.io/Prazise-site/",
+              logo: "favicon-48.png",
+              sameAs: [],
+            }),
+          }}
+        />
+      </head>
+      <body className="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 antialiased">
         <AppEffects />
         <I18nProvider>
           <Header />
