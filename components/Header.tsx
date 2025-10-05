@@ -25,7 +25,7 @@ export default function Header() {
 
   React.useEffect(() => setOpen(false), [pathname]);
 
-  // keep --header-h in sync for anchor offsets + spacer height
+  // Keep --header-h in sync so spacer matches actual header height
   React.useLayoutEffect(() => {
     const el = navRef.current;
     if (!el) return;
@@ -48,7 +48,8 @@ export default function Header() {
         className="fixed inset-x-0 top-0 z-50 border-b bg-white/80 backdrop-blur dark:bg-zinc-900/80 supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-zinc-900/60"
         style={{ borderColor: "var(--hairline)" }}
       >
-        <div className="mx-auto max-w-6xl px-4">
+        {/* Match your .container width (1120px) for perfect alignment */}
+        <div className="mx-auto max-w-[1120px] px-5">
           <div className="flex items-center justify-between gap-3 py-3">
             {/* Brand */}
             <Link
@@ -121,7 +122,7 @@ export default function Header() {
                   <Link
                     key={n.href}
                     href={n.href}
-                    className="rounded-lg px-3 py-2 text-sm text-[rgb(var(--fg)))] no-underline hover:bg-black/5 dark:hover:bg-white/5"
+                    className="rounded-lg px-3 py-2 text-sm text-[rgb(var(--fg))] no-underline hover:bg-black/5 dark:hover:bg-white/5"
                     onClick={() => setOpen(false)}
                   >
                     {n.label}
@@ -140,7 +141,7 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* Spacer so content doesn't slide under the fixed header */}
+      {/* Spacer so content never slides under the fixed header */}
       <div aria-hidden className="h-[var(--header-h)]" />
     </>
   );
