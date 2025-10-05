@@ -1,20 +1,18 @@
 "use client";
 
-import * as React from "react";
+import React from "react";
 
-/**
- * Prazise Terms of Use — content preserved verbatim.
- * - Safe "Last updated" date formatting from ISO (defaults to today)
- * - Tailwind prose for clean typography
- * - Internal links point to Next.js routes
- */
+type Props = {
+  lastUpdatedISO?: string;
+};
+
 export default function TermsClient({
   lastUpdatedISO = new Date().toISOString().slice(0, 10),
-}: { lastUpdatedISO?: string }) {
-  // UTC parse to avoid timezone off-by-one
+}: Props) {
+  // Safe UTC parse to avoid off-by-one
   const [y, m, d] = lastUpdatedISO.split("-").map(Number);
   const formattedDate = new Intl.DateTimeFormat(undefined, { dateStyle: "long" })
-    .format(new Date(Date.UTC(y, (m || 1) - 1, d || 1)));
+    .format(new Date(Date.UTC(y || 1970, (m || 1) - 1, d || 1)));
 
   return (
     <main id="main" className="mx-auto max-w-3xl px-4 py-12">
@@ -25,7 +23,8 @@ export default function TermsClient({
             <em>Last updated: <span>{formattedDate}</span></em>
           </p>
           <p>
-            <strong>Quick summary:</strong> Use Prazise responsibly. We provide training guidance, not medical advice. Talk to a healthcare professional before starting or changing any exercise program.
+            <strong>Quick summary:</strong> Use Prazise responsibly. We provide training guidance, not medical advice. Talk to a
+            healthcare professional before starting or changing any exercise program.
           </p>
         </header>
 
@@ -33,8 +32,8 @@ export default function TermsClient({
           <h2>1) Acceptance of these Terms</h2>
           <p>
             These Terms of Use (“<strong>Terms</strong>”) govern your access to and use of Prazise websites, forms, and any
-            pre-release features (collectively, the “<strong>Service</strong>”). By accessing or using the Service, you agree
-            to these Terms and to our <a href="/legal/privacy">Privacy Policy</a>. If you don’t agree, don’t use the Service.
+            pre-release features (collectively, the “<strong>Service</strong>”). By accessing or using the Service, you agree to
+            these Terms and to our <a href="/legal/privacy">Privacy Policy</a>. If you don’t agree, don’t use the Service.
           </p>
         </section>
 
@@ -59,9 +58,9 @@ export default function TermsClient({
         <section>
           <h2>4) Acceptable use</h2>
           <p>
-            You agree not to misuse the Service, including (without limitation): scraping, spam, reverse engineering, probing
-            or breaching security, interfering with others’ use, infringing intellectual property or privacy rights, or using
-            the Service for unlawful activity.
+            You agree not to misuse the Service, including (without limitation): scraping, spam, reverse engineering, probing or
+            breaching security, interfering with others’ use, infringing intellectual property or privacy rights, or using the
+            Service for unlawful activity.
           </p>
         </section>
 
@@ -86,10 +85,7 @@ export default function TermsClient({
         <section>
           <h2>7) Intellectual property</h2>
           <ul>
-            <li>
-              The Service (including our content, logos, and code) is protected by intellectual-property laws. We grant you a
-              limited, non-exclusive, non-transferable license to access and use the Service for its intended purpose.
-            </li>
+            <li>The Service (including our content, logos, and code) is protected by intellectual-property laws. We grant you a limited, non-exclusive, non-transferable license to access and use the Service for its intended purpose.</li>
             <li>All third-party trademarks are the property of their respective owners and used in accordance with their brand guidelines.</li>
             <li><strong>Feedback:</strong> If you provide ideas or suggestions, you grant us a non-exclusive, worldwide, royalty-free license to use them without obligation.</li>
           </ul>
@@ -115,8 +111,8 @@ export default function TermsClient({
         <section>
           <h2>10) Disclaimers</h2>
           <p>
-            To the fullest extent permitted by law, the Service is provided “as is” and “as available,” without warranties of
-            any kind, whether express, implied, or statutory, including fitness for a particular purpose, merchantability, and
+            To the fullest extent permitted by law, the Service is provided “as is” and “as available,” without warranties of any
+            kind, whether express, implied, or statutory, including fitness for a particular purpose, merchantability, and
             non-infringement. We don’t warrant that the Service will be uninterrupted, secure, or error-free.
           </p>
         </section>
@@ -143,7 +139,16 @@ export default function TermsClient({
           <h2>13) Governing law &amp; disputes</h2>
           <p>
             These Terms apply to the extent permitted by the laws of your jurisdiction and do not limit any non-waivable consumer
-            rights. If a dispute arises, the parties will first attempt to resolve it informally. <em>{/* Optional: specify governing law/venue here. */}</em>
+            rights. If a dispute arises, the parties will first attempt to resolve it informally. <em></em>
+          </p>
+        </section>
+
+        <section>
+          <h2>14) Termination</h2>
+          <p>
+            You may stop using the Service at any time. We may suspend or end access if you violate these Terms or if we
+            discontinue the Service. Sections that by their nature should survive termination will survive (e.g., intellectual
+            property, disclaimers, limitations of liability).
           </p>
         </section>
 
