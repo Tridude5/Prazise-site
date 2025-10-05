@@ -1,50 +1,104 @@
 "use client";
 
 import Link from "next/link";
+import * as React from "react";
+
+function FooterLink({
+  href,
+  children,
+  ariaLabel,
+}: {
+  href: string;
+  children: React.ReactNode;
+  ariaLabel?: string;
+}) {
+  return (
+    <Link
+      href={href}
+      aria-label={ariaLabel}
+      className="
+        rounded-lg px-3 py-1.5 text-sm
+        text-gray-700 dark:text-gray-300
+        hover:text-emerald-400 hover:bg-black/5 dark:hover:bg-white/5
+        transition-colors
+      "
+    >
+      {children}
+    </Link>
+  );
+}
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const [logoOk, setLogoOk] = React.useState(true);
 
   return (
-    <footer role="contentinfo" className="mt-16 border-t" style={{ borderColor: "var(--hairline)" }}>
-      {/* more vertical padding on md+ so the logo fits comfortably */}
-      <div className="container py-6 md:py-8">
-        {/* one line on md+, stacks on small screens */}
-        <div className="flex flex-col items-start gap-4 md:flex-row md:flex-nowrap md:items-center md:justify-between">
-          {/* Brand (bigger logo) */}
+    <footer
+      className="mt-16 border-t"
+      style={{ borderColor: "var(--hairline)" }}
+      role="contentinfo"
+    >
+      <div className="container py-8">
+        {/* One line on sm+; stacks on mobile */}
+        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+          {/* Left: brand (logo + name) */}
           <Link
             href="/"
-            className="flex items-center gap-2 no-underline text-[rgb(var(--fg))]"
             aria-label="Präzise home"
+            className="flex items-center gap-2 no-underline text-[rgb(var(--fg))]"
           >
-            <img
-              src="/downloads/PraziseLogo_onlypicture.png"
-              alt="Präzise"
-              width={36}
-              height={36}
-              className="block h-9 w-9 object-contain opacity-80"
-            />
+            {logoOk && (
+              <img
+                src="/downloads/PraziseLogo_onlypicture.png"
+                alt=""
+                width={28}
+                height={28}
+                className="h-7 w-7 object-contain opacity-80"
+                onError={() => setLogoOk(false)}   /* hide if path missing */
+              />
+            )}
             <span className="font-semibold tracking-tight">Präzise</span>
           </Link>
 
-          {/* Legal links */}
+          {/* Right: actions (email pill + legal links with separators) */}
           <nav
-            aria-label="Legal"
-            className="micro flex flex-wrap items-center gap-x-4 gap-y-2 md:flex-nowrap md:whitespace-nowrap"
+            aria-label="Footer"
+            className="flex flex-wrap items-center gap-2 sm:gap-3"
           >
-            <Link href="/legal/privacy"       className="fancy-underline">Privacy</Link>
-            <span aria-hidden className="opacity-40">·</span>
-            <Link href="/legal/terms"         className="fancy-underline">Terms</Link>
-            <span aria-hidden className="opacity-40">·</span>
-            <Link href="/legal/security"      className="fancy-underline">Security</Link>
-            <span aria-hidden className="opacity-40">·</span>
-            <Link href="/legal/accessibility" className="fancy-underline">Accessibility</Link>
-            <span aria-hidden className="opacity-40">·</span>
-            <Link href="/legal/deletion"      className="fancy-underline">Data deletion</Link>
+            {/* email as a subtle pill; change address if you prefer */}
+            <a
+              href="mailto:slavinskasjack@gmail.com"
+              className="
+                rounded-lg border border-black/10 dark:border-white/10
+                px-3 py-1.5 text-sm
+                text-gray-700 dark:text-gray-300
+                hover:bg-black/5 dark:hover:bg-white/5
+                transition-colors
+              "
+            >
+              Email us
+            </a>
+
+            <span className="hidden sm:inline text-gray-400">•</span>
+            <FooterLink href="/legal/privacy" ariaLabel="Privacy">Privacy</FooterLink>
+
+            <span className="hidden sm:inline text-gray-400">•</span>
+            <FooterLink href="/legal/terms" ariaLabel="Terms">Terms</FooterLink>
+
+            <span className="hidden sm:inline text-gray-400">•</span>
+            <FooterLink href="/legal/security" ariaLabel="Security">Security</FooterLink>
+
+            <span className="hidden sm:inline text-gray-400">•</span>
+            <FooterLink href="/legal/accessibility" ariaLabel="Accessibility">Accessibility</FooterLink>
+
+            <span className="hidden sm:inline text-gray-400">•</span>
+            <FooterLink href="/legal/deletion" ariaLabel="Data deletion">Data deletion</FooterLink>
           </nav>
 
           {/* Copyright */}
-          <p className="micro">© {year} Präzise. All rights reserved.</p>
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+            © {year} Präzise. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
