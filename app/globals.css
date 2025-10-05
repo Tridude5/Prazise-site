@@ -199,3 +199,19 @@ a.skip:focus{
       linear-gradient(to right, rgba(var(--accent-rgb), .35), var(--accent), rgba(var(--accent-rgb), .35));
   }
 }
+
+/* ====== Prazise: small, safe additions (appended) ====== */
+
+/* 1) Smaller button variants (use alongside your existing .btn) */
+.btn--sm { padding: .45rem .75rem; border-radius: 10px; font-size: .95rem; }
+.btn--xs { padding: .35rem .6rem;  border-radius: 10px; font-size: .85rem; }
+
+/* 2) Optional tiny pill variants (if you ever need smaller pills) */
+.pill--sm { font-size: 11px; padding: 4px 8px; }
+.pill--xs { font-size: 10px; padding: 3px 7px; }
+
+/* 3) Hide the image inside the "today" workout card (when keeping the <Image> in markup)
+   - In JSX, add className="hero-logo" to that <Image /> inside the today card
+   - Wrap the card with className="section-card today-card"
+*/
+.today-card .hero-logo { display: none !important; }
