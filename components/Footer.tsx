@@ -1,51 +1,55 @@
-"use client";
-
-import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-
-const LINKS = [
-  { href: "/legal/privacy", label: "Privacy" },
-  { href: "/legal/terms", label: "Terms" },
-  { href: "/legal/security", label: "Security" },
-  { href: "/legal/accessibility", label: "Accessibility" },
-  { href: "/legal/deletion", label: "Data Deletion" },
-  { href: "/contact", label: "Contact" },
-];
+import Logo from "@/public/downloads/PraziseLogo_onlypicture.png";
 
 export default function Footer() {
   const year = new Date().getFullYear();
-  const pathname = usePathname();
 
   return (
-    <footer className="mt-16 border-t border-foreground/10">
-      <div className="mx-auto max-w-6xl px-4 py-8 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        {/* Brand + year */}
-        <div className="flex items-center gap-3">
-          <Image src="/logo.svg" alt="" width={20} height={20} className="opacity-80" />
-          <strong>Prazise</strong>
-          <span className="text-sm text-foreground/60">© {year} Prazise. All rights reserved.</span>
+    <footer className="mt-16 border-t" style={{ borderColor: "var(--hairline)" }}>
+      <div className="container py-8">
+        {/* Top row: brand + simple nav */}
+        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <Link
+            href="/"
+            className="flex items-center gap-2 no-underline text-[rgb(var(--fg))]"
+            aria-label="Präzise home"
+          >
+            <Image
+              src={Logo}
+              alt="Präzise"
+              width={28}
+              height={28}
+              className="h-7 w-7 object-contain opacity-80"
+              priority
+              unoptimized
+            />
+            <span className="font-semibold tracking-tight">Präzise</span>
+          </Link>
+
+          <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+            <Link href="/athletes" className="text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">Athletes</Link>
+            <Link href="/coaches"  className="text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">Coaches</Link>
+            <Link href="/partners" className="text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">For Partners</Link>
+            <Link href="/about"    className="text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">About</Link>
+            <Link href="/faq"      className="text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">FAQ</Link>
+            <Link href="/contact"  className="text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">Contact</Link>
+          </nav>
         </div>
 
-        {/* Footer nav */}
-        <nav className="flex flex-wrap items-center gap-2 sm:gap-3" aria-label="Footer">
-          {LINKS.map((l) => {
-            const active = pathname === l.href;
-            return (
-              <Link
-                key={l.href}
-                href={l.href}
-                aria-current={active ? "page" : undefined}
-                className={`rounded-lg px-3 py-1.5 text-sm hover:bg-foreground/5 ${
-                  active ? "font-medium text-foreground" : "text-foreground/80"
-                }`}
-              >
-                {l.label}
-              </Link>
-            );
-          })}
-        </nav>
+        <hr className="my-6" />
+
+        {/* Bottom row: copyright + legal */}
+        <div className="flex flex-col-reverse gap-3 md:flex-row md:items-center md:justify-between">
+          <p className="micro">© {year} Präzise. All rights reserved.</p>
+
+          <div className="flex flex-wrap items-center gap-4 micro">
+            <Link href="/legal/privacy"    className="fancy-underline">Privacy</Link>
+            <Link href="/legal/terms"      className="fancy-underline">Terms</Link>
+            <Link href="/legal/impressum"  className="fancy-underline">Impressum</Link>
+            <Link href="/legal/datenschutz" className="fancy-underline">Datenschutz</Link>
+          </div>
+        </div>
       </div>
     </footer>
   );
