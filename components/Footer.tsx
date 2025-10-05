@@ -1,6 +1,6 @@
+// components/Footer.tsx
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "@/public/downloads/PraziseLogo_onlypicture.png";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -8,23 +8,23 @@ export default function Footer() {
   return (
     <footer role="contentinfo" className="mt-16 border-t" style={{ borderColor: "var(--hairline)" }}>
       <div className="container py-8">
-        {/* Brand only (no header-style nav here) */}
+        {/* Brand (same logo as header) */}
         <div className="flex items-center gap-2">
+          {/* Uses the public/ path directly to avoid bundler issues */}
           <Image
-            src={Logo}
+            src="/downloads/PraziseLogo_onlypicture.png"
             alt="Präzise"
             width={28}
             height={28}
             className="h-7 w-7 object-contain opacity-80"
             priority
-            unoptimized
           />
           <span className="font-semibold tracking-tight text-[rgb(var(--fg))]">Präzise</span>
         </div>
 
         <hr className="my-6" />
 
-        {/* Copyright + legal links */}
+        {/* Copyright + legal */}
         <div className="flex flex-col-reverse gap-3 md:flex-row md:items-center md:justify-between">
           <p className="micro">© {year} Präzise. All rights reserved.</p>
 
