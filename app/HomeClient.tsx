@@ -5,27 +5,26 @@ import * as React from "react";
 type Integration = { name: string; src: string };
 
 const INTEGRATIONS: Integration[] = [
-  { name: "Apple Health", src: "img/integrations/apple-health.svg" },
-  { name: "Google Fit",  src: "img/integrations/google-fit.svg" },
-  { name: "Garmin",      src: "img/integrations/garmin.svg" },
-  { name: "Polar",       src: "img/integrations/polar.svg" },
-  { name: "Suunto",      src: "img/integrations/suunto.svg" },
-  { name: "COROS",       src: "img/integrations/coros.svg" },
-  { name: "Wahoo",       src: "img/integrations/wahoo.svg" },
-  { name: "WHOOP",       src: "img/integrations/whoop.svg" },
-  { name: "Oura",        src: "img/integrations/oura.svg" },
-  { name: "Fitbit",      src: "img/integrations/fitbit.svg" },
-  { name: "Strava",      src: "img/integrations/strava.svg" },
+  { name: "Apple Health", src: "/img/integrations/apple-health.svg" },
+  { name: "Google Fit",  src: "/img/integrations/google-fit.svg" },
+  { name: "Garmin",      src: "/img/integrations/garmin.svg" },
+  { name: "Polar",       src: "/img/integrations/polar.svg" },
+  { name: "Suunto",      src: "/img/integrations/suunto.svg" },
+  { name: "COROS",       src: "/img/integrations/coros.svg" },
+  { name: "Wahoo",       src: "/img/integrations/wahoo.svg" },
+  { name: "WHOOP",       src: "/img/integrations/whoop.svg" },
+  { name: "Oura",        src: "/img/integrations/oura.svg" },
+  { name: "Fitbit",      src: "/img/integrations/fitbit.svg" },
+  { name: "Strava",      src: "/img/integrations/strava.svg" },
 ];
 
 export default function HomeClient() {
-  // Waitlist form state
   const [email, setEmail] = React.useState("");
   const [deviceInterest, setDeviceInterest] = React.useState<string>("");
   const [resultMsg, setResultMsg] = React.useState<string>("");
   const [sending, setSending] = React.useState(false);
 
-  // Carousel refs/state
+  // Carousel
   const vpRef = React.useRef<HTMLDivElement | null>(null);
   const [canPrev, setCanPrev] = React.useState(false);
   const [canNext, setCanNext] = React.useState(true);
@@ -66,7 +65,7 @@ export default function HomeClient() {
     const form = e.currentTarget;
     const fd = new FormData(form);
 
-    // honeypot (FormSubmit-style)
+    // honeypot
     if ((fd.get("_honey") as string)?.trim()) {
       setSending(false);
       setResultMsg("Thanks!");
@@ -76,7 +75,6 @@ export default function HomeClient() {
       return;
     }
 
-    // mirror original hidden fields + reply-to + device interest
     fd.set("_subject", "Prazise waitlist signup");
     fd.set("_template", "table");
     fd.set("_captcha", "false");
@@ -102,7 +100,7 @@ export default function HomeClient() {
 
   return (
     <main id="main">
-      {/* HERO (uses .hero, .container, .hero-grid, .pills, .cta, .hero-card, .chip) */}
+      {/* HERO */}
       <section className="hero">
         <div className="container grid hero-grid">
           <div className="hero-copy">
@@ -129,7 +127,7 @@ export default function HomeClient() {
           <div className="hero-art">
             <div className="hero-card" aria-describedby="sample">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="downloads/PraziseLogo_onlypicture.png" alt="" className="hero-logo" aria-hidden="true" />
+              <img src="/downloads/PraziseLogo_onlypicture.png" alt="" className="hero-logo" aria-hidden="true" />
               <div className="split">
                 <div>
                   <p id="sample" className="metric">Today</p>
@@ -150,7 +148,7 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* WHY PRAZISE (tinted section: .features) */}
+      {/* WHY PRAZISE */}
       <section id="features" className="features">
         <div className="container">
           <h2>Why Prazise</h2>
@@ -169,7 +167,7 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* COMPARE (tinted: .compare, uses .list and .badge-row) */}
+      {/* COMPARE */}
       <section id="compare" className="compare">
         <div className="container">
           <h2>Why precision beats templates</h2>
@@ -199,33 +197,25 @@ export default function HomeClient() {
               </div>
             </article>
           </div>
-
           <p className="compare-note">Uses your existing devices. Your data stays yours.</p>
         </div>
       </section>
 
-      {/* HOW IT WORKS (.how with .steps and .num) */}
+      {/* HOW IT WORKS */}
       <section id="how" className="how">
         <div className="container">
           <h2>How it works</h2>
+        </div>
+        <div className="container">
           <ul className="steps">
-            <li>
-              <span className="num">1</span>
-              <strong>Connect your device</strong> — Garmin, Polar, Suunto, Fitbit, Apple Health &amp; more.
-            </li>
-            <li>
-              <span className="num">2</span>
-              <strong>We calibrate</strong> — We model your load, recovery, and recent sessions.
-            </li>
-            <li>
-              <span className="num">3</span>
-              <strong>Train precisely</strong> — Get the right session for today—auto-adjusted as you go.
-            </li>
+            <li><span className="num">1</span><strong>Connect your device</strong> — Garmin, Polar, Suunto, Fitbit, Apple Health &amp; more.</li>
+            <li><span className="num">2</span><strong>We calibrate</strong> — We model your load, recovery, and recent sessions.</li>
+            <li><span className="num">3</span><strong>Train precisely</strong> — Get the right session for today—auto-adjusted as you go.</li>
           </ul>
         </div>
       </section>
 
-      {/* ADAPTIVE ENGINE (.adaptive + .card + .badge-row) */}
+      {/* ADAPTIVE ENGINE */}
       <section id="adaptive" className="adaptive">
         <div className="container grid3">
           {[
@@ -247,7 +237,7 @@ export default function HomeClient() {
         </p>
       </section>
 
-      {/* INTEGRATIONS (carousel using .integrations + .integrations-carousel*) */}
+      {/* INTEGRATIONS */}
       <section id="integrations" className="integrations">
         <div className="container">
           <div className="integrations-carousel">
@@ -309,7 +299,7 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* WAITLIST (tinted section: .waitlist; CTA uses .cta) */}
+      {/* WAITLIST */}
       <section id="waitlist" className="waitlist">
         <div className="container">
           <h2>Get early access</h2>
@@ -328,17 +318,13 @@ export default function HomeClient() {
               />
             </label>
 
-            {/* hidden field captured by "Notify me" buttons */}
             <input type="hidden" name="device_interest" value={deviceInterest} id="device_interest" />
-
-            {/* FormSubmit config (AJAX) */}
-            <input type="hidden" name="_subject" value="Prazise waitlist signup" />
+            <input type="hidden" name="_subject"  value="Prazise waitlist signup" />
             <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_replyto" value={email} id="_replyto" />
-            <input type="hidden" name="_cc" value="johnslavinskas@my.uopeople.edu" />
+            <input type="hidden" name="_captcha"  value="false" />
+            <input type="hidden" name="_replyto"  value={email} id="_replyto" />
+            <input type="hidden" name="_cc"       value="johnslavinskas@my.uopeople.edu" />
 
-            {/* Honeypot */}
             <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
 
             <button className="cta" type="submit" disabled={sending}>
