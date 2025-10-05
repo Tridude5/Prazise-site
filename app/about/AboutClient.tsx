@@ -16,20 +16,17 @@ export default function AboutClient() {
               We turn heart rate, HRV, sleep, and workouts into precise, privacy-first
               training for runners and triathletes.
             </p>
+
+            {/* same orange as homepage via .btn (uses --accent) */}
             <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                className="btn-outline"
-                href="mailto:hello@prazise.app"
-              >
+              <a className="btn btn--sm" href="mailto:hello@prazise.app">
                 Contact us
               </a>
-              <a
-                className="btn-outline"
-                href="/partners"
-              >
+              <a className="btn-outline btn--sm" href="/partners">
                 For Partners
               </a>
             </div>
+            <p className="micro mt-2">No spam. Opt out anytime.</p>
           </div>
 
           {/* At a glance */}
@@ -107,7 +104,6 @@ export default function AboutClient() {
         <div className="container">
           <h2 className="text-2xl font-semibold">Team</h2>
           <div className="mt-4 grid gap-4 not-prose sm:grid-cols-2 lg:grid-cols-3">
-            {/* person */}
             <article className="card">
               <div
                 className="mb-4 h-16 w-16 rounded-full"
