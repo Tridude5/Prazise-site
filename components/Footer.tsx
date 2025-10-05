@@ -1,70 +1,51 @@
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
-import EmailLink from "@/components/EmailLink";
-import Tx from "@/components/i18n/Tx";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
-function FooterLink({
-  href,
-  children,
-  ariaLabel,
-}: {
-  href: string;
-  children: React.ReactNode;
-  ariaLabel?: string;
-}) {
-  return (
-    <Link
-      href={href}
-      aria-label={ariaLabel}
-      className="
-        rounded-lg px-3 py-1.5 text-sm
-        text-gray-700 dark:text-gray-300
-        hover:text-emerald-400 hover:bg-black/5 dark:hover:bg-white/5
-        transition-colors
-      "
-    >
-      {children}
-    </Link>
-  );
-}
+const LINKS = [
+  { href: "/legal/privacy", label: "Privacy" },
+  { href: "/legal/terms", label: "Terms" },
+  { href: "/legal/security", label: "Security" },
+  { href: "/legal/accessibility", label: "Accessibility" },
+  { href: "/legal/deletion", label: "Data Deletion" },
+  { href: "/contact", label: "Contact" },
+];
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const pathname = usePathname();
 
   return (
-    <footer className="mt-16 border-t border-black/5 dark:border-white/10">
-      <div className="container py-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          {/* left: copyright */}
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-            © {year} John Slavinskas
-          </p>
-
-          {/* right: actions */}
-          <nav
-            aria-label="Footer"
-            className="flex flex-wrap items-center gap-2 sm:gap-3"
-          >
-            {/* email as a subtle pill */}
-            <span className="rounded-lg border border-black/10 dark:border-white/10 px-3 py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
-              <EmailLink />
-            </span>
-
-            {/* divider dot for larger screens */}
-            <span className="hidden sm:inline text-gray-400">•</span>
-
-            <FooterLink href="/legal/imprint" ariaLabel="Imprint">
-              <Tx>Imprint</Tx>
-            </FooterLink>
-
-            <span className="hidden sm:inline text-gray-400">•</span>
-
-            <FooterLink href="/legal/privacy" ariaLabel="Privacy">
-              <Tx>Privacy</Tx>
-            </FooterLink>
-          </nav>
+    <footer className="mt-16 border-t border-foreground/10">
+      <div className="mx-auto max-w-6xl px-4 py-8 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        {/* Brand + year */}
+        <div className="flex items-center gap-3">
+          <Image src="/logo.svg" alt="" width={20} height={20} className="opacity-80" />
+          <strong>Prazise</strong>
+          <span className="text-sm text-foreground/60">© {year} Prazise. All rights reserved.</span>
         </div>
+
+        {/* Footer nav */}
+        <nav className="flex flex-wrap items-center gap-2 sm:gap-3" aria-label="Footer">
+          {LINKS.map((l) => {
+            const active = pathname === l.href;
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                aria-current={active ? "page" : undefined}
+                className={`rounded-lg px-3 py-1.5 text-sm hover:bg-foreground/5 ${
+                  active ? "font-medium text-foreground" : "text-foreground/80"
+                }`}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
+        </nav>
       </div>
     </footer>
   );
