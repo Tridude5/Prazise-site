@@ -1,28 +1,27 @@
-/* Tailwind reset/utilities */
+/* app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* -----------------------------
-   Design tokens (brand & surfaces)
-   ----------------------------- */
+/* ---- Design tokens (brand) ---- */
 :root{
-  /* Brand orange */
+  /* Brand colors */
   --accent: #ff6b00;
   --accent-rgb: 255 107 0;
   --ink-on-accent: #0b0d10;
 
   /* Surfaces / text */
-  --bg: 255 255 255;     /* white */
-  --fg: 17 24 39;        /* slate-900 */
-  --muted: 107 114 128;  /* gray-500 */
-  --card: 249 250 251;   /* gray-50 */
+  --bg: 255 255 255;
+  --fg: 17 24 39;
+  --muted: 107 114 128;
+  --card: 249 250 251;
   --border: rgba(17,24,39,.15);
 
-  /* Header metrics */
-  --header-h: 56px;  /* mobile header height */
+  /* Header sizing */
+  --header-h: 56px;
   --header-gap: 4px;
 }
+
 @media (prefers-color-scheme: dark){
   :root{
     --bg: 17 24 39;
@@ -32,7 +31,10 @@
     --border: rgba(255,255,255,.15);
   }
 }
-@media (min-width: 640px){ :root{ --header-h: 64px; } }
+
+@media (min-width: 640px) {
+  :root { --header-h: 64px; }
+}
 
 html, body { height: 100%; }
 body{
@@ -45,37 +47,39 @@ body{
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "cv02","cv03","ss01","ss03";
 }
-a{ color: var(--accent); text-decoration: none; }
-a:hover{ text-decoration: underline; }
 
-/* In-page anchors respect sticky header */
-html{
+/* Keep in-page targets below sticky header */
+html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + env(safe-area-inset-top) + var(--header-gap));
 }
-[id]{ scroll-margin-top: calc(var(--header-h) + env(safe-area-inset-top) + var(--header-gap)); }
+[id] {
+  scroll-margin-top: calc(var(--header-h) + env(safe-area-inset-top) + var(--header-gap));
+}
 
-/* -----------------------------
-   Global layout helpers
-   ----------------------------- */
-.container{ max-width:1120px; margin:0 auto; padding:0 20px; }
+/* --- Helpers you can reuse across pages --- */
 
-/* Card + hairlines */
+/* Hairlines */
 :root{
   --hairline: color-mix(in srgb, var(--border) 86%, transparent);
   --hairline-strong: color-mix(in srgb, var(--border) 94%, transparent);
 }
-.card{
-  background: color-mix(in srgb, rgb(var(--bg)) 85%, var(--card));
-  border: 1px solid var(--hairline-strong);
-  border-radius: 16px;
-  box-shadow: 0 1px 2px rgba(0,0,0,.03);
-  padding: 20px;
-}
 hr{ height:1px; border:0; background:var(--hairline); margin:12px 0; }
 .card hr{ background:var(--hairline-strong); }
 
-/* Accent bits */
+/* Accent underline */
+.fancy-underline {
+  background-image:
+    linear-gradient(transparent,transparent),
+    linear-gradient(to right, rgba(var(--accent-rgb), .35), rgba(var(--accent-rgb),1), rgba(var(--accent-rgb),.35));
+  background-size: 100% 2px, 0 2px;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms ease;
+}
+.fancy-underline:hover { background-size: 0 2px, 100% 2px; }
+
+/* Accent pills / badges / buttons for non-Tailwind bits */
 .cta{
   display:inline-block; background:var(--accent); color:var(--ink-on-accent);
   padding:10px 16px; border-radius:12px; font-weight:800; border:2px solid var(--accent);
@@ -85,145 +89,29 @@ hr{ height:1px; border:0; background:var(--hairline); margin:12px 0; }
   font-size:12px; color:var(--ink-on-accent); background:var(--accent);
   padding:6px 10px; border-radius:999px; font-weight:700;
 }
-.fancy-underline{
-  background-image:
-    linear-gradient(transparent,transparent),
-    linear-gradient(to right, rgba(var(--accent-rgb), .35), rgba(var(--accent-rgb),1), rgba(var(--accent-rgb),.35));
-  background-size: 100% 2px, 0 2px;
-  background-position: 100% 100%, 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size 400ms ease;
-}
-.fancy-underline:hover{ background-size: 0 2px, 100% 2px; }
 
-.micro{ font-size:12px; color: rgb(var(--muted)); }
+/* Utilities to tint Tailwind rings with the accent without editing tailwind.config */
+.accent-ring  { --tw-ring-color: rgba(var(--accent-rgb), .35); }
+.accent-ring-strong { --tw-ring-color: rgba(var(--accent-rgb), .55); }
 
-/* -----------------------------
-   Header (match old look)
-   ----------------------------- */
-.site-header{
-  position: sticky; top:0; z-index:10;
-  background: rgba(11,13,16,.72);
-  -webkit-backdrop-filter: saturate(140%) blur(10px);
-  backdrop-filter: saturate(140%) blur(10px);
-  border-bottom: 1px solid var(--hairline-strong);
-}
-.header-grid{ display:flex; align-items:center; justify-content:space-between; height:var(--header-h); }
-.brand{ display:flex; gap:12px; align-items:center; color: inherit; font-weight:800; text-decoration:none; }
-.brand-text{ letter-spacing:.2px }
-.logo{ width:32px; height:32px; }
-.logo.small{ width:22px; height:22px; }
-.nav{ display:flex; gap:18px; align-items:center; }
-.nav a{ color: inherit; }
-
-/* Optional mobile menu support for class-based nav (if you ever use it) */
-.menu-toggle{ display:none; }
-@media (max-width:960px){
-  .menu-toggle{ display:inline-flex; }
-  .nav{ display:none; position:fixed; top:var(--header-h); left:0; right:0;
-        background:rgba(11,13,16,.97);
-        -webkit-backdrop-filter: saturate(140%) blur(10px);
-        backdrop-filter: saturate(140%) blur(10px);
-        border-bottom:1px solid var(--hairline-strong);
-        padding:12px 20px 16px; flex-direction:column; gap:12px; z-index:9; }
-  .nav.open{ display:flex; }
+/* Generic card */
+.card {
+  border: 1px solid var(--hairline-strong);
+  border-radius: 16px;
+  background: color-mix(in srgb, rgb(var(--bg)) 85%, var(--card));
+  box-shadow: 0 1px 2px rgba(0,0,0,.03);
+  padding: 20px;
 }
 
-/* -----------------------------
-   Hero / grids / KPI bits
-   ----------------------------- */
-.hero{ padding:72px 0 44px; }
-.grid{ display:grid; gap:40px; align-items:center; }
-.hero-grid{ grid-template-columns:1.1fr .9fr; }
-.hero h1{ font-size: clamp(32px, 5vw, 48px); line-height:1.1; margin:0 0 10px; }
-.lead{ font-size:18px; color: rgb(var(--muted)); max-width:56ch; }
-.pills{ display:flex; gap:8px; flex-wrap:wrap; margin:14px 0; padding:0; list-style:none; }
-.pills li{ font-size:12px; color:var(--ink-on-accent); background:var(--accent); padding:6px 10px; border-radius:999px; font-weight:700; }
-.row{ display:flex; gap:16px; flex-wrap:wrap; }
-.kpi span{ display:block; color: rgb(var(--muted)); font-size:12px; }
-.kpi strong{ font-size:18px; }
-
-/* -----------------------------
-   Section tints that follow accent
-   ----------------------------- */
-.features, #features,
-.compare,  #compare,
-.adaptive, #adaptive,
-.integrations, #integrations,
-.waitlist, #waitlist{
-  border-top:1px solid var(--hairline);
+/* Section tints that follow --accent */
+.section-tint {
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
   background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent);
 }
-.features h2, #features h2,
-.compare h2,  #compare h2{ margin: 0 0 16px; }
 
-/* Shared grids */
-.grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-.grid2{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-@media (max-width:960px){ .hero-grid, .grid3, .grid2 { grid-template-columns: 1fr; } }
+/* Small type */
+.micro{ font-size:12px; color: rgb(var(--muted)); }
 
-/* -----------------------------
-   Compare list icons
-   ----------------------------- */
-.compare .list, #compare .list{ list-style:none; margin:0; padding:0; display:grid; gap:14px; }
-.compare .list li, #compare .list li{ position:relative; padding-left:34px; line-height:1.6; }
-.compare .list li .icon, #compare .list li .icon{
-  position:absolute; left:0; top:.35em; width:20px; height:20px; border-radius:50%;
-  box-shadow:0 0 0 1px rgba(0,0,0,.15) inset;
-}
-.compare .icon.ok, #compare .icon.ok{
-  background:
-    url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") no-repeat center/12px 12px,
-    var(--accent);
-  box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent);
-}
-.compare .icon.no, #compare .icon.no{
-  background:
-    url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'><line x1='6' y1='6' x2='18' y2='18'/><line x1='18' y1='6' x2='6' y2='18'/></svg>") no-repeat center/12px 12px,
-    #7a1e1e;
-  box-shadow:0 0 0 1px rgba(248,113,113,.35);
-  opacity:.95;
-}
-
-/* -----------------------------
-   Integrations carousel
-   ----------------------------- */
-.integrations-carousel .carousel-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:8px; }
-.integrations-carousel .pick-hint{ min-height:1.2em; }
-.integrations-carousel .carousel-shell{ display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:10px; }
-.integrations-carousel .carousel-btn{
-  border:1px solid var(--hairline-strong); background:var(--card); color:inherit;
-  border-radius:12px; padding:8px 12px; font-weight:800; line-height:1; cursor:pointer;
-}
-.integrations-carousel .carousel-btn:disabled{ opacity:.5; cursor:not-allowed; }
-.integrations-carousel .carousel-viewport{ overflow:auto; scroll-behavior:smooth; -ms-overflow-style:none; scrollbar-width:none; }
-.integrations-carousel .carousel-viewport::-webkit-scrollbar{ display:none; }
-.integrations-carousel .carousel-track{ display:flex; gap:12px; list-style:none; margin:0; padding:0 4px; }
-.integrations-carousel .slide{
-  flex:0 0 auto; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
-  min-width:148px; padding:14px 12px; background:var(--card); border:1px solid var(--hairline-strong); border-radius:14px; text-align:center;
-}
-.integrations-carousel .slide img{ height:28px; object-fit:contain; opacity:.95; }
-.integrations-carousel .name{ font-size:12px; color: rgb(var(--muted)); }
-.integrations-carousel .pill{
-  border:1px solid var(--hairline-strong); background:transparent; color:inherit;
-  border-radius:999px; padding:6px 10px; font-size:12px; font-weight:700; cursor:pointer;
-}
-.integrations-carousel .pill:hover{ border-color: var(--accent); }
-
-/* -----------------------------
-   Footer
-   ----------------------------- */
-.site-footer{ border-top:1px solid var(--hairline-strong); padding:24px 0; }
-.foot-grid{ display:grid; grid-template-columns:1fr auto; gap:12px 24px; align-items:center; }
-.brand-inline{ display:flex; align-items:center; gap:10px; }
-.site-footer .links{ display:flex; flex-wrap:wrap; gap:.75rem 1.25rem; justify-content:flex-end; }
-.site-footer .links a{ white-space:nowrap; }
-@media (max-width:900px){
-  .foot-grid{ grid-template-columns: 1fr; }
-  .site-footer .links{ justify-content:flex-start; }
-  .site-footer .links a{ overflow-wrap:anywhere; }
-}
-.site-footer{ padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+/* Make containers consistent if you’re not using Tailwind container */
+.container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
