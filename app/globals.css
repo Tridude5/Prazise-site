@@ -1,160 +1,201 @@
+/* app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ========== Tokens (brand: #ff6b00) ========== */
+/* ---------- Theme tokens ---------- */
 :root{
+  /* Base palette (light) */
+  --bg: 255 255 255;              /* page background */
+  --fg: 17 24 39;                 /* default text (gray-900) */
+  --muted: 107 114 128;           /* secondary text */
+  --card: 249 250 251;            /* card background (gray-50) */
+
+  /* Accent = Prazise orange */
   --accent: #ff6b00;
   --accent-rgb: 255 107 0;
-  --ink-on-accent: #0b0d10;
+  --ink-on-accent: #111;          /* dark ink over orange */
 
-  --bg: 255 255 255;
-  --fg: 17 24 39;
-  --muted: 107 114 128;
-  --card: 249 250 251;
-  --border: rgba(17,24,39,.15);
+  /* Hairlines (computed, see fallback below) */
+  --hairline: color-mix(in srgb, rgb(var(--fg)) 16%, transparent);
+  --hairline-strong: color-mix(in srgb, rgb(var(--fg)) 28%, transparent);
 
+  /* Sticky header sizing (JS keeps this in sync) */
   --header-h: 56px;
+  --header-gap: 6px;
 }
+
+/* Dark scheme overrides */
 @media (prefers-color-scheme: dark){
   :root{
-    --bg: 17 24 39;
-    --fg: 243 244 246;
-    --muted: 156 163 175;
-    --card: 31 41 55;
-    --border: rgba(255,255,255,.16);
+    --bg: 17 24 39;               /* zinc-900-ish */
+    --fg: 243 244 246;            /* gray-100 */
+    --muted: 156 163 175;         /* gray-400 */
+    --card: 31 41 55;             /* gray-800 */
+    --hairline: color-mix(in srgb, rgb(var(--fg)) 18%, transparent);
+    --hairline-strong: color-mix(in srgb, rgb(var(--fg)) 32%, transparent);
   }
 }
-@media (min-width:640px){ :root{ --header-h:64px } }
 
-/* ========== Base ========== */
-html,body{ height:100% }
+/* Slightly taller header on sm+ */
+@media (min-width: 640px) {
+  :root { --header-h: 64px; }
+}
+
+/* ---------- Global layout ---------- */
+html, body { @apply h-full; }
+
 body{
   color: rgb(var(--fg));
+  /* subtle ambient tint using the orange accent */
   background:
-    radial-gradient(1200px 1200px at 100% -10%, rgba(var(--accent-rgb),.08), transparent 40%),
-    radial-gradient(1000px 800px at -20% 10%, rgba(var(--accent-rgb),.06), transparent 35%),
+    radial-gradient(1100px 900px at 100% -10%, rgba(var(--accent-rgb), 0.08), transparent 40%),
+    radial-gradient(900px 700px at -20% 10%, rgba(var(--accent-rgb), 0.06), transparent 35%),
     rgb(var(--bg));
-  -webkit-font-smoothing:antialiased;
-  font-feature-settings:"cv02","cv03","ss01","ss03";
-}
-a{ color:var(--accent); text-decoration:none }
-a:hover{ text-decoration:underline }
-
-html{
-  scroll-behavior:smooth;
-  scroll-padding-top: calc(var(--header-h) + 6px);
-}
-[id]{ scroll-margin-top: calc(var(--header-h) + 6px); }
-
-.container{ max-width:1120px; margin:0 auto; padding:0 20px }
-hr{ height:1px; border:0; background:var(--border); margin:12px 0 }
-
-/* ========== Header (sticky + hairline) ========== */
-.site-header{
-  position:sticky; top:0; z-index:50;
-  background:rgba(11,13,16,.72);
-  -webkit-backdrop-filter:saturate(140%) blur(10px);
-  backdrop-filter:saturate(140%) blur(10px);
-  border-bottom:1px solid var(--border);
-}
-.header-grid{ display:flex; align-items:center; justify-content:space-between; height:var(--header-h) }
-.brand{ display:flex; gap:10px; align-items:center; font-weight:800; color:inherit; text-decoration:none }
-.logo{ width:28px; height:28px }
-.nav{ display:flex; gap:18px; align-items:center }
-.nav a{ color:inherit }
-
-/* ========== Buttons / Chips / Pills ========== */
-.cta{
-  display:inline-block;
-  background:var(--accent);
-  color:var(--ink-on-accent);
-  padding:10px 16px;
-  border-radius:12px;
-  font-weight:800;
-  border:2px solid var(--accent);
-}
-.cta.ghost{
-  background:transparent;
-  color:inherit;
-  border-color:var(--border);
-}
-.cta:hover{ filter:brightness(1.06) }
-
-/* Pill list (e.g., “Device-friendly”) */
-.pills{
-  display:flex; gap:8px; flex-wrap:wrap;
-  margin:14px 0; padding:0; list-style:none;
-}
-.pills li{
-  font-size:12px; font-weight:700;
-  color:var(--ink-on-accent);
-  background:var(--accent);
-  padding:6px 10px;
-  border-radius:999px;
+  font-feature-settings: "cv02","cv03","ss01","ss03";
 }
 
-/* Small chip (e.g., “auto-calibrated”) */
-.chip{
-  font-size:11px;
-  color:rgb(var(--muted));
-  border:1px solid var(--border);
-  border-radius:999px;
-  padding:6px 10px;
-  background:transparent;
+/* Smooth anchors that account for the sticky header */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h, 64px) + env(safe-area-inset-top) + var(--header-gap, 8px));
+}
+[id] {
+  scroll-margin-top: calc(var(--header-h, 64px) + env(safe-area-inset-top) + var(--header-gap, 8px));
 }
 
-/* Badge row (adaptive section) */
-.badge-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; padding:0; list-style:none }
-.badge{
-  font-size:12px; font-weight:700;
-  color:var(--ink-on-accent);
-  background:var(--accent);
-  padding:6px 10px;
-  border-radius:999px;
+/* Optional container helper (many pages use Tailwind instead) */
+.container{ max-width:1120px; margin:0 auto; padding:0 20px; }
+
+/* ---------- Reusable UI helpers ---------- */
+
+/* Section spacing + boxed sections */
+.section { padding: 36px 0; }
+.section-card{
+  background: var(--card);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 16px;
+  padding: 20px;
 }
 
-/* ========== Cards & hero card ========== */
+/* Accent-tinted divider background for feature bands */
+.section-tint{
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent) 10%, transparent),
+      transparent
+    );
+}
+
+/* Cards */
 .card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:20px;
-  box-shadow:0 1px 2px rgba(0,0,0,.03);
+  background: var(--card);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 16px;
+  padding: 18px;
 }
-.hero-card{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px }
-.split{ display:flex; align-items:center; justify-content:space-between; gap:10px }
-.metric{ color: rgb(var(--muted)); margin:0 }
-.big{ margin:4px 0 0 }
-.kpi span{ display:block; color: rgb(var(--muted)); font-size:12px }
-.kpi strong{ font-size:18px }
 
-/* ========== Sections with subtle orange tint ========== */
-.hero{ padding:72px 0 44px }
-.grid{ display:grid; gap:40px; align-items:center }
-.hero-grid{ grid-template-columns:1.1fr .9fr }
-.hero h1{ font-size: clamp(32px, 5vw, 48px); line-height:1.1; margin:0 0 10px }
-.lead{ font-size:18px; color: rgb(var(--muted)); max-width:56ch }
-
-.features, #features,
-.compare,  #compare,
-.adaptive, #adaptive,
-.integrations, #integrations,
-.waitlist, #waitlist{
-  padding:36px 0;
-  border-top:1px solid var(--border);
-  background:linear-gradient(180deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent);
+/* Pills / badges */
+.pill{
+  display:inline-block;
+  font-size:12px;
+  color: var(--ink-on-accent);
+  background: var(--accent);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
 }
-.compare .list{ list-style:none; margin:0; padding:0; display:grid; gap:14px }
+.badge{
+  display:inline-block;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  color: inherit;
+  border-radius: 999px;
+  padding: 6px 10px;
+}
 
-/* ========== Footer ========== */
-.site-footer{ border-top:1px solid var(--border); padding:24px 0 }
-.foot-grid{ display:grid; grid-template-columns:1fr auto; gap:12px 24px; align-items:center }
-.brand-inline{ display:flex; align-items:center; gap:10px }
-.site-footer .links{ display:flex; flex-wrap:wrap; gap:.75rem 1.25rem; justify-content:flex-end }
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.6rem 1rem; border-radius:12px; font-weight:800;
+  background:var(--accent); color:var(--ink-on-accent); border:2px solid var(--accent);
+  transition: filter .15s ease;
+}
+.btn:hover{ filter:brightness(1.06) }
 
-@media (max-width:960px){
-  .hero-grid{ grid-template-columns:1fr }
-  .foot-grid{ grid-template-columns:1fr }
-  .site-footer .links{ justify-content:flex-start }
+.btn-outline{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.6rem 1rem; border-radius:12px; font-weight:800;
+  background:transparent; color:inherit; border:1px solid var(--hairline-strong);
+}
+.btn-outline:hover{ border-color: var(--accent); }
+
+/* Tiny helper */
+.micro{ font-size:12px; color: rgb(var(--muted)); }
+
+/* Fancy underline (accent) */
+.fancy-underline {
+  background-image:
+    linear-gradient(transparent,transparent),
+    linear-gradient(to right, color-mix(in srgb, var(--accent) 35%, transparent), var(--accent), color-mix(in srgb, var(--accent) 35%, transparent));
+  background-size: 100% 2px, 0 2px;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms ease;
+}
+.fancy-underline:hover { background-size: 0 2px, 100% 2px; }
+
+/* Hairline <hr> */
+hr{
+  height:1px;
+  border:0;
+  background: var(--hairline);
+  margin:12px 0;
+  opacity:1;
+}
+.card hr{ background: var(--hairline-strong); }
+
+/* Accessibility: skip link baseline */
+a.skip{
+  position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+}
+a.skip:focus{
+  position:static;width:auto;height:auto;padding:8px;background:#000;
+  border:1px dashed var(--accent); color:#fff;
+}
+
+/* ---------- Print (resume, etc.) ---------- */
+@media print {
+  @page { size: A4; margin: 12mm; }
+  body { background: white; }
+  nav, footer, .no-print { display: none !important; }
+  a { text-decoration: none; color: inherit; }
+  .card { box-shadow: none; border: 1px solid #ddd; }
+}
+
+/* ---------- Fallbacks when color-mix is unavailable ---------- */
+@supports not (color: color-mix(in srgb, red, white)){
+  :root{
+    /* light/dark approximations for hairlines */
+    --hairline: rgba(0,0,0,.12);
+    --hairline-strong: rgba(0,0,0,.22);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --hairline: rgba(255,255,255,.16);
+      --hairline-strong: rgba(255,255,255,.28);
+    }
+  }
+  .section-tint{
+    background:
+      linear-gradient(180deg, rgba(var(--accent-rgb), .10), transparent);
+  }
+  .fancy-underline{
+    background-image:
+      linear-gradient(transparent,transparent),
+      linear-gradient(to right, rgba(var(--accent-rgb), .35), var(--accent), rgba(var(--accent-rgb), .35));
+  }
 }
