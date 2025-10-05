@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light defaults (legacy tokens.css will override these anyway) */
 :root{
   --bg: 255 255 255;
   --fg: 17 24 39;
@@ -9,12 +10,12 @@
   --card: 249 250 251;
   --ring: 16 185 129;
 
-  /* header sizing tokens */
+  /* header sizing tokens only used for scroll offset */
   --header-h: 56px;   /* mobile header height */
   --header-gap: 4px;  /* small base gap below the header */
 }
 
-/* Keep your dark palette */
+/* Optional dark prefs; your legacy styles can still win */
 @media (prefers-color-scheme: dark){
   :root{
     --bg: 17 24 39;
@@ -24,7 +25,7 @@
   }
 }
 
-/* bump header height on sm+ screens */
+/* bump header height on sm+ screens for anchor offsets */
 @media (min-width: 640px) {
   :root { --header-h: 64px; }
 }
@@ -33,16 +34,15 @@ html, body {
   @apply h-full;
 }
 
+/* IMPORTANT: do NOT paint a global gradient/background here.
+   Let legacy /css/tokens.css and /css/styles.css control the look. */
 body{
   color: rgb(var(--fg));
-  background:
-    radial-gradient(1200px 1200px at 100% -10%, rgba(16,185,129,0.08), transparent 40%),
-    radial-gradient(1000px 800px at -20% 10%, rgba(16,185,129,0.06), transparent 35%),
-    rgb(var(--bg));
+  background: rgb(var(--bg));
   font-feature-settings: "cv02","cv03","ss01","ss03";
 }
 
-/* === NEW: keep in-page targets fully below the sticky header === */
+/* Keep in-page targets fully below the sticky header */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h, 64px) + env(safe-area-inset-top) + var(--header-gap, 8px));
@@ -51,7 +51,7 @@ html {
   scroll-margin-top: calc(var(--header-h, 64px) + env(safe-area-inset-top) + var(--header-gap, 8px));
 }
 
-/* Fancy underline utility */
+/* Fancy underline helper (non-conflicting utility) */
 .fancy-underline {
   background-image:
     linear-gradient(transparent,transparent),
@@ -65,22 +65,24 @@ html {
   background-size: 0 2px, 100% 2px;
 }
 
-/* Cards */
-.card {
+/* ---------- Renamed utilities to avoid clashing with legacy CSS ---------- */
+
+/* Cards (Tailwind utility card) */
+.tw-card {
   @apply rounded-2xl border border-gray-200/30 dark:border-gray-700/50 bg-white/70 dark:bg-gray-800/60 shadow-sm backdrop-blur p-6;
 }
 
 /* Buttons */
-.btn {
+.tw-btn {
   @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium border border-transparent transition;
   @apply bg-emerald-600 text-white hover:bg-emerald-700;
 }
-.btn-outline {
+.tw-btn-outline {
   @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium border transition;
   @apply border-emerald-600 text-emerald-700 hover:bg-emerald-50 dark:text-emerald-300 dark:hover:bg-emerald-900/20;
 }
 
-/* Timeline */
+/* Timeline (unique class names; safe) */
 .timeline { @apply relative; }
 .timeline:before {
   content: "";
@@ -91,11 +93,11 @@ html {
   @apply absolute left-0 top-1.5 h-3.5 w-3.5 rounded-full bg-emerald-500 ring-4 ring-emerald-200 dark:ring-emerald-900/40;
 }
 
-/* Print rules for Resume (A4) */
+/* Print rules */
 @media print {
   @page { size: A4; margin: 12mm; }
   body { background: white; }
   nav, footer, .no-print { display: none !important; }
   a { text-decoration: none; color: inherit; }
-  .card { box-shadow: none; border: 1px solid #ddd; }
+  .tw-card { box-shadow: none; border: 1px solid #ddd; }
 }
