@@ -18,13 +18,14 @@ export default function AthletesClient() {
               the right work on the right day.
             </p>
 
+            {/* ORANGE PILLS */}
             <ul className="mt-4 flex flex-wrap gap-2 text-sm">
               {[
                 "5k · 10k · Half · Marathon · Ultra",
                 "Device-friendly",
                 "Privacy-first",
               ].map((p) => (
-                <li key={p} className="badge">{p}</li>
+                <li key={p} className="pill">{p}</li>
               ))}
             </ul>
 
@@ -35,7 +36,7 @@ export default function AthletesClient() {
             <p className="micro mt-2">No spam. Opt out anytime.</p>
           </div>
 
-          {/* What a day looks like (image removed to avoid broken icon) */}
+          {/* Sample day */}
           <div className="section-card" aria-describedby="sample">
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -44,7 +45,7 @@ export default function AthletesClient() {
                   Session: <strong>Tempo 20–25 min</strong>
                 </p>
               </div>
-              <span className="badge text-xs">recovery-aware</span>
+              <span className="pill text-xs">recovery-aware</span>
             </div>
             <hr />
             <div className="grid grid-cols-3 gap-3 text-sm">
@@ -68,7 +69,7 @@ export default function AthletesClient() {
               </p>
               <ul className="mt-3 flex flex-wrap gap-2 text-sm">
                 {["Warm-up", "Main set", "Cool-down", "Post-run notes"].map((x) => (
-                  <li key={x} className="badge">{x}</li>
+                  <li key={x} className="pill">{x}</li>
                 ))}
               </ul>
             </article>
@@ -80,7 +81,7 @@ export default function AthletesClient() {
               </p>
               <ul className="mt-3 flex flex-wrap gap-2 text-sm">
                 {["Load trend", "Readiness", "Suggested tweaks"].map((x) => (
-                  <li key={x} className="badge">{x}</li>
+                  <li key={x} className="pill">{x}</li>
                 ))}
               </ul>
             </article>
@@ -136,6 +137,8 @@ export default function AthletesClient() {
       <section className="section" id="how">
         <div className="container">
           <h2 className="text-2xl font-semibold">How it works</h2>
+        </div>
+        <div className="container">
           <ol className="mt-6 grid gap-4 md:grid-cols-3">
             <li className="section-card">
               <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full border border-[var(--hairline)]">1</span>
@@ -177,7 +180,7 @@ export default function AthletesClient() {
               <h3 className="font-semibold">{t}</h3>
               <p className="mt-2">{p}</p>
               <ul className="mt-3 flex flex-wrap gap-2 text-sm">
-                {tags.map((b) => <li key={b} className="badge">{b}</li>)}
+                {tags.map((b) => <li key={b} className="pill">{b}</li>)}
               </ul>
             </article>
           ))}
