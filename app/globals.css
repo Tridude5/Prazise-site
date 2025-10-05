@@ -1,103 +1,152 @@
+/* app/globals.css
+   Tailwind + lightweight theme tokens (amber/orange accent)
+*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Light defaults (legacy tokens.css will override these anyway) */
+/* ---------- Theme tokens ---------- */
 :root{
+  /* Light */
   --bg: 255 255 255;
   --fg: 17 24 39;
   --muted: 107 114 128;
   --card: 249 250 251;
-  --ring: 16 185 129;
 
-  /* header sizing tokens only used for scroll offset */
-  --header-h: 56px;   /* mobile header height */
-  --header-gap: 4px;  /* small base gap below the header */
+  /* Brand accent (amber-500) */
+  --accent: #f59e0b;
+  --accent-rgb: 245 158 11;
+
+  /* Base border & hairlines */
+  --border: 37 47 63; /* slate-ish */
+  --hairline: color-mix(in srgb, rgb(var(--border)) 86%, transparent);
+  --hairline-strong: color-mix(in srgb, rgb(var(--border)) 94%, transparent);
+
+  /* Sticky header sizing for smooth anchor offsets */
+  --header-h: 56px;
+  --header-gap: 4px;
 }
 
-/* Optional dark prefs; your legacy styles can still win */
+/* Dark */
 @media (prefers-color-scheme: dark){
   :root{
-    --bg: 17 24 39;
+    --bg: 11 13 16;        /* the old deep charcoal */
     --fg: 243 244 246;
     --muted: 156 163 175;
-    --card: 31 41 55;
+    --card: 22 26 33;
   }
 }
 
-/* bump header height on sm+ screens for anchor offsets */
-@media (min-width: 640px) {
-  :root { --header-h: 64px; }
-}
+/* Slightly taller header on sm+ */
+@media (min-width: 640px){ :root{ --header-h: 64px; } }
 
-html, body {
-  @apply h-full;
-}
+/* ---------- Base canvas ---------- */
+html, body { @apply h-full; }
 
-/* IMPORTANT: do NOT paint a global gradient/background here.
-   Let legacy /css/tokens.css and /css/styles.css control the look. */
 body{
   color: rgb(var(--fg));
-  background: rgb(var(--bg));
+  background:
+    radial-gradient(1200px 1200px at 100% -10%, rgba(var(--accent-rgb),0.10), transparent 40%),
+    radial-gradient(1000px 800px  at -20%  10%, rgba(var(--accent-rgb),0.08), transparent 35%),
+    rgb(var(--bg));
   font-feature-settings: "cv02","cv03","ss01","ss03";
 }
 
-/* Keep in-page targets fully below the sticky header */
-html {
+/* Keep in-page anchors below sticky header */
+html{
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-h, 64px) + env(safe-area-inset-top) + var(--header-gap, 8px));
+  scroll-padding-top: calc(var(--header-h) + env(safe-area-inset-top) + var(--header-gap));
 }
-[id] {
-  scroll-margin-top: calc(var(--header-h, 64px) + env(safe-area-inset-top) + var(--header-gap, 8px));
-}
+[id]{ scroll-margin-top: calc(var(--header-h) + env(safe-area-inset-top) + var(--header-gap)); }
 
-/* Fancy underline helper (non-conflicting utility) */
-.fancy-underline {
+/* ---------- Utilities & small components ---------- */
+
+/* Fancy underline for nav/links */
+.fancy-underline{
   background-image:
     linear-gradient(transparent,transparent),
-    linear-gradient(to right, rgba(16,185,129,.35), rgba(16,185,129,1), rgba(16,185,129,.35));
+    linear-gradient(to right,
+      rgba(var(--accent-rgb),.35),
+      rgba(var(--accent-rgb),1),
+      rgba(var(--accent-rgb),.35));
   background-size: 100% 2px, 0 2px;
   background-position: 100% 100%, 0 100%;
   background-repeat: no-repeat;
   transition: background-size 400ms ease;
 }
-.fancy-underline:hover {
-  background-size: 0 2px, 100% 2px;
+.fancy-underline:hover{ background-size: 0 2px, 100% 2px; }
+
+/* Reusable “card” look when you need it */
+.card{
+  @apply rounded-2xl shadow-sm backdrop-blur p-6;
+  background: rgb(var(--card) / 0.7);
+  border: 1px solid var(--hairline-strong);
 }
 
-/* ---------- Renamed utilities to avoid clashing with legacy CSS ---------- */
+/* Brand buttons */
+.btn{ @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition;
+  @apply text-white;
+  background: var(--accent);
+}
+.btn:hover{ filter: brightness(1.06); }
 
-/* Cards (Tailwind utility card) */
-.tw-card {
-  @apply rounded-2xl border border-gray-200/30 dark:border-gray-700/50 bg-white/70 dark:bg-gray-800/60 shadow-sm backdrop-blur p-6;
+.btn-outline{ @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition;
+  border: 1px solid color-mix(in srgb, var(--accent) 70%, transparent);
+  color: color-mix(in srgb, var(--accent) 90%, white 10%);
 }
+.btn-outline:hover{ background: color-mix(in srgb, var(--accent) 10%, transparent); }
 
-/* Buttons */
-.tw-btn {
-  @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium border border-transparent transition;
-  @apply bg-emerald-600 text-white hover:bg-emerald-700;
-}
-.tw-btn-outline {
-  @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium border transition;
-  @apply border-emerald-600 text-emerald-700 hover:bg-emerald-50 dark:text-emerald-300 dark:hover:bg-emerald-900/20;
-}
-
-/* Timeline (unique class names; safe) */
-.timeline { @apply relative; }
-.timeline:before {
-  content: "";
-  @apply absolute left-4 top-0 h-full w-0.5 bg-emerald-200 dark:bg-emerald-900/50;
-}
-.timeline-item { @apply relative pl-10 pb-8; }
-.timeline-bullet {
-  @apply absolute left-0 top-1.5 h-3.5 w-3.5 rounded-full bg-emerald-500 ring-4 ring-emerald-200 dark:ring-emerald-900/40;
+/* Badges / pills that carry the brand color */
+.badge, .pill{
+  @apply rounded-full px-2.5 py-1 text-xs font-bold;
+  color: #0b0d10;                /* ink on accent */
+  background: var(--accent);
 }
 
-/* Print rules */
-@media print {
-  @page { size: A4; margin: 12mm; }
-  body { background: white; }
-  nav, footer, .no-print { display: none !important; }
-  a { text-decoration: none; color: inherit; }
-  .tw-card { box-shadow: none; border: 1px solid #ddd; }
+/* Section tints that follow the accent */
+.section-tint{
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent);
 }
+
+/* Normalize <hr> and unify borders as crisp hairlines */
+hr{ height:1px; border:0; background:var(--hairline); margin:12px 0; opacity:1; }
+.card hr{ background: var(--hairline-strong); margin:12px 0; }
+
+/* Fallback when color-mix isn’t supported */
+@supports not (color: color-mix(in srgb, red, white)){
+  hr{ background: rgb(var(--border)); }
+  .card{ border-color: rgb(var(--border)); }
+}
+
+/* ---------- Compare list icons (checks / crosses) ---------- */
+.compare .list{ list-style:none; margin:0; padding:0; display:grid; gap:14px; }
+.compare .list li{ position:relative; padding-left:34px; line-height:1.6; }
+.compare .list li .icon{
+  position:absolute; left:0; top:.35em; width:20px; height:20px;
+  border-radius:50%; box-shadow:0 0 0 1px rgba(0,0,0,.15) inset;
+}
+.compare .icon.ok{
+  background:
+    url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") no-repeat center/12px 12px,
+    var(--accent);
+  box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.compare .icon.no{
+  background:
+    url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'><line x1='6' y1='6' x2='18' y2='18'/><line x1='18' y1='6' x2='6' y2='18'/></svg>") no-repeat center/12px 12px,
+    #7a1e1e;
+  box-shadow:0 0 0 1px rgba(248,113,113,.35);
+  opacity:.95;
+}
+
+/* ---------- Small helpers ---------- */
+.container{ max-width:1120px; margin:0 auto; padding:0 20px; }
+.micro{ font-size:12px; color: rgb(var(--muted)); }
+
+/* Safe iOS bottom inset for any footer using padding-bottom */
+.safe-bottom{ padding-bottom: max(24px, env(safe-area-inset-bottom)); }
