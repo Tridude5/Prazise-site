@@ -18,13 +18,7 @@ export default function TermsClient({
 
   return (
     <main id="main" className="mx-auto max-w-3xl px-4 py-12">
-      <article
-        className="
-          prose prose-emerald dark:prose-invert
-          prose-h1:mb-2 prose-h2:mt-10 prose-h2:mb-3
-          prose-p:my-4 prose-a:break-words
-        "
-      >
+      <article className="prose prose-emerald dark:prose-invert prose-h1:mb-2 prose-h2:mt-10 prose-h2:mb-3 prose-p:my-4 prose-a:break-words">
         <header>
           <h1>Terms of Use</h1>
           <p className="text-sm">
@@ -149,16 +143,7 @@ export default function TermsClient({
           <h2>13) Governing law &amp; disputes</h2>
           <p>
             These Terms apply to the extent permitted by the laws of your jurisdiction and do not limit any non-waivable consumer
-            rights. If a dispute arises, the parties will first attempt to resolve it informally. <em><!-- Optional: specify governing law/venue here. --></em>
-          </p>
-        </section>
-
-        <section>
-          <h2>14) Termination</h2>
-          <p>
-            You may stop using the Service at any time. We may suspend or end access if you violate these Terms or if we
-            discontinue the Service. Sections that by their nature should survive termination will survive (e.g., intellectual
-            property, disclaimers, limitations of liability).
+            rights. If a dispute arises, the parties will first attempt to resolve it informally. <em>{/* Optional: specify governing law/venue here. */}</em>
           </p>
         </section>
 
