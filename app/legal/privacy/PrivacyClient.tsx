@@ -1,82 +1,183 @@
 "use client";
-import React from "react";
-import { useI18n } from "@/components/i18n/I18nProvider";
 
+import * as React from "react";
+
+/**
+ * Renders the Prazise privacy policy content without changing wording.
+ * - Formats the “Last updated” date from ISO (defaults to today)
+ * - Uses Tailwind prose classes for nice typography
+ */
 export default function PrivacyClient({
   lastUpdatedISO = new Date().toISOString().slice(0, 10),
 }: { lastUpdatedISO?: string }) {
-  const { t, locale } = useI18n() as { t: (k: string, o?: any) => string; locale?: string };
-
-  // UTC-parse to avoid off-by-one in some timezones
+  // UTC-parse to avoid TZ off-by-one
   const [y, m, d] = lastUpdatedISO.split("-").map(Number);
-  const formattedDate = new Intl.DateTimeFormat(locale || undefined, { dateStyle: "long" })
+  const formattedDate = new Intl.DateTimeFormat(undefined, { dateStyle: "long" })
     .format(new Date(Date.UTC(y, (m || 1) - 1, d || 1)));
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-12">
+    <main id="main" className="mx-auto max-w-3xl px-4 py-12">
       <article
         className="
           prose prose-emerald dark:prose-invert
           prose-h1:mb-2 prose-h2:mt-10 prose-h2:mb-3
           prose-p:my-4 prose-a:break-words
-          hyphens-auto
         "
-        lang={locale || undefined}
       >
-        <h1>{t("privacy.title")}</h1>
-        <p>
-          <strong>
-            {t("privacy.updated")}: {formattedDate}
-          </strong>
-        </p>
+        <header>
+          <h1>Privacy Policy</h1>
+          <p className="text-sm">
+            <em>Last updated: <span>{formattedDate}</span></em>
+          </p>
+          <p>
+            Prazise (“<strong>Prazise</strong>”, “<strong>we</strong>”, “<strong>us</strong>”) respects your privacy.
+            This policy explains what we collect on this website and through our forms today, how we use it, and your choices.
+            It also describes what will change when the Prazise app launches.
+          </p>
 
-        <p>{t("privacy.body")}</p>
+          <div className="border-l-4 border-emerald-500/50 pl-4 py-3 my-6 bg-emerald-500/5 rounded">
+            <strong>Plain-English summary.</strong> We don’t run ads, we don’t sell personal data, and we aim to collect
+            the minimum necessary to provide the service. Today, that’s mostly your email when you join the waitlist or contact us.
+          </div>
+        </header>
+
+        <section>
+          <h2>Who we are &amp; contact</h2>
+          <p>
+            Prazise is currently operated by a small team. For any privacy questions or requests, email{" "}
+            <a href="mailto:slavinskasjack@gmail.com">slavinskasjack@gmail.com</a>. You can optionally cc{" "}
+            <a href="mailto:johnslavinskas@my.uopeople.edu">johnslavinskas@my.uopeople.edu</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2>What we collect</h2>
+          <ul>
+            <li>
+              <strong>Website hosting logs.</strong> Our site is hosted on GitHub Pages (with a global CDN).
+              Standard server logs (e.g., IP address, user-agent, pages requested) may be created by the hosting/CDN for
+              security and reliability. We don’t run tracking cookies and we don’t do cross-site tracking.
+            </li>
+            <li>
+              <strong>Waitlist form.</strong> If you opt in, we collect your email address and (optionally) the device
+              you’re interested in (e.g., Garmin, Apple Health). The form is delivered to our inbox via a third-party form
+              relay (see “Processors”).
+            </li>
+            <li>
+              <strong>Contact form.</strong> If you contact us, we collect the information you submit (name, email, topic,
+              message) so we can reply.
+            </li>
+            <li>
+              <strong>Future app data (when launched, with your consent).</strong> If you connect services like Apple Health,
+              Google Fit, Garmin, Polar, Suunto, etc., we may process training and wellness metrics you explicitly authorize
+              us to access. Integration availability depends on provider terms and your consent.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Why we use data (purposes)</h2>
+          <ul>
+            <li>Provide and improve the website and upcoming app.</li>
+            <li>Operate the waitlist, send early-access invitations, and understand device interest.</li>
+            <li>Respond to questions and support requests.</li>
+            <li>Maintain security, prevent abuse, and comply with legal obligations.</li>
+          </ul>
+          <p>We <strong>do not sell</strong> personal data.</p>
+        </section>
+
+        <section>
+          <h2>Legal bases (where applicable)</h2>
+          <ul>
+            <li><strong>Consent</strong> — waitlist emails, optional device interest, and any health/fitness data you later connect in the app.</li>
+            <li><strong>Legitimate interests</strong> — site operation, security, abuse prevention, responding to inquiries.</li>
+            <li><strong>Contract</strong> — to deliver features you sign up for and support requests you initiate.</li>
+            <li><strong>Legal obligation</strong> — to comply with applicable laws and enforce our terms.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Sharing &amp; processors</h2>
+          <p>We share personal data only with service providers (“processors”) that help us run Prazise, under appropriate protections:</p>
+          <ul className="list-disc pl-6">
+            <li><strong>Website hosting/CDN:</strong> GitHub Pages (GitHub) and its CDN deliver this site and may generate standard logs.</li>
+            <li><strong>Form relay (waitlist &amp; contact):</strong> FormSubmit — securely forwards form submissions to our email. The content you submit is processed by them to deliver the message.</li>
+            <li><strong>Email:</strong> We receive submissions in our Gmail inbox. Your message (and our reply) is retained in email like any standard correspondence.</li>
+          </ul>
+          <p>We don’t share data with advertisers or data brokers.</p>
+        </section>
+
+        <section>
+          <h2>Retention</h2>
+          <ul>
+            <li><strong>Waitlist:</strong> kept until you ask us to remove it or until the waitlist phase ends, after which we’ll either invite you, ask if you want to stay, or delete the record.</li>
+            <li><strong>Contact messages:</strong> kept as long as needed to resolve your inquiry and for reasonable record-keeping.</li>
+            <li><strong>Hosting logs:</strong> retained by the hosting/CDN per their policies; we don’t control those durations.</li>
+            <li><strong>App data (future):</strong> retained while your account is active and deleted upon request or account closure, subject to any legal holds.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Your choices &amp; rights</h2>
+          <ul>
+            <li><strong>Opt-out of the waitlist or marketing:</strong> email us from the subscribed address and we’ll remove you.</li>
+            <li><strong>Access, correction, deletion:</strong> email us to request a copy, correction, or deletion of your data.</li>
+            <li><strong>EU/UK residents:</strong> you may also have rights to restrict or object to processing and data portability. You can lodge a complaint with your data protection authority.</li>
+            <li><strong>California residents:</strong> you may have rights under the CCPA/CPRA, including access, deletion, and non-discrimination. We do not sell or share your personal information for cross-context behavioral advertising.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Security</h2>
+          <p>
+            We apply reasonable technical and organizational measures appropriate to the data we handle (e.g., HTTPS, limited
+            access, vendor due diligence). No method of transmission or storage is 100% secure; if we learn of a breach affecting
+            you, we’ll notify you and/or regulators as required.
+          </p>
+        </section>
+
+        <section>
+          <h2>International transfers</h2>
+          <p>
+            Our processors (e.g., hosting, email, form relay) may process data in the United States and other countries.
+            By contacting us or joining the waitlist, you understand your data may be transferred outside your region, under
+            appropriate safeguards.
+          </p>
+        </section>
+
+        <section>
+          <h2>Children</h2>
+          <p>
+            Prazise isn’t directed to children under 13 (or the minimum age in your jurisdiction). If you believe a child
+            provided us personal data, contact us and we’ll delete it.
+          </p>
+        </section>
+
+        <section>
+          <h2>Changes to this policy</h2>
+          <p>
+            We may update this policy as we launch new features or as laws change. We’ll update the “Last updated” date above
+            and, when appropriate, provide additional notice.
+          </p>
+        </section>
 
         <section id="contact">
-          <h2>{t("privacy.contact")}</h2>
-          <address className="not-italic leading-7">
-            <div><strong>John Slavinskas</strong></div>
-            <div>Lissi Kaeser Straße 8</div>
-            <div>80797 München, Germany</div>
-
-            <div className="flex gap-2">
-              <span>{t("privacy.phoneLabel", { default: "Phone:" })}</span>
-              <a
-                className="underline underline-offset-2"
-                href={`tel:${"+49 1575 4805360".replace(/[^\d+]/g, "")}`}
-              >
-                +49 1575 4805360
-              </a>
-            </div>
-
-            <div className="flex gap-2">
-              <span>{t("privacy.emailLabel", { default: "Email:" })}</span>
-              <a className="underline underline-offset-2" href="mailto:Slavinskasjack@gmail.com">
-                Slavinskasjack@gmail.com
-              </a>
-            </div>
-          </address>
+          <h2>Contact</h2>
+          <p>
+            Questions or requests:{" "}
+            <a href="mailto:slavinskasjack@gmail.com">slavinskasjack@gmail.com</a>{" "}
+            (optional cc:{" "}
+            <a href="mailto:johnslavinskas@my.uopeople.edu">johnslavinskas@my.uopeople.edu</a>).
+            You can also use our <a href="/contact">contact form</a>.
+          </p>
         </section>
 
-        <section id="emails">
-          <h2>{t("privacy.emailsHeading")}</h2>
-          <p>{t("privacy.emails")}</p>
-        </section>
-
-        <section id="eurights">
-          <h2>{t("privacy.eurightsHeading")}</h2>
-          <p>{t("privacy.eurights")}</p>
-        </section>
-
-        <section id="embeds">
-          <h2>{t("privacy.embedsHeading")}</h2>
-          <p>{t("privacy.embeds")}</p>
-        </section>
-
-        <section id="changes">
-          <h2>{t("privacy.changesHeading")}</h2>
-          <p>{t("privacy.changes")}</p>
-        </section>
+        <footer className="text-sm opacity-80">
+          <p>
+            <strong>Note:</strong> This policy describes our current practices for the pre-launch website and forms.
+            App-specific details will be added at launch.
+          </p>
+        </footer>
       </article>
     </main>
   );
